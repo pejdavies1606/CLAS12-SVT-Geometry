@@ -387,15 +387,46 @@ public class Util
 		double[] p = aVol.getPosition();
 		aVol.setPosition( p[0]*aFactor, p[1]*aFactor, p[2]*aFactor );
 		
-		/*double[] d = aVol.getParameters();
-		for( int i = 0; i < d.length; i++ )
-			d[i] = aScale*d[i];
-		aVol.setParameters( d );*/
-		
 		List<Geant4Basic> children = aVol.getChildren();
 		for( int i = 0; i < children.size(); i++ )
 		{
 			scalePosition( children.get(i), aFactor ); // tail recursive
+		}
+	}
+	
+	
+	public static void scaleDimensions( Geant4Basic aVol, double aFactor )
+	{
+		double[] d = aVol.getParameters();
+		
+		String type = aVol.getType().toLowerCase();
+		
+		switch( type )
+		{
+		case "box": // cube or cuboid
+		case "eltube": // cylinder along Z axis
+		case "orb": // sphere
+			
+			for( int i = 0; i < d.length; i++ )
+				d[i] *= aFactor;
+			break;
+			
+		case "tube": // hollow tube segment
+			
+			for( int i = 0; i < 3; i++ ) // rmax, rmin, z, deltaphi, startphi
+				d[i] *= aFactor;
+			break;
+			
+		default:
+			throw new IllegalArgumentException("unknown type: \""+ type +"\"");
+		}
+		
+		aVol.setParameters( d );
+		
+		List<Geant4Basic> children = aVol.getChildren();
+		for( int i = 0; i < children.size(); i++ )
+		{
+			scaleDimensions( children.get(i), aFactor ); // tail recursive
 		}
 	}
 	
