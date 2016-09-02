@@ -25,15 +25,15 @@ import Misc.Util;
  * <ul>
  * <li> svt = four concentric regions / superlayers </li>
  * <li> region / superlayer = ring of a variable number of sectors </li>
- * <li> sector module = pair of sensor  modules and backing structure, connected and stabilised by copper and peek supports </li>
- * <li> sensor module = triplet of sensors </li>
+ * <li> sector = pair of sensor  modules and backing structure, connected and stabilised by copper and peek supports </li>
+ * <li> module = triplet of sensors </li>
  * <li> sensor = silicon with etched strips in active region </li>
  * <li> layer = plane of sensitive strips, spanning active regions of module </li>
  * <li> strip = sensitive line </li>
  * </ul>
  * 
  * @author pdavies
- * @version 0.1.1
+ * @version 0.2.0
  */
 public class SVTVolumeFactory
 {
@@ -54,12 +54,12 @@ public class SVTVolumeFactory
 	 * Please run {@code SVTConstants.connect() } first.
 	 * 
 	 * @param cp a DatabaseConstantProvider that has loaded the necessary tables
-	 * @param applyAlignmentShifts a switch to set whether the alignment shifts from CCDB will be applied
+	 * @param applyAlignmentShiftsFromCcdb a switch to set whether the alignment shifts from CCDB will be applied
 	 */
-	public SVTVolumeFactory( ConstantProvider cp, boolean applyAlignmentShifts )
+	public SVTVolumeFactory( ConstantProvider cp, boolean applyAlignmentShiftsFromCcdb )
 	{
 		SVTConstants.load( cp );
-		setApplyAlignmentShifts( applyAlignmentShifts );
+		setApplyAlignmentShifts( applyAlignmentShiftsFromCcdb );
 		if( bShift == true ){ SVTConstants.loadAlignmentShifts( cp ); }
 		
 		sectorMin = new int[SVTConstants.NREGIONS];
@@ -117,12 +117,12 @@ public class SVTVolumeFactory
 		
 		if( bShift )
 		{
-			System.out.println("  variation: survey shifted" );
+			System.out.println("  variation: shifted" );
 			if( !(scaleT - 1.0 < 1.0E-3 && scaleR - 1.0 < 1.0E-3) ){ System.out.println("  scale(T,R): "+ scaleT + " " + scaleR ); }
 		}
 		else
 		{
-			System.out.println("  variation: nominal");
+			System.out.println("  variation: ideal");
 		}
 		System.out.println( "  "+showRange() );
 		
@@ -188,7 +188,7 @@ public class SVTVolumeFactory
 			if( bShift )
 			{
 				//System.out.println("N "+sectorVol.gemcString() );
-				Point3D[] fidPos3Ds = SVTAlignmentFactory.getIdealsFiducials( aRegion, sector );
+				Point3D[] fidPos3Ds = SVTAlignmentFactory.getIdealFiducials( aRegion, sector );
 				Triangle3D fidTri3D = new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] );
 				
 				//System.out.println("rs "+ convertRegionSector2SvtIndex( aRegion, sector ));

@@ -17,15 +17,15 @@ import Alignment.AlignmentFactory;
  * <ul>
  * <li> svt = four concentric regions / superlayers </li>
  * <li> region / superlayer = ring of a variable number of sectors </li>
- * <li> sector module = pair of sensor  modules and backing structure, connected and stabilised by copper and peek supports </li>
- * <li> sensor module = triplet of sensors </li>
+ * <li> sector = pair of sensor  modules and backing structure, connected and stabilised by copper and peek supports </li>
+ * <li> module = triplet of sensors </li>
  * <li> sensor = silicon with etched strips in active region </li>
  * <li> layer = plane of sensitive strips, spanning active regions of module </li>
  * <li> strip = sensitive line </li>
  * </ul>
  * 
  * @author pdavies
- * @version 0.1.0
+ * @version 0.2.0
  */
 public class SVTStripFactory
 {
@@ -37,12 +37,12 @@ public class SVTStripFactory
 	 * Please run {@code SVTConstants.connect() } first.
 	 * 
 	 * @param cp a DatabaseConstantProvider that has loaded the necessary tables
-	 * @param applyAlignmentShifts a switch to set whether the alignment shifts from CCDB will be applied
+	 * @param applyAlignmentShiftsFromCcdb a switch to set whether the alignment shifts from CCDB will be applied
 	 */
-	public SVTStripFactory( ConstantProvider cp, boolean applyAlignmentShifts )
+	public SVTStripFactory( ConstantProvider cp, boolean applyAlignmentShiftsFromCcdb )
 	{
 		SVTConstants.load( cp );
-		if( applyAlignmentShifts ){ bShift = true; SVTConstants.loadAlignmentShifts( cp ); }
+		if( applyAlignmentShiftsFromCcdb ){ bShift = true; SVTConstants.loadAlignmentShifts( cp ); }
 	}
 	
 	/**
@@ -82,7 +82,6 @@ public class SVTStripFactory
 
 	/**
 	 * Returns a sensor strip.
-	 * Used by the Reconstruction.
 	 * 
 	 * @param aRegion an index starting from 0
 	 * @param aSector an index starting from 0
@@ -226,8 +225,8 @@ public class SVTStripFactory
 	public Line3D getShiftedStrip( int aRegion, int aSector, int aStrip, int aModule )
 	{
 		Line3D stripLine = getIdealStrip( aRegion, aSector, aStrip, aModule );
-		AlignmentFactory.applyShift( stripLine.origin(), SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealsFiducialCenter( aRegion, aSector ), scaleT, scaleR );
-		AlignmentFactory.applyShift( stripLine.end(),    SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealsFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		AlignmentFactory.applyShift( stripLine.origin(), SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		AlignmentFactory.applyShift( stripLine.end(),    SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
 		return stripLine;
 	}
 	
@@ -259,14 +258,14 @@ public class SVTStripFactory
 	 * @param aModule an index starting from 0
 	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
 	 */
-	public Point3D[] getLayerCorners( int aRegion, int aSector, int aModule )
+	public Point3D[] getIdealLayerCorners( int aRegion, int aSector, int aModule )
 	{
-		Point3D[] cornerPos3Ds = createLayerCorners( aModule );
+		Point3D[] cornerPos3Ds = createIdealLayerCorners( aModule );
 		
 		double r = SVTConstants.LAYERRADIUS[aRegion][aModule];
 		double z = SVTConstants.Z0ACTIVE[aRegion];
 		Transformation3D labFrame = SVTConstants.getLabFrame( aRegion, aSector, r, z );
-		for( int i = 0; i < 4; i++ ){ labFrame.apply( cornerPos3Ds[i] ); } // local frame -> lab frame
+		for( int i = 0; i < cornerPos3Ds.length; i++ ){ labFrame.apply( cornerPos3Ds[i] ); } // local frame -> lab frame
 		
 		return cornerPos3Ds;
 	}
@@ -279,7 +278,7 @@ public class SVTStripFactory
 	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
 	 * @throws IllegalArgumentException index out of bounds
 	 */
-	public Point3D[] createLayerCorners( int aModule ) throws IllegalArgumentException
+	public Point3D[] createIdealLayerCorners( int aModule ) throws IllegalArgumentException
 	{
 		if( aModule < 0 || aModule > 1 ){ throw new IllegalArgumentException("module out of bounds"); }
 		
@@ -290,8 +289,45 @@ public class SVTStripFactory
 		cornerPos3Ds[3] = new Point3D( 0, 0, SVTConstants.STRIPLENMAX );
 		
 		Transformation3D stripFrame = SVTConstants.getStripFrame( aModule == 0 ); // flip U layer
-		for( int i = 0; i < 4; i++ ){ stripFrame.apply( cornerPos3Ds[i] ); } // strip frame -> local frame
+		for( int i = 0; i < cornerPos3Ds.length; i++ ){ stripFrame.apply( cornerPos3Ds[i] ); } // strip frame -> local frame
 		
+		return cornerPos3Ds;
+	}
+	
+	
+	/**
+	 * Returns the corners of a sensor layer in the lab frame after the alignment shifts have been applied.
+	 * 
+	 * @param aRegion an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @param aModule an index starting from 0
+	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
+	 */
+	public Point3D[] getShiftedLayerCorners( int aRegion, int aSector, int aModule )
+	{
+		Point3D[] cornerPos3Ds = getIdealLayerCorners( aRegion, aSector, aModule );
+		for( int i = 0; i < cornerPos3Ds.length; i++ )
+			AlignmentFactory.applyShift( cornerPos3Ds[i], SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		return cornerPos3Ds;
+	}
+	
+	
+	/**
+	 * Returns the corners of a sensor layer in the local frame after the alignment shifts have been applied.
+	 * 
+	 * @param aRegion an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @param aModule an index starting from 0
+	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
+	 */
+	public Point3D[] createShiftedLayerCorners( int aRegion, int aSector, int aModule )
+	{
+		Point3D[] cornerPos3Ds = getShiftedLayerCorners( aRegion, aSector, aModule );
+		
+		double r = SVTConstants.LAYERRADIUS[aRegion][aModule];
+		double z = SVTConstants.Z0ACTIVE[aRegion];
+		for( int i = 0; i < cornerPos3Ds.length; i++ )
+			SVTConstants.getLabFrame( aRegion, aSector, r, z ).inverse().apply( cornerPos3Ds[i] ); // lab frame -> local frame
 		return cornerPos3Ds;
 	}
 	
@@ -301,7 +337,7 @@ public class SVTStripFactory
 	 * 
 	 * @param b true/false
 	 */
-	public void setAlignmentShifts( boolean b )
+	public void setApplyAlignmentShifts( boolean b )
 	{
 		bShift = b;
 	}

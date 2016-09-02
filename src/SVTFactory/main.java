@@ -265,29 +265,34 @@ public class main
 		System.exit(0);*/
 		
 		// ConstantProvider cp = new DatabaseLoader.getSVTConstants();
-		DatabaseConstantProvider cp = new DatabaseConstantProvider( 10, "default");
+		/*DatabaseConstantProvider cp = new DatabaseConstantProvider( 10, "default");
 		cp.loadTable( SVTConstants.getCcdbPath() +"svt");
 		cp.loadTable( SVTConstants.getCcdbPath() +"region");
 		cp.loadTable( SVTConstants.getCcdbPath() +"support");
 		cp.loadTable( SVTConstants.getCcdbPath() +"fiducial");
 		//cp.loadTable( SVTConstants.getCcdbPath() +"material");
 		cp.loadTable( SVTConstants.getCcdbPath() +"alignment");
-		cp.disconnect();
+		cp.disconnect();*/
 		//System.out.println(cp.toString());
 		//System.exit(0);
 		
-		SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
+		SVTConstants.VERBOSE = true;
+		DatabaseConstantProvider cp = SVTConstants.connect( true );
+		
+		/*SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
 		double[][] dataFactoryIdeals = SVTAlignmentFactory.getFactoryIdealsFiducialData();
 		
 		SVTAlignmentFactory.calcShifts( dataFactoryIdeals, SVTAlignmentFactory.getDataSurveyMeasured(), "shifts_survey_measured_from_factory_ideals.dat" );
+		//AlignmentFactory.VERBOSE = true;
 		double[][] dataDeltas = SVTAlignmentFactory.calcDeltas( dataFactoryIdeals, SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_factory_ideals.dat" );
+		//AlignmentFactory.VERBOSE = false;
 		
 		//SVTAlignmentFactory.calcDeltas( dataNominal, SVTAlignmentFactory.getDataSurveyIdeals(), "deltas_survey_ideals_from_factory_nominal.dat");
 		//SVTAlignmentFactory.calcDeltas( SVTAlignmentFactory.getDataSurveyIdeals(), SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_survey_ideals.dat");
 		
-		SVTAlignmentFactory.calcTriangleSides( dataFactoryIdeals, "sides_factory_ideals");
-		SVTAlignmentFactory.calcTriangleSides( SVTAlignmentFactory.getDataSurveyMeasured(), "sides_survey_measured");
-		SVTAlignmentFactory.calcTriangleSides( dataDeltas, "sides_survey_measured_from_factory_ideals");
+		SVTAlignmentFactory.calcTriangleSides( dataFactoryIdeals, 0, "sides_factory_ideals");
+		SVTAlignmentFactory.calcTriangleSides( SVTAlignmentFactory.getDataSurveyMeasured(), 0.020, "sides_survey_measured");
+		SVTAlignmentFactory.calcTriangleSides( dataDeltas, 0.020, "sides_survey_measured_from_factory_ideals");*/
 		//System.exit(0);
 		
 		
@@ -308,8 +313,8 @@ public class main
 		//Geant4Basic region = svtNominal.createRegion( 0 );
 		//region.setMother( svtNominal.getMotherVolume() );
 		
-		String fileNameNominalFiducials = "factory_fiducials_nominal.dat";
-		Writer fileNominalFiducials = Util.openOutputDataFile( fileNameNominalFiducials );
+		String fileNameIdealFiducials = "factory_fiducials_ideal.dat";
+		Writer fileIdealFiducials = Util.openOutputDataFile( fileNameIdealFiducials );
 		
 		for( int region = svtIdeal.getRegionMin()-1; region < svtIdeal.getRegionMax(); region++ )
 			for( int sector = svtIdeal.getSectorMin()[region]-1; sector < svtIdeal.getSectorMax()[region]; sector++ )
@@ -328,7 +333,7 @@ public class main
 							//System.out.println( stripVol.getChildren().get(c).gemcString() );
 					}
 					
-					Point3D[] layerCorners = svtIdealStrips.getLayerCorners( region, sector, module );
+					Point3D[] layerCorners = svtIdealStrips.getIdealLayerCorners( region, sector, module );
 					for( int i = 0; i < layerCorners.length; i++ )
 					{
 						Geant4Basic cornerBall = new Geant4Basic("cornerBall"+i+"_m"+module+"_s"+sector+"_r"+region, "Orb", 0.075 ); // cm
@@ -337,11 +342,11 @@ public class main
 					}
 				}
 				
-				Point3D fidPos3Ds[] = SVTAlignmentFactory.getIdealsFiducials( region, sector );
+				Point3D fidPos3Ds[] = SVTAlignmentFactory.getIdealFiducials( region, sector );
 				
 				for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
 				{
-					Util.writeLine( fileNominalFiducials, String.format("R%dS%02dF%d % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, fid+1, fidPos3Ds[fid].x(), fidPos3Ds[fid].y(), fidPos3Ds[fid].z() ) );
+					Util.writeLine( fileIdealFiducials, String.format("R%dS%02dF%d % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, fid+1, fidPos3Ds[fid].x(), fidPos3Ds[fid].y(), fidPos3Ds[fid].z() ) );
 					
 					Geant4Basic fidBall = new Geant4Basic("fiducialBall"+fid+"_s"+sector+"_r"+region, "Orb", 0.2 ); // cm
 					fidBall.setPosition( fidPos3Ds[fid].x()*0.1, fidPos3Ds[fid].y()*0.1, fidPos3Ds[fid].z()*0.1 ); // mm->cm
@@ -356,9 +361,9 @@ public class main
 				fidCen.setMother( svtIdeal.getMotherVolume() );
 			}
 		
-		Util.closeOutputDataFile( fileNameNominalFiducials, fileNominalFiducials );
+		Util.closeOutputDataFile( fileNameIdealFiducials, fileIdealFiducials );
 		
-		System.out.println( svtIdeal.toString() );
+		//System.out.println( svtIdeal.toString() );
 		
 		IGdmlExporter gdmlFile = VolumeExporterFactory.createGdmlFactory();
 		//gdmlFile.setVerbose( true ); // not useful for large numbers of volumes
@@ -369,41 +374,124 @@ public class main
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_sensorActive", "materialref", "ref", "mat_sensorActive");
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_deadZone", "materialref", "ref", "mat_sensorActive");
 		//gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_rohacell", "materialref", "ref", "mat_rohacell");
-		gdmlFile.writeFile("SVTFactory_nominal");
+		gdmlFile.writeFile("SVTFactory_ideal");
 		
-		System.exit( 0 );
+		//System.exit( 0 );
 		
 		
 		
 		SVTVolumeFactory svtShifted = new SVTVolumeFactory( cp, false );
 		//SVTConstants.loadAlignmentShifts("shifts_survey_measured_from_factory_ideals.dat");
-		SVTConstants.loadAlignmentShifts("shifts_custom.dat");
+		//SVTConstants.loadAlignmentShifts("shifts_custom.dat");
+		SVTConstants.loadAlignmentShifts("shifts_test.dat");
 		//SVTConstants.loadAlignmentShifts("shifts_zero.dat");
 		//SVTConstants.loadAlignmentShifts( cp );
 		svtShifted.setApplyAlignmentShifts( true );
 		//svtShifted.setAlignmentShiftScale( 1, 10 );
 		
-		svtShifted.setRange( regionSelector, sectorSelector, sectorSelector );
-		//svtShifted.setRange( regionSelector, 0, 0 );
+		//System.exit( 0 );
+		
+		//svtShifted.setRange( regionSelector, sectorSelector, sectorSelector );
+		svtShifted.setRange( regionSelector, 0, 0 );
 		
 		//AlignmentFactory.VERBOSE = true;
 		svtShifted.makeVolumes();
 		//AlignmentFactory.VERBOSE = false;
 		
-		/*for( int l = 0; l < 2; l++ )
-		{
-			//for( int s = 0; s < SVTGeant4Factory.NSECTORS[0]; s++ )
-			//{			
-				for( int i = 0; i < SVTGeant4Factory.NSTRIPS; i+=10 )
+		SVTStripFactory svtShiftedStrips = new SVTStripFactory( cp, false );
+		svtShiftedStrips.setApplyAlignmentShifts( true );
+		
+		String fileNameShiftedFiducials = "factory_fiducials_Shifted.dat";
+		Writer fileShiftedFiducials = Util.openOutputDataFile( fileNameShiftedFiducials );
+		
+		for( int region = svtShifted.getRegionMin()-1; region < svtShifted.getRegionMax(); region++ )
+			for( int sector = svtShifted.getSectorMin()[region]-1; sector < svtShifted.getSectorMax()[region]; sector++ )
+			{
+				for( int module = svtShifted.getModuleMin()-1; module < svtShifted.getModuleMax(); module++ )
 				{
-					Line3D stripLine = svtShifted.getStrip( l, s, i );		
-					Geant4Basic stripVol = Utils.createArrow("strip"+i+"_s"+s+"_l"+l, stripLine.toVector(), 0.5, 0.2, true, true, false );
-					stripVol.setPosition( stripLine.origin().x(), stripLine.origin().y(), stripLine.origin().z() );
-					//Utils.scale( stripVol, 0.1 ); // mm -> cm
-					stripVol.setMother( svtShifted.getMotherVolume() );
+					for( int strip = 0; strip < SVTConstants.NSTRIPS; strip+=32 )
+					{
+						Line3D stripLine = svtShiftedStrips.getShiftedStrip( region, sector, module, strip );
+						//stripLine.show();
+						Geant4Basic stripVol = Util.createArrow("strip"+strip+"_m"+module+"_s"+sector+"_r"+region, stripLine.toVector(), 0.5, 0.2, false, true, false );
+						stripVol.setPosition( stripLine.origin().x()*0.1, stripLine.origin().y()*0.1, stripLine.origin().z()*0.1 );
+						stripVol.setMother( svtShifted.getMotherVolume() );
+						//System.out.println( stripVol.gemcString() );
+						//for( int c = 0; c < stripVol.getChildren().size(); c++ )
+							//System.out.println( stripVol.getChildren().get(c).gemcString() );
+					}
+					
+					Point3D[] layerCorners = svtShiftedStrips.getShiftedLayerCorners( region, sector, module );
+					for( int i = 0; i < layerCorners.length; i++ )
+					{
+						Geant4Basic cornerBall = new Geant4Basic("cornerBall"+i+"_m"+module+"_s"+sector+"_r"+region, "Orb", 0.075 ); // cm
+						cornerBall.setPosition( layerCorners[i].x()*0.1, layerCorners[i].y()*0.1, layerCorners[i].z()*0.1 ); // mm -> cm
+						cornerBall.setMother( svtShifted.getMotherVolume() );
+					}
 				}
-			//}
-		}*/
+				
+				/*Point3D fidPos3Ds[] = SVTAlignmentFactory.getShiftedFiducials( region, sector );
+				
+				for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
+				{
+					Util.writeLine( fileShiftedFiducials, String.format("R%dS%02dF%d % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, fid+1, fidPos3Ds[fid].x(), fidPos3Ds[fid].y(), fidPos3Ds[fid].z() ) );
+					
+					Geant4Basic fidBall = new Geant4Basic("fiducialBall"+fid+"_s"+sector+"_r"+region, "Orb", 0.2 ); // cm
+					fidBall.setPosition( fidPos3Ds[fid].x()*0.1, fidPos3Ds[fid].y()*0.1, fidPos3Ds[fid].z()*0.1 ); // mm->cm
+					fidBall.setMother( svtShifted.getMotherVolume() );
+				}*/
+				
+				//System.out.println("r"+region+"s"+sector+"k"+SVTGeant4Factory.convertRegionSector2SvtIndex( region, sector ));
+				
+				//Point3D fidShiftedPos3Ds[] = SVTAlignmentFactory.getShiftedFiducials( region, sector );
+				
+				// calculate shifted fiducials manually to show intermediate steps
+				Point3D[] fidIdealPos3Ds = SVTAlignmentFactory.getIdealFiducials( region, sector ); // lab frame
+				Triangle3D fidIdealTri3D = new Triangle3D( fidIdealPos3Ds[0], fidIdealPos3Ds[1], fidIdealPos3Ds[2] );
+				double [] shift = SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( region, sector )].clone();
+				Point3D[] fidShiftedPos3Ds = new Point3D[SVTConstants.NFIDUCIALS];
+				
+				int n = 1;
+				double d = shift[6]/n;
+				for( int i = 1; i < n+1; i++ )
+				{
+					//System.out.println("fid "+ i );
+					shift[6] = i*d;
+										
+					for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
+					{
+						fidShiftedPos3Ds[fid] = new Point3D( fidIdealPos3Ds[fid] );  // reset for next step
+						SVTAlignmentFactory.applyShift( fidShiftedPos3Ds[fid], shift, fidIdealTri3D.center() );
+						
+						if( i == n )
+						{							
+							if( fid == SVTConstants.NFIDUCIALS-1 )
+							{
+								Triangle3D fidTri3D = new Triangle3D( fidShiftedPos3Ds[0], fidShiftedPos3Ds[1], fidShiftedPos3Ds[2] );
+								Vector3D fidVec3D = fidTri3D.normal().asUnit();
+								fidVec3D.scale( 10 );
+								Geant4Basic fidCen = Util.createArrow( "fiducialCenter_s"+sector+"_r"+region, fidVec3D, 2.0, 1.0, true, true, false );
+								fidCen.setPosition( fidTri3D.center().x()*0.1, fidTri3D.center().y()*0.1, fidTri3D.center().z()*0.1 );
+								fidCen.setMother( svtShifted.getMotherVolume() );
+							}
+						}
+						
+						//Geant4Basic fidBall = new Geant4Basic("fiducialBall"+fid+"_s"+sector+"_r"+region+"_"+i, "Orb", 0.2 ); // cm
+						Geant4Basic fidBall = new Geant4Basic("fiducialBall"+fid+"_s"+sector+"_r"+region, "Orb", 0.2 ); // cm
+						fidBall.setPosition( fidShiftedPos3Ds[fid].x()*0.1, fidShiftedPos3Ds[fid].y()*0.1, fidShiftedPos3Ds[fid].z()*0.1 ); // mm -> cm
+						fidBall.setMother( svtShifted.getMotherVolume() );
+					}
+				}
+				
+				Triangle3D fidTri3D = new Triangle3D( fidShiftedPos3Ds[0], fidShiftedPos3Ds[1], fidShiftedPos3Ds[2] );
+				Vector3D fidVec3D = fidTri3D.normal().asUnit();
+				fidVec3D.scale( 10 ); // length of arrow in mm
+				Geant4Basic fidCen = Util.createArrow( "fiducialCenter_s"+sector+"_r"+region, fidVec3D, 2.0, 1.0, true, true, false );
+				fidCen.setPosition( fidTri3D.center().x()*0.1, fidTri3D.center().y()*0.1, fidTri3D.center().z()*0.1 );
+				fidCen.setMother( svtShifted.getMotherVolume() );
+			}
+		
+		Util.closeOutputDataFile( fileNameShiftedFiducials, fileShiftedFiducials );
 		
 		//System.out.println( svtShifted.toString() );
 		
@@ -416,11 +504,6 @@ public class main
 		gdmlFile2.replaceAttribute( "structure", "volume", "name", "vol_deadZone", "materialref", "ref", "mat_sensorActive");
 		gdmlFile2.replaceAttribute( "structure", "volume", "name", "vol_rohacell", "materialref", "ref", "mat_rohacell");
 		gdmlFile2.writeFile("SVTFactory_shifted");
-		
-		String fileNameShiftedFiducials = "factory_fiducials_shifted.dat";
-		Writer fileShiftedFiducials = Util.openOutputDataFile( fileNameShiftedFiducials );
-		//String fileNameShiftedFiducialsDeltas = "factory_fiducials_shifted_deltas.dat";
-		//Writer fileShiftedFiducialsDeltas = Util.openOutputDataFile( fileNameShiftedFiducialsDeltas );
 		
 		for( int region = svtShifted.getRegionMin()-1; region < svtShifted.getRegionMax(); region++ ) // SVTGeant4Factory.NREGIONS
 			for( int sector = svtShifted.getSectorMin()[region]-1; sector < svtShifted.getSectorMax()[region]; sector++ ) // SVTGeant4Factory.NSECTORS[region]
@@ -449,7 +532,6 @@ public class main
 						
 						//if( i == n )
 						//{
-							Util.writeLine( fileShiftedFiducials, String.format("R%dS%02dF%d % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, fid+1, fidShiftedPos3Ds[fid].x(), fidShiftedPos3Ds[fid].y(), fidShiftedPos3Ds[fid].z() ) );
 							
 							//Vector3D fidDiffVec3D = fidShiftedPos3Ds[fid].vectorFrom( Util.toVector3D( SVTAlignmentFactory.getDataSurveyMeasured()[SVTGeant4Factory.convertRegionSectorFid2SurveyIndex(region, sector, fid)] ).toPoint3D() );
 							//Util.writeLine( fileShiftedFiducialsDeltas, String.format("R%dS%02dF%d % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, fid+1, fidDiffVec3D.x(), fidDiffVec3D.y(), fidDiffVec3D.z() ) );
@@ -470,14 +552,10 @@ public class main
 						fidBall.setPosition( fidShiftedPos3Ds[fid].x()*0.1, fidShiftedPos3Ds[fid].y()*0.1, fidShiftedPos3Ds[fid].z()*0.1 ); // mm -> cm
 						fidBall.setMother( svtShifted.getMotherVolume() );
 					//}
-				}
+					}
 			}
 		
-		Util.closeOutputDataFile( fileNameShiftedFiducials, fileShiftedFiducials );
-		//Util.closeOutputDataFile( fileNameShiftedFiducialsDeltas, fileShiftedFiducialsDeltas );
-		
-		
-		
+
 		Geant4Basic svtMergeVol = new Geant4Basic("merge", "Box", 0 );
 		svtShifted.appendName("_shifted");
 		svtIdeal.getMotherVolume().setMother( svtMergeVol );
@@ -496,9 +574,8 @@ public class main
 		gdmlFile3.writeFile("SVTFactory_merge");
 		
 		
-		
 		// verify shifted fiducials against survey measured using alignment algorithm
-		SVTAlignmentFactory.calcDeltas( SVTAlignmentFactory.getDataSurveyMeasured(), SVTAlignmentFactory.getShiftedFiducialData(), "deltas_factory_shifted_from_survey_measured.dat");
+		//SVTAlignmentFactory.calcDeltas( SVTAlignmentFactory.getDataSurveyMeasured(), SVTAlignmentFactory.getShiftedFiducialData(), "deltas_factory_shifted_from_survey_measured.dat");
 		
 		System.out.println("done");
 	}

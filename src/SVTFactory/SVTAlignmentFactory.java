@@ -18,39 +18,39 @@ import Misc.Util;
  * Processes fiducial survey data into alignment shifts, and applies those shifts to a given point or volume.
  * 
  * @author pdavies
- * @version 0.1.1
+ * @version 0.2.0
  */
 public class SVTAlignmentFactory
 {
-	private static String filenameSurveyIdeals;
+	private static String filenameSurveyIdeal;
 	private static String filenameSurveyMeasured;
 	
 	//private static String filenameDistances = "measured_distances.dat";
 	//private static Writer outputDistances;
 	
-	//private static String filenameIdealsFiducials = "survey_ideals_reformat2.dat";
-	//private static Writer outputIdealsFiducials;
+	//private static String filenameIdealFiducials = "survey_Ideal_reformat2.dat";
+	//private static Writer outputIdealFiducials;
 	
 	//private static String filenameMeasuredFiducials = "survey_measured_reformat2.dat";
 	//private static Writer outputMeasuredFiducials;
 	
-	private static double[][] dataSurveyIdeals, dataSurveyMeasured;
+	private static double[][] dataSurveyIdeal, dataSurveyMeasured;
 	
 	
-	public static void setup( ConstantProvider cp, String aInputSurveyIdeals, String aInputSurveyMeasured )
+	public static void setup( ConstantProvider cp, String aInputSurveyIdeal, String aInputSurveyMeasured )
 	{
 		SVTConstants.load( cp );
-		filenameSurveyIdeals = aInputSurveyIdeals;
+		filenameSurveyIdeal = aInputSurveyIdeal;
 		filenameSurveyMeasured = aInputSurveyMeasured;
 		
 		try
 		{
-			dataSurveyIdeals = Util.inputTaggedData( filenameSurveyIdeals, 3 ); // RSF (X Y Z)
+			dataSurveyIdeal = Util.inputTaggedData( filenameSurveyIdeal, 3 ); // RSF (X Y Z)
 			dataSurveyMeasured = Util.inputTaggedData( filenameSurveyMeasured, 3 ); // RSF (X Y Z)
 		}
 		catch( IOException e ){ e.printStackTrace(); }
 		
-		if( dataSurveyIdeals == null || dataSurveyMeasured == null )
+		if( dataSurveyIdeal == null || dataSurveyMeasured == null )
 			throw new IllegalArgumentException("no data");
 	}
 
@@ -64,7 +64,7 @@ public class SVTAlignmentFactory
 		
 		outputShifts = Util.openOutputDataFile( aOutputFile );
 		//outputDistances = Util.openOutputDataFile( filenameDistances );
-		//outputIdealsFiducials = Util.openOutputDataFile( filenameIdealsFiducials );
+		//outputIdealFiducials = Util.openOutputDataFile( filenameIdealFiducials );
 		//outputMeasuredFiducials = Util.openOutputDataFile( filenameMeasuredFiducials );
 		
 		/*double fidXDist = 2*SVTConstants.FIDCUX;
@@ -119,7 +119,7 @@ public class SVTAlignmentFactory
 		}
 		Util.closeOutputDataFile( aOutputFile, outputShifts );
 		//Util.closeOutputDataFile( filenameDistances, outputDistances );
-		//Util.closeOutputDataFile( filenameIdealsFiducials, outputIdealsFiducials );
+		//Util.closeOutputDataFile( filenameIdealFiducials, outputIdealFiducials );
 		//Util.closeOutputDataFile( filenameMeasuredFiducials, outputMeasuredFiducials );
 		return dataShifts;
 	}
@@ -138,8 +138,8 @@ public class SVTAlignmentFactory
 			int[] rsf = SVTConstants.convertSurveyIndex2RegionSectorFiducial( k );
 			
 			double[] data = dataDeltasMeasuredFromIdeal[k];
-			double radiusSpherical = Math.sqrt( Math.pow(data[0], 2) + Math.pow(data[1], 2) + Math.pow(data[2], 2) );
-			double radiusCylindrical = Math.sqrt( Math.pow(data[0], 2) + Math.pow(data[1], 2) );
+			double radiusSpherical = Math.sqrt( Math.pow(data[0], 2 ) + Math.pow(data[1], 2 ) + Math.pow(data[2], 2 ) );
+			double radiusCylindrical = Math.sqrt( Math.pow(data[0], 2 ) + Math.pow(data[1], 2 ) );
 			
 			outputLine = String.format("R%dS%02dF%d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", rsf[0]+1, rsf[1]+1, rsf[2]+1,
 					data[0], data[1], data[2], radiusCylindrical, radiusSpherical );
@@ -151,12 +151,12 @@ public class SVTAlignmentFactory
 	}
 	
 	
-	public static double[][] calcTriangleSides( double[][] aData, String aOutputFile )
+	public static double[][][] calcTriangleSides( double[][] aData, double aUncertainty, String aOutputFile )
 	{
 		String outputLine; Writer outputWriter;
 		outputWriter = Util.openOutputDataFile( aOutputFile );
 		
-		double[][] distances = new double[SVTConstants.NTOTALSECTORS][SVTConstants.NFIDUCIALS];
+		double[][][] distances = new double[SVTConstants.NTOTALSECTORS][SVTConstants.NFIDUCIALS][2];
 		
 		for( int k = 0; k < SVTConstants.NTOTALSECTORS*SVTConstants.NFIDUCIALS; k+=SVTConstants.NFIDUCIALS )
 		{
@@ -165,10 +165,13 @@ public class SVTAlignmentFactory
 			Point3D[] pos3Ds = new Point3D[]{ new Point3D( aData[k+0][0], aData[k+0][1], aData[k+0][2] ),
 											  new Point3D( aData[k+1][0], aData[k+1][1], aData[k+1][2] ),
 											  new Point3D( aData[k+2][0], aData[k+2][1], aData[k+2][2] )};
-			distances[j] = new double[]{ pos3Ds[0].distance( pos3Ds[1] ), 
+			distances[j][0] = new double[]{ pos3Ds[0].distance( pos3Ds[1] ), 
 										   pos3Ds[1].distance( pos3Ds[2] ),
 										   pos3Ds[2].distance( pos3Ds[0] ) };
-			outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f\n", rsf[0]+1, rsf[1]+1, distances[j][0], distances[j][1], distances[j][2] );
+			distances[j][1] = new double[]{ Util.calcUncertaintyDistance( aUncertainty, pos3Ds[0], pos3Ds[1] ),
+											Util.calcUncertaintyDistance( aUncertainty, pos3Ds[1], pos3Ds[2] ),
+											Util.calcUncertaintyDistance( aUncertainty, pos3Ds[2], pos3Ds[0] ) };
+			outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", rsf[0]+1, rsf[1]+1, distances[j][0][0], distances[j][0][1], distances[j][0][2], distances[j][1][0], distances[j][1][1], distances[j][1][2] );
 			Util.writeLine( outputWriter, outputLine );
 		}
 		Util.closeOutputDataFile( aOutputFile, outputWriter );
@@ -226,13 +229,13 @@ public class SVTAlignmentFactory
 	 * 
 	 * @return double[][] an array of data in fiducial survey format.
 	 */
-	public static double[][] getFactoryIdealsFiducialData()
+	public static double[][] getFactoryIdealFiducialData()
 	{
 		double [][] data = new double[SVTConstants.NTOTALSECTORS*SVTConstants.NFIDUCIALS][];
 		for( int region = 0; region < SVTConstants.NREGIONS; region++ )
 			for( int sector = 0; sector < SVTConstants.NSECTORS[region]; sector++ )
 			{
-				Point3D fidPos3Ds[] = getIdealsFiducials( region, sector );
+				Point3D fidPos3Ds[] = getIdealFiducials( region, sector );
 				for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
 				{
 					data[SVTConstants.convertRegionSectorFid2SurveyIndex( region, sector, fid )] 
@@ -257,7 +260,7 @@ public class SVTAlignmentFactory
 		if( aRegion < 0 || aRegion > SVTConstants.NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		if( aSector < 0 || aSector > SVTConstants.NSECTORS[aRegion]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
 		
-		Point3D[] fidPos3Ds = getIdealsFiducials( aRegion, aSector ); // lab frame
+		Point3D[] fidPos3Ds = getIdealFiducials( aRegion, aSector ); // lab frame
 		Triangle3D fidTri3D = new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] );
 		
 		for( int f = 0; f < SVTConstants.NFIDUCIALS; f++ )
@@ -275,7 +278,7 @@ public class SVTAlignmentFactory
 	 * @return Point3D[] an array of fiducial points in the order Cu+, Cu-, Pk
 	 * @throws IllegalArgumentException indices out of bounds
 	 */
-	public static Point3D[] getIdealsFiducials( int aRegion, int aSector ) throws IllegalArgumentException // lab frame
+	public static Point3D[] getIdealFiducials( int aRegion, int aSector ) throws IllegalArgumentException // lab frame
 	{
 		if( aRegion < 0 || aRegion > SVTConstants.NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		if( aSector < 0 || aSector > SVTConstants.NSECTORS[aRegion]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
@@ -302,9 +305,9 @@ public class SVTAlignmentFactory
 	 * @return Point3D the mean average point of the 3 fiducial points (Cu+, Cu-, Pk)
 	 * @throws IllegalArgumentException indices out of bounds
 	 */
-	public static Point3D getIdealsFiducialCenter( int aRegion, int aSector ) throws IllegalArgumentException
+	public static Point3D getIdealFiducialCenter( int aRegion, int aSector ) throws IllegalArgumentException
 	{
-		Point3D[] fidPos3Ds = getIdealsFiducials( aRegion, aSector );
+		Point3D[] fidPos3Ds = getIdealFiducials( aRegion, aSector );
 		return new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] ).center();
 	}
 	
@@ -338,9 +341,9 @@ public class SVTAlignmentFactory
 	
 	
 	
-	public static double[][] getDataSurveyIdeals()
+	public static double[][] getDataSurveyIdeal()
 	{
-		return dataSurveyIdeals;
+		return dataSurveyIdeal;
 	}
 	
 	

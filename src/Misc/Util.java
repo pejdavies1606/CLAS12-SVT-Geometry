@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 import org.jlab.geom.geant.Geant4Basic;
+import org.jlab.geom.prim.Point3D;
 import org.jlab.geom.prim.Vector3D;
 
 /**
@@ -27,7 +28,7 @@ import org.jlab.geom.prim.Vector3D;
  * </ul>
  * 
  * @author pdavies
- * @version 0.1.1
+ * @version 0.2.0
  */
 public class Util
 {	
@@ -43,11 +44,11 @@ public class Util
 	
 	
 	
-	/*public static double calcUncertaintyDistance( double uc, Point3D p1, Point3D p0 )
+	public static double calcUncertaintyDistance( double uc, Point3D p1, Point3D p0 )
 	{
 		double u = Math.pow(p1.x() - p0.x(),2) + Math.pow(p1.y() - p0.y(),2) + Math.pow(p1.z() - p0.z(),2);		
 		return Math.sqrt( 6*Math.pow(uc,2)*Math.sqrt(u) );
-	}*/
+	}
 	
 	
 	/**

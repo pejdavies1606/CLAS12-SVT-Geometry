@@ -17,7 +17,7 @@ import Misc.Util;
  * Universal class for processing and applying alignment shifts to points and volumes.
  * 
  * @author pdavies
- * @version 0.1.1
+ * @version 0.2.0
  */
 public class AlignmentFactory
 {
@@ -175,7 +175,8 @@ public class AlignmentFactory
 	
 	
 	/**
-	 * Calculates the difference between two sets of fiducial data of the same size.
+	 * Calculates the difference in coordinates between two sets of fiducial data.
+	 * 
 	 * @param dataLen number of data points
 	 * @param dataWid number of elements in each data point
 	 * @param dataIdeal first data set
