@@ -17,7 +17,7 @@ import Misc.Util;
  * Universal class for processing and applying alignment shifts to points and volumes.
  * 
  * @author pdavies
- * @version 0.2.0
+ * @version 0.2.1
  */
 public class AlignmentFactory
 {
@@ -89,7 +89,8 @@ public class AlignmentFactory
 	}*/
 	
 	
-	public static double[][] calcShifts( int dataLen, double[][] dataNominal, double[][] dataMeasured, double uncertainty )
+	
+	/*public static double[][] calcShifts( int dataLen, double[][] dataNominal, double[][] dataMeasured, double uncertainty )
 	{
 		if( dataNominal == null ){ throw new IllegalArgumentException("no data"); }
 		if( dataMeasured == null ){ throw new IllegalArgumentException("no data"); }
@@ -98,7 +99,7 @@ public class AlignmentFactory
 		
 		
 		return null;
-	}
+	}*/
 	
 	
 	/**
@@ -107,7 +108,7 @@ public class AlignmentFactory
 	 * @param dataLen total number of data points (where each point is 3 Cartesian coordinates)
 	 * @param dataIdeal first data set
 	 * @param dataMeasured second data set
-	 * @return dataShifts alignment shifts relative to dataNominal 
+	 * @return double[][] alignment shifts relative to the first data set
 	 */
 	public static double[][] calcShifts( int dataLen, double[][] dataIdeal, double[][] dataMeasured )
 	{
@@ -181,7 +182,7 @@ public class AlignmentFactory
 	 * @param dataWid number of elements in each data point
 	 * @param dataIdeal first data set
 	 * @param dataMeasured second data set
-	 * @return dataDeltas point difference relative to dataNominal
+	 * @return dataDeltas point difference relative to the first data set 
 	 */
 	public static double[][] calcDeltas( int dataLen, int dataWid, double[][] dataIdeal, double[][] dataMeasured )
 	{
@@ -205,7 +206,52 @@ public class AlignmentFactory
 	}
 	
 	
+	/**
+	 * Calculates the difference in coordinates between two sets of fiducial data.
+	 * 
+	 * @param dataLen number of data points
+	 * @param dataWid number of elements in each data point
+	 * @param dataThk number of components in each element
+	 * @param dataIdeal first data set
+	 * @param dataMeasured second data set
+	 * @return dataDeltas point difference relative to the first data set, with uncertainty
+	 */
+	public static double[][][] calcDeltas( int dataLen, int dataWid, int dataThk, double[][][] dataIdeal, double[][][] dataMeasured )
+	{
+		if( dataIdeal == null ){ throw new IllegalArgumentException("no data"); }
+		if( dataMeasured == null ){ throw new IllegalArgumentException("no data"); }
+		if( dataLen == 0 || dataWid == 0 ){ throw new IllegalArgumentException("no info"); }
+		
+		double[][][] dataDeltas = new double[dataLen][dataWid][dataThk];
+		
+		for( int j = 0; j < dataLen; j++ )
+		{
+			if( VERBOSE ) System.out.printf("calculating deltas for point %d\n", j );
+			for( int i = 0; i < dataWid; i++ )
+			{
+				dataDeltas[j][i][0] = dataMeasured[j][i][0] - dataIdeal[j][i][0]; // calculate difference
+				dataDeltas[j][i][1] = dataMeasured[j][i][1] - dataIdeal[j][i][1]; // sum uncertainties
+				if( VERBOSE ) System.out.printf("% 8.3f:% 8.3f - % 8.3f:% 8.3f = % 8.3f:% 8.3f\n",
+												dataMeasured[j][i][0], dataMeasured[j][i][1],
+												dataIdeal[j][i][0], dataIdeal[j][i][1],
+												dataDeltas[j][i][0], dataDeltas[j][i][1] );
+			}
+		}
+		
+		return dataDeltas;
+	}
 	
+	
+	/**
+	 * Applies alignment shifts in bulk.
+	 * 
+	 * @param aData points in the lab frame
+	 * @param aShift translations and axis-angle rotations of the form { tx, ty, tz, rx, ry, rz, ra }
+	 * @param aCenterData a point about which to rotate the first point (for example the midpoint of the ideal fiducials)
+	 * @param aScaleT a scale factor for the translation shifts
+	 * @param aScaleR a scale factor for the rotation shifts
+	 * @return double[][] shifted points
+	 */
 	public static double[][] applyShift( double[][] aData, double[][] aShift, double[][] aCenterData, double aScaleT, double aScaleR )
 	{
 		double[][] aShiftedData = aData.clone();
@@ -229,12 +275,12 @@ public class AlignmentFactory
 	 * 
 	 * @param aPoint a point in the lab frame
 	 * @param aShift a translation and axis-angle rotation of the form { tx, ty, tz, rx, ry, rz, ra }
-	 * @param aNominalCenter a point about which to rotate the first point (for example the midpoint of the nominal fiducials)
+	 * @param aCenter a point about which to rotate the first point (for example the midpoint of the ideal fiducials)
 	 * @param aScaleT a scale factor for the translation shift
 	 * @param aScaleR a scale factor for the rotation shift
 	 * @throws IllegalArgumentException incorrect number of elements in shift array
 	 */
-	public static void applyShift( Point3D aPoint, double[] aShift, Point3D aNominalCenter, double aScaleT, double aScaleR ) throws IllegalArgumentException
+	public static void applyShift( Point3D aPoint, double[] aShift, Point3D aCenter, double aScaleT, double aScaleR ) throws IllegalArgumentException
 	{
 		if( aShift.length != NSHIFTDATARECLEN ){ throw new IllegalArgumentException("shift array must have "+NSHIFTDATARECLEN+" elements"); }
 		
@@ -259,12 +305,12 @@ public class AlignmentFactory
 			System.out.printf("PN: % 8.3f % 8.3f % 8.3f\n", aPoint.x(), aPoint.y(), aPoint.z() );
 			System.out.printf("ST: % 8.3f % 8.3f % 8.3f\n", tx, ty, tz );
 			System.out.printf("SR: % 8.3f % 8.3f % 8.3f % 8.3f\n", rx, ry, rz, Math.toDegrees(ra) );
-			System.out.printf("SC: % 8.3f % 8.3f % 8.3f\n", aNominalCenter.x(), aNominalCenter.y(), aNominalCenter.z() );
+			System.out.printf("SC: % 8.3f % 8.3f % 8.3f\n", aCenter.x(), aCenter.y(), aCenter.z() );
 		}
 				
 		if( !(ra < 1E-3) )
 		{
-			Vector3D centerVec = aNominalCenter.toVector3D();
+			Vector3D centerVec = aCenter.toVector3D();
 			
 			centerVec.scale( -1 ); // reverse translation
 			aPoint.set( aPoint, centerVec ); // move origin to center of rotation axis

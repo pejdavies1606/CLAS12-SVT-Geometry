@@ -33,7 +33,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.0
+ * @version 0.2.1
  */
 public class SVTVolumeFactory
 {
@@ -153,7 +153,6 @@ public class SVTVolumeFactory
 		if( aRegion < 0 || aRegion > SVTConstants.NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		
 		Geant4Basic regionVol = new Geant4Basic("region", "Box", 0,0,0 );
-		//Geant4Basic regionVolDisplay = new Geant4Basic("region", "tube",  );
 		
 		// pin regionVol to fiducial origin along z?
 		double zStartPhysical = SVTConstants.Z0ACTIVE[aRegion] - SVTConstants.DEADZNLEN; // Cu edge of hybrid sensor's physical volume
@@ -240,26 +239,21 @@ public class SVTVolumeFactory
 	{
 		Geant4Basic sectorVol = new Geant4Basic("sector", "Box", 0,0,0 );
 		
-		// position components relative to fiducial layer
+		Geant4Basic sectorBall = new Geant4Basic("sectorBall", "Orb", 0.075 ); // cm
+		sectorBall.setMother( sectorVol );
 		
-		//create rohacell backing structure
+		// position components relative to fiducial layer
 		
 		// for each side (U,V)
 		// 		create sensor module
 		// 		create passive materials (carbon fibre, bus cable, epoxy)
 		
-		double rohacellThickness =    2.500;
-		double carbonFibreThickness = 0.190;
-		double busCableThickness =    0.078;
-		double epoxyThickness =       0.065;
+		double rohacellThk =    2.500;
+		double carbonFibreThk = 0.190;
+		double busCableThk =    0.078;
+		double epoxyThk =       0.065;
 		
-		double passiveThickness = carbonFibreThickness + busCableThickness + epoxyThickness;
-		
-		//Geant4Basic rohacellVol = createRohacell( cp );
-		//rohacellVol.setMother( sectorVol );
-		// set position relative to pitch adaptor, calculated manually from a picture
-		// double rohacellStart = pitchAdaptorRefZ - (1.70 +- 0.09)
-		//rohacellVol.setPosition( 0.0, -rohacellThickness/2, 0.0 ); // where along z?
+		double passiveThickness = carbonFibreThk + busCableThk + epoxyThk;
 		
 		for( int module = moduleMin-1; module < moduleMax; module++ ) // NMODULES
 		{
@@ -272,7 +266,7 @@ public class SVTVolumeFactory
 			switch( module ) 
 			{
 			case 0: // U = lower / inner
-				moduleRadius = 0.0 - rohacellThickness - passiveThickness - 0.5*SVTConstants.SILICONTHK; // relative to fiducial layer
+				moduleRadius = 0.0 - rohacellThk - passiveThickness - 0.5*SVTConstants.SILICONTHK;
 				break;
 			case 1: // V = upper / outer
 				moduleRadius = passiveThickness + 0.5*SVTConstants.SILICONTHK;
@@ -283,25 +277,12 @@ public class SVTVolumeFactory
 			//moduleVol.getMother().getChildren().remove( moduleVol );
 		}
 		
-		
+		Geant4Basic rohacellVol = createRohacell();
+		rohacellVol.setMother( sectorVol );
+		double rohacellStart = 59.73; // CuEnd from fidOriginZ
+		rohacellVol.setPosition( 0.0, -rohacellThk/2*0.1, rohacellStart*0.1 + rohacellVol.getParameters()[2]/2 );
+	
 		return sectorVol;
-	}
-	
-	
-	/**
-	 * Returns one rohacell copmonent.
-	 * 
-	 * @return Geant4Basic a volume positioned at the origin
-	 */
-	public Geant4Basic createRohacell()
-	{	
-		double rohacellWidth =      38.000;
-		double rohacellThickness =   2.500;
-		double rohacellLength =    353.070;
-		
-		Geant4Basic rohacellVol = new Geant4Basic( "rohacell", "Box", rohacellWidth*0.1, rohacellThickness*0.1, rohacellLength*0.1 );
-		
-		return rohacellVol;
 	}
 	
 	
@@ -313,7 +294,6 @@ public class SVTVolumeFactory
 	public Geant4Basic createModule()
 	{		
 		Geant4Basic moduleVol = new Geant4Basic( "module", "Box", SVTConstants.PHYSSENWID*0.1, SVTConstants.SILICONTHK*0.1, SVTConstants.MODULELEN*0.1 );
-				
 		
 		for( int sensor = 0; sensor < SVTConstants.NSENSORS; sensor++ )
 		{
@@ -422,6 +402,31 @@ public class SVTVolumeFactory
 			throw new IllegalArgumentException("unknown dead zone type: "+ aType );
 		}
 		return deadZnVol;
+	}
+	
+	
+	/**
+	 * Returns one rohacell copmonent.
+	 * 
+	 * @return Geant4Basic a volume positioned at the origin
+	 */
+	public Geant4Basic createRohacell()
+	{	
+		double wid =  41.000;
+		double thk =   2.500;
+		double len = 352.930;
+		
+		return new Geant4Basic( "rohacell", "Box", wid*0.1, thk*0.1, len*0.1 );
+	}
+	
+	
+	public Geant4Basic createHeatsink()
+	{
+		double wid = 40.700;
+		double thk =  2.500;
+		double len = 65.330;
+		
+		return new Geant4Basic("heatsink", "Box", wid*0.1, thk*0.1, len*0.1 );
 	}
 	
 	

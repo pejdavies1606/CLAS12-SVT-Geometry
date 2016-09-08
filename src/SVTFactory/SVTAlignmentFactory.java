@@ -18,7 +18,7 @@ import Misc.Util;
  * Processes fiducial survey data into alignment shifts, and applies those shifts to a given point or volume.
  * 
  * @author pdavies
- * @version 0.2.0
+ * @version 0.2.1
  */
 public class SVTAlignmentFactory
 {
@@ -36,7 +36,14 @@ public class SVTAlignmentFactory
 	
 	private static double[][] dataSurveyIdeal, dataSurveyMeasured;
 	
-	
+	/**
+	 * Constructs a new geometry factory for sensor strips.
+	 * Please run {@code SVTConstants.connect() } first.
+	 * 
+	 * @param cp a DatabaseConstantProvider that has loaded the necessary tables
+	 * @param aInputSurveyIdeal a filename for the ideal data of the fiducial survey
+	 * @param aInputSurveyMeasured a filename for the measured data of the fiducial survey
+	 */
 	public static void setup( ConstantProvider cp, String aInputSurveyIdeal, String aInputSurveyMeasured )
 	{
 		SVTConstants.load( cp );
@@ -56,61 +63,25 @@ public class SVTAlignmentFactory
 
 	
 	
-	
+	/**
+	 * Calculates the alignment shifts between two sets of fiducial data, and writes them to the given file.
+	 * 
+	 * @param aDataIdeal fiducial data
+	 * @param aDataMeasured fiducial data
+	 * @param aOutputFile a filename
+	 * @return double[][] translations and axis-angle rotations of the form { tx, ty, tz, rx, ry, rz, ra } relative to the first data set
+	 */
 	public static double[][] calcShifts( double[][] aDataIdeal, double[][] aDataMeasured, String aOutputFile )
 	{
 		String outputLine; Writer outputShifts;
 		double[][] dataShifts = AlignmentFactory.calcShifts( SVTConstants.NTOTALSECTORS, aDataIdeal, aDataMeasured );
 		
-		outputShifts = Util.openOutputDataFile( aOutputFile );
-		//outputDistances = Util.openOutputDataFile( filenameDistances );
-		//outputIdealFiducials = Util.openOutputDataFile( filenameIdealFiducials );
-		//outputMeasuredFiducials = Util.openOutputDataFile( filenameMeasuredFiducials );
-		
-		/*double fidXDist = 2*SVTConstants.FIDCUX;
-		double fidZDist = SVTConstants.FIDCUZ + SVTConstants.FIDPKZ0 + SVTConstants.FIDPKZ1;
-		double fidZDist0 = Math.sqrt( Math.pow(fidZDist,2) + Math.pow(SVTConstants.FIDCUX + SVTConstants.FIDPKX, 2) );
-		double fidZDist1 = Math.sqrt( Math.pow(fidZDist,2) + Math.pow(SVTConstants.FIDCUX - SVTConstants.FIDPKX, 2) );
-		
-		System.out.printf("fidXDist  %8.3f\n", fidXDist );
-		System.out.printf("fidZDist  %8.3f\n", fidZDist );
-		System.out.printf("fidZDist0 %8.3f\n", fidZDist0 );
-		System.out.printf("fidZDist1 %8.3f\n", fidZDist1 );*/
+		outputShifts = Util.openOutputDataFile( aOutputFile );	
 		
 		for( int l = 0; l < SVTConstants.NTOTALSECTORS; l++ )
 		{
-			/*int nf = SVTConstants.NFIDUCIALS;
-			Point3D[] fidNominalPos3Ds = new Point3D[nf];
-			Point3D[] fidMeasuredPos3Ds = new Point3D[nf];
-			
-			for( int f = 0; f < nf; f++ )
-			{
-				fidNominalPos3Ds[f] = new Point3D( aDataNominal[l*nf+f][0], aDataNominal[l*nf+f][1], aDataNominal[l*nf+f][2] );
-				fidMeasuredPos3Ds[f] = new Point3D( aDataMeasured[l*nf+f][0], aDataMeasured[l*nf+f][1], aDataMeasured[l*nf+f][2] );
-			}
-			
-			double dCuNominal = fidNominalPos3Ds[1].distance(fidNominalPos3Ds[0]);
-			double dPk0Nominal = fidNominalPos3Ds[2].distance(fidNominalPos3Ds[0]);
-			double dPk1Nominal = fidNominalPos3Ds[2].distance(fidNominalPos3Ds[1]);
-			
-			double dCuMeasured = fidMeasuredPos3Ds[1].distance(fidMeasuredPos3Ds[0]);
-			double dPk0Measured = fidMeasuredPos3Ds[2].distance(fidMeasuredPos3Ds[0]);
-			double dPk1Measured = fidMeasuredPos3Ds[2].distance(fidMeasuredPos3Ds[1]);
-			
-			System.out.printf("NF  % 8.3f % 8.3f % 8.3f", dCuNominal, dPk0Nominal, dPk1Nominal );
-			System.out.printf("    MF  % 8.3f % 8.3f % 8.3f", dCuMeasured, dPk0Measured, dPk1Measured );
-			System.out.println();*/
-
-			//double ucMeasured = 0.020; // 20 um
-			//double DdCu = Util.calcUncertaintyDistance( ucMeasured , fidMeasuredPos3Ds[1], fidMeasuredPos3Ds[0] );
-			//double DdPk0 = Util.calcUncertaintyDistance( ucMeasured , fidMeasuredPos3Ds[2], fidMeasuredPos3Ds[0] );
-			//double DdPk1 = Util.calcUncertaintyDistance( ucMeasured , fidMeasuredPos3Ds[2], fidMeasuredPos3Ds[1] );
-			//outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, dCu, dCu - fidXDist, DdCu, dPk0, dPk0 - fidZDist0, DdPk0, dPk1, dPk1 - fidZDist1, DdPk1 );
-			//Util.outputLine( outputDistances, outputLine );
-
-			int[] rs = SVTConstants.convertSvtIndex2RegionSector( l );
+			int[] rs = SVTConstants.convertIndex2RegionSector( l );
 			String fmt = "R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n";
-			//String fmt = "R%dS%02d % 11.6f % 11.6f % 11.6f % 11.6f % 11.6f % 11.6f % 11.6f\n";
 			outputLine = String.format(fmt, rs[0]+1, rs[1]+1,
 					dataShifts[l][0], dataShifts[l][1], dataShifts[l][2], dataShifts[l][3], dataShifts[l][4], dataShifts[l][5], Math.toDegrees(dataShifts[l][6]) );
 			//outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", region+1, sector+1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 );
@@ -118,14 +89,18 @@ public class SVTAlignmentFactory
 			//System.out.print(outputLine);
 		}
 		Util.closeOutputDataFile( aOutputFile, outputShifts );
-		//Util.closeOutputDataFile( filenameDistances, outputDistances );
-		//Util.closeOutputDataFile( filenameIdealFiducials, outputIdealFiducials );
-		//Util.closeOutputDataFile( filenameMeasuredFiducials, outputMeasuredFiducials );
 		return dataShifts;
 	}
 	
 	
-	
+	/**
+	 * Calculates the difference between two sets of fiducial data, and writes them to the given file. 
+	 * 
+	 * @param aDataIdeal first set of fiducial data
+	 * @param aDataMeasured second set of fiducial data
+	 * @param aOutputFile a filename
+	 * @return double[][] point differences relative to the first data set
+	 */
 	public static double[][] calcDeltas( double[][] aDataIdeal, double[][] aDataMeasured, String aOutputFile )
 	{
 		String outputLine; Writer outputWriter;
@@ -135,7 +110,7 @@ public class SVTAlignmentFactory
 
 		for( int k = 0; k < SVTConstants.NTOTALSECTORS*SVTConstants.NFIDUCIALS; k++ )
 		{
-			int[] rsf = SVTConstants.convertSurveyIndex2RegionSectorFiducial( k );
+			int[] rsf = SVTConstants.convertIndex2RegionSectorFiducial( k );
 			
 			double[] data = dataDeltasMeasuredFromIdeal[k];
 			double radiusSpherical = Math.sqrt( Math.pow(data[0], 2 ) + Math.pow(data[1], 2 ) + Math.pow(data[2], 2 ) );
@@ -151,29 +126,70 @@ public class SVTAlignmentFactory
 	}
 	
 	
+	/**
+	 * Calculates the difference between two sets of distance data, and writes them to the given file.
+	 * 
+	 * @param aDataIdeal first set of distance data
+	 * @param aDataMeasured second set of distance data
+	 * @param aOutputFile a filename
+	 * @return double[][][] distance differences relative to the first data set in {value,uncertainty} pairs
+	 */
+	public static double[][][] calcDistanceDeltas( double[][][] aDataIdeal, double[][][] aDataMeasured, String aOutputFile )
+	{
+		String outputLine; Writer outputWriter;
+		outputWriter = Util.openOutputDataFile( aOutputFile );
+		
+		double[][][] data = AlignmentFactory.calcDeltas( SVTConstants.NTOTALSECTORS, 3, 2, aDataIdeal, aDataMeasured );
+		
+		for( int j = 0; j < SVTConstants.NTOTALSECTORS; j++ )
+		{
+			int[] rs = SVTConstants.convertIndex2RegionSector( j );
+			outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", rs[0]+1, rs[1]+1,
+										data[j][0][0], data[j][1][0], data[j][2][0], 
+										data[j][0][1], data[j][1][1], data[j][2][1] );
+			Util.writeLine( outputWriter, outputLine );
+		}
+		Util.closeOutputDataFile( aOutputFile, outputWriter );
+		return data;
+	}
+	
+	
+	/**
+	 * Calculates the distances between points for each triangle in a set of fiducial data, and writes them to the given file.
+	 * 
+	 * @param aData the set of fiducial data
+	 * @param aUncertainty uncertainty in the measurement of the coordinates
+	 * @param aOutputFile a filename
+	 * @return double[][][] distances in {value,uncertainty} pairs
+	 */
 	public static double[][][] calcTriangleSides( double[][] aData, double aUncertainty, String aOutputFile )
 	{
 		String outputLine; Writer outputWriter;
 		outputWriter = Util.openOutputDataFile( aOutputFile );
 		
-		double[][][] distances = new double[SVTConstants.NTOTALSECTORS][SVTConstants.NFIDUCIALS][2];
+		double[][][] distances = new double[SVTConstants.NTOTALSECTORS][][];
 		
-		for( int k = 0; k < SVTConstants.NTOTALSECTORS*SVTConstants.NFIDUCIALS; k+=SVTConstants.NFIDUCIALS )
+		for( int j = 0; j < SVTConstants.NTOTALSECTORS; j++ )
 		{
-			int j = k/3;
-			int[] rsf = SVTConstants.convertSurveyIndex2RegionSectorFiducial( k );
-			Point3D[] pos3Ds = new Point3D[]{ new Point3D( aData[k+0][0], aData[k+0][1], aData[k+0][2] ),
-											  new Point3D( aData[k+1][0], aData[k+1][1], aData[k+1][2] ),
-											  new Point3D( aData[k+2][0], aData[k+2][1], aData[k+2][2] )};
-			distances[j][0] = new double[]{ pos3Ds[0].distance( pos3Ds[1] ), 
-										   pos3Ds[1].distance( pos3Ds[2] ),
-										   pos3Ds[2].distance( pos3Ds[0] ) };
-			distances[j][1] = new double[]{ Util.calcUncertaintyDistance( aUncertainty, pos3Ds[0], pos3Ds[1] ),
-											Util.calcUncertaintyDistance( aUncertainty, pos3Ds[1], pos3Ds[2] ),
-											Util.calcUncertaintyDistance( aUncertainty, pos3Ds[2], pos3Ds[0] ) };
-			outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", rsf[0]+1, rsf[1]+1, distances[j][0][0], distances[j][0][1], distances[j][0][2], distances[j][1][0], distances[j][1][1], distances[j][1][2] );
+			int[] rs = SVTConstants.convertIndex2RegionSector( j );
+			int k0 = SVTConstants.convertRegionSectorFiducial2Index(rs[0], rs[1], 0 );
+			int k1 = SVTConstants.convertRegionSectorFiducial2Index(rs[0], rs[1], 1 );
+			int k2 = SVTConstants.convertRegionSectorFiducial2Index(rs[0], rs[1], 2 );
+			//System.out.printf("j%2d r%d s%2d k%3d %3d %3d\n",j, rs[0], rs[1], k0, k1, k2 );
+			
+			Point3D[] pos3Ds = new Point3D[]{ Util.toPoint3D(aData[k0]), Util.toPoint3D(aData[k1]), Util.toPoint3D(aData[k2]) };
+			
+			distances[j] = new double[][]{ Util.calcDistance( pos3Ds[0], pos3Ds[1], aUncertainty, aUncertainty ),
+										   Util.calcDistance( pos3Ds[1], pos3Ds[2], aUncertainty, aUncertainty ),
+										   Util.calcDistance( pos3Ds[2], pos3Ds[0], aUncertainty, aUncertainty ) };
+			
+			outputLine = String.format("R%dS%02d % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f % 8.3f\n", rs[0]+1, rs[1]+1,
+										distances[j][0][0], distances[j][1][0], distances[j][2][0], 
+										distances[j][0][1], distances[j][1][1], distances[j][2][1] );
+			
 			Util.writeLine( outputWriter, outputLine );
 		}
+		
 		Util.closeOutputDataFile( aOutputFile, outputWriter );
 		return distances;
 	}
@@ -218,7 +234,7 @@ public class SVTAlignmentFactory
 			{
 				Point3D fidPos3Ds[] = getShiftedFiducials( region, sector );
 				for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
-					data[SVTConstants.convertRegionSectorFid2SurveyIndex( region, sector, fid )] = new double[]{ fidPos3Ds[fid].x(), fidPos3Ds[fid].y(), fidPos3Ds[fid].z() };
+					data[SVTConstants.convertRegionSectorFiducial2Index( region, sector, fid )] = new double[]{ fidPos3Ds[fid].x(), fidPos3Ds[fid].y(), fidPos3Ds[fid].z() };
 			}
 		return data;
 	}
@@ -238,7 +254,7 @@ public class SVTAlignmentFactory
 				Point3D fidPos3Ds[] = getIdealFiducials( region, sector );
 				for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
 				{
-					data[SVTConstants.convertRegionSectorFid2SurveyIndex( region, sector, fid )] 
+					data[SVTConstants.convertRegionSectorFiducial2Index( region, sector, fid )] 
 							= new double[]{ fidPos3Ds[fid].x(), fidPos3Ds[fid].y(), fidPos3Ds[fid].z() };
 				}
 			}

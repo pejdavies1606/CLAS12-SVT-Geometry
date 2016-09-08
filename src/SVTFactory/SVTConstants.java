@@ -2,6 +2,7 @@ package SVTFactory;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 //import org.jlab.clasrec.utils.DatabaseConstantProvider; // 2.4
 import org.jlab.detector.calib.utils.DatabaseConstantProvider; // 3.0
@@ -29,7 +30,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.0
+ * @version 0.2.1
  */
 public class SVTConstants
 {
@@ -185,38 +186,36 @@ public class SVTConstants
 			FIDPKZ1 = cp.getDouble( ccdbPath+"fiducial/PkZ1", 0 );
 			
 			// read constants from materials table
-			NMATERIALS = 12;
+			NMATERIALS = 20;
 			MATERIALS = new double[NMATERIALS][3];
+			String[] materialNames = new String[]
+					{"heatsink",
+					 "heatsinkCu",
+					 "rohacell",
+					 "plastic",
+					 "plasticPk",
+					 "carbonFiber",
+					 "busCable",
+					 "busCableCu",
+					 "epoxyMajor",
+					 "epoxyMinor",
+					 "wirebond",
+					 "pitchAdaptor",
+					 "pcBoard",
+					 "chip",
+					 "rail",
+					 "pad",
+					 "kaptonWrapTapeSide",
+					 "kaptonWrapTapeCap",
+					 "kaptonWrapGlueSide",
+					 "kaptonWrapGlueCap" };
+			
 			for( int m = 0; m < NMATERIALS; m++ )
 			{
 				MATERIALS[m] = new double[]{ cp.getDouble( ccdbPath+"material/wid", m ),
 											 cp.getDouble( ccdbPath+"material/thk", m ),
 											 cp.getDouble( ccdbPath+"material/len", m ) };
-				switch( m ) // cannot read strings from ccdb
-				{
-				case 0:
-					MATERIALSBYNAME.put("rohacell", MATERIALS[m] ); break;
-				case 1:
-					MATERIALSBYNAME.put("plastic", MATERIALS[m] ); break;
-				case 2:
-					MATERIALSBYNAME.put("carbonFiber", MATERIALS[m] ); break;
-				case 3:
-					MATERIALSBYNAME.put("busCable", MATERIALS[m] ); break;
-				case 4:
-					MATERIALSBYNAME.put("epoxy", MATERIALS[m] ); break;
-				case 5:
-					MATERIALSBYNAME.put("wirebond", MATERIALS[m] ); break;
-				case 6:
-					MATERIALSBYNAME.put("pitchAdaptor", MATERIALS[m] ); break;
-				case 7:
-					MATERIALSBYNAME.put("pcBoard", MATERIALS[m] ); break;
-				case 8:
-					MATERIALSBYNAME.put("chip", MATERIALS[m] ); break;
-				case 9:
-					MATERIALSBYNAME.put("rail", MATERIALS[m] ); break;
-				case 10:
-					MATERIALSBYNAME.put("pad", MATERIALS[m] ); break;
-				}
+				MATERIALSBYNAME.put( materialNames[m], MATERIALS[m] );
 			}
 			
 			
@@ -227,7 +226,7 @@ public class SVTConstants
 			MODULEWID = ACTIVESENWID + 2*DEADZNWID;
 			STRIPOFFSETWID = cp.getDouble(ccdbPath+"svt/stripStart", 0 );
 			LAYERGAPTHK = cp.getDouble(ccdbPath+"svt/layerGapThk", 0 ); // generated from fiducial analysis
-			// do not use the current material values in CCDB, which are for the original BST in GEMC 
+			// do not use the current material values in CCDB, which are for the original BST in GEMC
 			//double layerGapThk = MATERIALSBYNAME.get("rohacell")[1] + 2*(MATERIALSBYNAME.get("carbonFiber")[1] + MATERIALSBYNAME.get("busCable")[1] + MATERIALSBYNAME.get("epoxy")[1]); // construct from material thicknesses instead
 			
 			//System.out.println("LAYERGAPTHK="+LAYERGAPTHK);
@@ -292,7 +291,7 @@ public class SVTConstants
 			}
 			
 			NTOTALSECTORS = convertRegionSector2SvtIndex( NREGIONS-1, NSECTORS[NREGIONS-1]-1 )+1;
-			NTOTALFIDUCIALS = convertRegionSectorFid2SurveyIndex(NREGIONS-1, NSECTORS[NREGIONS-1]-1, NFIDUCIALS-1  )+1;
+			NTOTALFIDUCIALS = convertRegionSectorFiducial2Index(NREGIONS-1, NSECTORS[NREGIONS-1]-1, NFIDUCIALS-1  )+1;
 			
 			// check one constant from each table
 			//if( NREGIONS == 0 || NSECTORS[0] == 0 || FIDCUX == 0 || MATERIALS[0][0] == 0 || SUPPORTRADIUS[0] == 0 )
@@ -347,6 +346,28 @@ public class SVTConstants
 				System.out.printf("FIDCUZ          %8.3f\n", FIDCUZ );
 				System.out.printf("FIDPKZ0         %8.3f\n", FIDPKZ0 );
 				System.out.printf("FIDPKZ1         %8.3f\n", FIDPKZ1 );
+				
+				double fidXDist = 2*SVTConstants.FIDCUX;
+				double fidZDist = SVTConstants.FIDCUZ + SVTConstants.FIDPKZ0 + SVTConstants.FIDPKZ1;
+				double fidZDist0 = Math.sqrt( Math.pow(fidZDist,2) + Math.pow(SVTConstants.FIDCUX + SVTConstants.FIDPKX, 2) );
+				double fidZDist1 = Math.sqrt( Math.pow(fidZDist,2) + Math.pow(SVTConstants.FIDCUX - SVTConstants.FIDPKX, 2) );
+				
+				System.out.printf("fidXDist  %8.3f\n", fidXDist );
+				System.out.printf("fidZDist  %8.3f\n", fidZDist );
+				System.out.printf("fidZDist0 %8.3f\n", fidZDist0 );
+				System.out.printf("fidZDist1 %8.3f\n", fidZDist1 );
+				
+				int maxStrLen = 19;
+				for( Map.Entry< String, double[] > entry : MATERIALSBYNAME.entrySet() )
+				{
+					String key = entry.getKey();
+					double[] value = entry.getValue();
+					String fmt = "%s %"+(maxStrLen - key.length())+"s";
+					System.out.printf(fmt, key, "" );
+					for( int i = 0; i < value.length; i++ )
+						System.out.printf("%8.3f ", value[i] );
+					System.out.println();
+				}
 			}
 		}
 	}
@@ -420,7 +441,7 @@ public class SVTConstants
 	 * @return int an index used for fiducial survey data
 	 * @throws IllegalArgumentException indices out of bounds
 	 */
-	public static int convertRegionSectorFid2SurveyIndex( int aRegion, int aSector, int aFiducial ) throws IllegalArgumentException
+	public static int convertRegionSectorFiducial2Index( int aRegion, int aSector, int aFiducial ) throws IllegalArgumentException
 	{
 		if( aRegion < 0 || aRegion > NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		if( aSector < 0 || aSector > NSECTORS[aRegion]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
@@ -437,7 +458,7 @@ public class SVTConstants
 	 * @return int[] an array containing RSF indices
 	 * @throws IllegalArgumentException index out of bounds
 	 */
-	public static int[] convertSurveyIndex2RegionSectorFiducial( int aSurveyIndex ) throws IllegalArgumentException
+	public static int[] convertIndex2RegionSectorFiducial( int aSurveyIndex ) throws IllegalArgumentException
 	{
 		if( aSurveyIndex < 0 || aSurveyIndex > NTOTALSECTORS*NFIDUCIALS-1 ){ throw new IllegalArgumentException("survey index out of bounds"); }
 		int region = -1, sector = -1, fiducial = -1;
@@ -478,7 +499,7 @@ public class SVTConstants
 	 * @return int[] an array containing RS indices
 	 * @throws IllegalArgumentException index out of bounds
 	 */
-	public static int[] convertSvtIndex2RegionSector( int aSvtIndex )
+	public static int[] convertIndex2RegionSector( int aSvtIndex )
 	{
 		if( aSvtIndex < 0 || aSvtIndex > NTOTALSECTORS-1 ){ throw new IllegalArgumentException("svt index out of bounds"); }
 		

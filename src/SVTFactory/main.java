@@ -279,20 +279,22 @@ public class main
 		SVTConstants.VERBOSE = true;
 		DatabaseConstantProvider cp = SVTConstants.connect( true );
 		
-		/*SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
-		double[][] dataFactoryIdeals = SVTAlignmentFactory.getFactoryIdealsFiducialData();
+		
+		SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
+		double[][] dataFactoryIdeals = SVTAlignmentFactory.getFactoryIdealFiducialData();
 		
 		SVTAlignmentFactory.calcShifts( dataFactoryIdeals, SVTAlignmentFactory.getDataSurveyMeasured(), "shifts_survey_measured_from_factory_ideals.dat" );
 		//AlignmentFactory.VERBOSE = true;
-		double[][] dataDeltas = SVTAlignmentFactory.calcDeltas( dataFactoryIdeals, SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_factory_ideals.dat" );
+		SVTAlignmentFactory.calcDeltas( dataFactoryIdeals, SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_factory_ideals.dat" );
 		//AlignmentFactory.VERBOSE = false;
 		
 		//SVTAlignmentFactory.calcDeltas( dataNominal, SVTAlignmentFactory.getDataSurveyIdeals(), "deltas_survey_ideals_from_factory_nominal.dat");
 		//SVTAlignmentFactory.calcDeltas( SVTAlignmentFactory.getDataSurveyIdeals(), SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_survey_ideals.dat");
 		
-		SVTAlignmentFactory.calcTriangleSides( dataFactoryIdeals, 0, "sides_factory_ideals");
-		SVTAlignmentFactory.calcTriangleSides( SVTAlignmentFactory.getDataSurveyMeasured(), 0.020, "sides_survey_measured");
-		SVTAlignmentFactory.calcTriangleSides( dataDeltas, 0.020, "sides_survey_measured_from_factory_ideals");*/
+		double[][][] dataSideIdeals = SVTAlignmentFactory.calcTriangleSides( dataFactoryIdeals, 0, "sides_factory_ideals");
+		double[][][] dataSideMeasureds = SVTAlignmentFactory.calcTriangleSides( SVTAlignmentFactory.getDataSurveyMeasured(), 0.020, "sides_survey_measured");
+		SVTAlignmentFactory.calcDistanceDeltas( dataSideIdeals, dataSideMeasureds, "sides_survey_measured_from_factory_ideals");
+		
 		//System.exit(0);
 		
 		
@@ -300,6 +302,7 @@ public class main
 		int regionSelector = 1, sectorSelector = 6;
 		
 		SVTVolumeFactory svtIdeal = new SVTVolumeFactory( cp, false );
+		System.exit(0);
 		//svtIdeal.setRange( regionSelector, sectorSelector, sectorSelector );
 		svtIdeal.setRange( regionSelector, 0, 0 );
 		svtIdeal.makeVolumes();
@@ -376,7 +379,7 @@ public class main
 		//gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_rohacell", "materialref", "ref", "mat_rohacell");
 		gdmlFile.writeFile("SVTFactory_ideal");
 		
-		//System.exit( 0 );
+		System.exit( 0 );
 		
 		
 		

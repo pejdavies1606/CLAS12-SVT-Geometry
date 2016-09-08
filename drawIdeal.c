@@ -53,6 +53,11 @@ void drawIdeal() {
             //cout << "sensorActive";
             vol->SetLineColor( kCyan );
         }
+        elseif( volName->Contains("rohacell") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kWhite );
+        }
         else
         {
             //cout << "default";

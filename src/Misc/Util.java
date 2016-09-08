@@ -28,26 +28,35 @@ import org.jlab.geom.prim.Vector3D;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.0
+ * @version 0.2.1
  */
 public class Util
-{	
-	/*public static double[] calcDistanceWithUncertainty( double uc, Point3D p1, Point3D p0 )
+{
+	/**
+	 * Calculates the distance with uncertainty between two measured points.
+	 * 
+	 * @param p0 first point
+	 * @param p1 second point
+	 * @param u0 uncertainty in the measurement of the coordinates of the first point
+	 * @param u1 uncertainty in the measurement of the coordinates of the second point
+	 * @return double[] an array containing a {value,uncertainty} pair
+	 */
+	public static double[] calcDistance( Point3D p0, Point3D p1, double u0, double u1 )
 	{
-		double d = p1.distance(p0);
-		//double d = Math.sqrt( Math.pow(p1.x() - p0.x(),2) + Math.pow(p1.y() - p0.y(),2) + Math.pow(p1.z() - p0.z(),2) );
-		double Dd = Utils.calcUncertaintyDistance( uc, p1, p0 );
-		double dL = d - Dd;
-		double dH = d + Dd;
-		return new double[]{ d, dH, dL, Dd };
-	}*/
-	
-	
-	
-	public static double calcUncertaintyDistance( double uc, Point3D p1, Point3D p0 )
-	{
-		double u = Math.pow(p1.x() - p0.x(),2) + Math.pow(p1.y() - p0.y(),2) + Math.pow(p1.z() - p0.z(),2);		
-		return Math.sqrt( 6*Math.pow(uc,2)*Math.sqrt(u) );
+		double distance = p0.distance( p1 );
+		double partial = 0;
+		double sum = 0;
+		double[] c0 = Util.toDoubleArray( p0 ); // point 0
+		double[] c1 = Util.toDoubleArray( p1 ); // point 1
+		double[] u = new double[]{u0,u1}; // uncertainties
+		
+		for( int i = 0; i < 3; i++ ) // coordinates (x,y,z)
+		{
+			partial += (c1[i] - c0[i])/distance;
+			for( int j = 0; j < 2; j++ ) // points (0,1)
+				sum += Math.pow(Math.pow(-1,j)*partial*u[j],2);
+		}
+		return new double[]{ distance, Math.sqrt(sum) };
 	}
 	
 	
@@ -229,6 +238,19 @@ public class Util
 		return new double[]{ v.x(), v.y(), v.z() };
 	}
 	
+	
+	/**
+	 * Converts the given point to a double[] array.
+	 * 
+	 * @param p point
+	 * @return double[] array
+	 */
+	public static double[] toDoubleArray( Point3D p )
+	{
+		return new double[]{ p.x(), p.y(), p.z() };
+	}
+	
+	
 	/**
 	 * Converts the given double[] array to a vector.
 	 * 
@@ -240,6 +262,22 @@ public class Util
 	{
 		if( a.length == 3 )
 			return new Vector3D( a[0], a[1], a[2] );
+		else
+			throw new IllegalArgumentException("array wrong size");
+	}
+	
+	
+	/**
+	 * Converts the given double[] array to a point.
+	 * 
+	 * @param a array
+	 * @return Point3D point
+	 * @throws IllegalArgumentException array wrong size
+	 */
+	public static Point3D toPoint3D( double[] a ) throws IllegalArgumentException
+	{
+		if( a.length == 3 )
+			return new Point3D( a[0], a[1], a[2] );
 		else
 			throw new IllegalArgumentException("array wrong size");
 	}
