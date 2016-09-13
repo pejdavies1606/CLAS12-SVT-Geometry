@@ -18,7 +18,7 @@ import Misc.Util;
  * Processes fiducial survey data into alignment shifts, and applies those shifts to a given point or volume.
  * 
  * @author pdavies
- * @version 0.2.1
+ * @version 0.2.2
  */
 public class SVTAlignmentFactory
 {
@@ -280,7 +280,7 @@ public class SVTAlignmentFactory
 		Triangle3D fidTri3D = new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] );
 		
 		for( int f = 0; f < SVTConstants.NFIDUCIALS; f++ )
-			applyShift( fidPos3Ds[f], SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], fidTri3D.center() );
+			applyShift( fidPos3Ds[f], SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], fidTri3D.center() );
 		
 		return fidPos3Ds;
 	}

@@ -33,7 +33,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.1
+ * @version 0.2.2
  */
 public class SVTVolumeFactory
 {
@@ -48,6 +48,23 @@ public class SVTVolumeFactory
 	private double scaleT = 1.0, scaleR = 1.0;
 	
 	public boolean VERBOSE = false;
+	
+	
+	/**
+	 * Returns one specified volume.
+	 * 
+	 * @param aName a key in the MATERIALDIMENSIONS HashMap
+	 * @return Geant4Basic a volume positioned at the origin
+	 * @throws IllegalArgumentException unknown material
+	 */
+	public static Geant4Basic createNamedVolume( String aName ) throws IllegalArgumentException
+	{
+		double[] dims = SVTConstants.MATERIALDIMENSIONS.get( aName );
+		if( dims == null )
+			throw new IllegalArgumentException("unknown material: \""+ aName + "\"");
+		return new Geant4Basic( aName, "Box", dims[0]*0.1, dims[1]*0.1, dims[2]*0.1 );
+	}
+	
 	
 	/**
 	 * Constructs a new geometry factory for detector volumes.
@@ -91,7 +108,7 @@ public class SVTVolumeFactory
 		for( int r = 0; r < SVTConstants.NREGIONS; r++)
 		{
 			parameters.put("nsectors_r"+(r+1), Integer.toString( SVTConstants.NSECTORS[r] ) );
-			parameters.put("z_start_r"+(r+1),  Double.toString(  SVTConstants.Z0ACTIVE[r] ) );
+			//parameters.put("z_start_r"+(r+1),  Double.toString(  SVTConstants.Z0ACTIVE[r] ) );
 		}
 		parameters.put("nmodules", Integer.toString(SVTConstants.NMODULES) );
 		parameters.put("nsensors", Integer.toString(SVTConstants.NSENSORS) );
@@ -191,7 +208,7 @@ public class SVTVolumeFactory
 				Triangle3D fidTri3D = new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] );
 				
 				//System.out.println("rs "+ convertRegionSector2SvtIndex( aRegion, sector ));
-				double[] shift = SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, sector )].clone();
+				double[] shift = SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, sector )].clone();
 				
 				if( VERBOSE )
 				{
@@ -220,7 +237,7 @@ public class SVTVolumeFactory
 						//System.out.println( stepVol.getChildren().get(j).gemcString() );
 				}
 				
-				AlignmentFactory.applyShift( sectorVol, SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, sector )], fidTri3D.center(), scaleT, scaleR );
+				AlignmentFactory.applyShift( sectorVol, SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, sector )], fidTri3D.center(), scaleT, scaleR );
 				//System.out.println("S "+sectorVol.gemcString() );
 			}
 			Util.moveChildrenToMother( sectorVol );
@@ -248,12 +265,25 @@ public class SVTVolumeFactory
 		// 		create sensor module
 		// 		create passive materials (carbon fibre, bus cable, epoxy)
 		
-		double rohacellThk =    2.500;
-		double carbonFibreThk = 0.190;
-		double busCableThk =    0.078;
-		double epoxyThk =       0.065;
+		double rohacellThk = SVTConstants.MATERIALDIMENSIONS.get("rohacell")[1];
+		double carbonFiberThk = SVTConstants.MATERIALDIMENSIONS.get("carbonFiber")[1];
+		double busCableThk = SVTConstants.MATERIALDIMENSIONS.get("busCable")[1];
+		double epoxyThk = SVTConstants.MATERIALDIMENSIONS.get("epoxyMajor")[1];
+		double passiveThk = carbonFiberThk + busCableThk + epoxyThk;
 		
-		double passiveThickness = carbonFibreThk + busCableThk + epoxyThk;
+		double heatSinkRidgeLen = SVTConstants.MATERIALDIMENSIONS.get("heatSinkRidge")[2];
+		
+		double rohacellStart = 59.730; // CuEnd from fidOriginZ
+		double heatSinkCuStart = 5.60; // CuStart from fidOriginZ
+		
+		Geant4Basic rohacellVol = createNamedVolume("rohacell");
+		rohacellVol.setMother( sectorVol );
+		rohacellVol.setPosition( 0.0, -rohacellThk/2*0.1, rohacellStart*0.1 + rohacellVol.getParameters()[2]/2 );
+		
+		Geant4Basic heatSinkVol = createHeatSink();
+		heatSinkVol.setMother( sectorVol );
+		heatSinkVol.setPosition( 0.0, -rohacellThk/2*0.1, -heatSinkCuStart*0.1 + heatSinkVol.getParameters()[2]/2 );
+		Util.moveChildrenToMother( heatSinkVol );
 		
 		for( int module = moduleMin-1; module < moduleMax; module++ ) // NMODULES
 		{
@@ -262,25 +292,49 @@ public class SVTVolumeFactory
 			moduleVol.setName( moduleVol.getName() + (module+1) );
 			Util.appendChildrenName( moduleVol, "_m"+ (module+1) );
 			
-			double moduleRadius = 0.0;
+			Geant4Basic carbonFiberVol = createCarbonFiber();
+			carbonFiberVol.setMother( sectorVol );
+			carbonFiberVol.setName( carbonFiberVol.getName() + (module+1) );
+			Util.appendChildrenName( carbonFiberVol, "_m"+ (module+1) );
+			
+			Geant4Basic busCableVol = createBusCable();
+			busCableVol.setMother( sectorVol );
+			busCableVol.setName( busCableVol.getName() + (module+1) );
+			Util.appendChildrenName( busCableVol, "_m"+ (module+1) );
+			
+			double moduleY = 0.0;
+			double carbonFiberY = 0.0;
+			double busCableY = 0.0;
+			
 			switch( module ) 
 			{
 			case 0: // U = lower / inner
-				moduleRadius = 0.0 - rohacellThk - passiveThickness - 0.5*SVTConstants.SILICONTHK;
+				moduleY      = 0.0 - rohacellThk - passiveThk - SVTConstants.SILICONTHK/2;
+				carbonFiberY = 0.0 - rohacellThk - carbonFiberThk/2;
+				busCableY    = 0.0 - rohacellThk - carbonFiberThk - busCableThk/2;
 				break;
+				
 			case 1: // V = upper / outer
-				moduleRadius = passiveThickness + 0.5*SVTConstants.SILICONTHK;
+				moduleY      = 0.0 + passiveThk + SVTConstants.SILICONTHK/2;
+				carbonFiberY = 0.0 + carbonFiberThk/2;
+				busCableY    = 0.0 + carbonFiberThk + busCableThk/2;
 				break;
 			}
-			moduleVol.setPosition( 0.0, moduleRadius*0.1, (SVTConstants.FIDORIGINZ + SVTConstants.MODULELEN/2)*0.1 );
+			
+			moduleVol.setPosition( 0.0, moduleY*0.1, (SVTConstants.FIDORIGINZ + SVTConstants.MODULELEN/2)*0.1 );
 			Util.moveChildrenToMother( moduleVol );
-			//moduleVol.getMother().getChildren().remove( moduleVol );
+			
+			carbonFiberVol.setPosition( 0.0, carbonFiberY*0.1, (0.0 - heatSinkCuStart + heatSinkRidgeLen + 1.0)*0.1 - carbonFiberVol.getParameters()[2] );
+			Util.moveChildrenToMother( carbonFiberVol );
+			
+			busCableVol.setPosition( 0.0, busCableY*0.1, (0.0 - heatSinkCuStart + heatSinkRidgeLen + 1.0)*0.1 - busCableVol.getParameters()[2] );
+			Util.moveChildrenToMother( busCableVol );
+			
+			for( int kapton = 0; kapton < 1; kapton++ ) // left, right
+			{
+				
+			}
 		}
-		
-		Geant4Basic rohacellVol = createRohacell();
-		rohacellVol.setMother( sectorVol );
-		double rohacellStart = 59.73; // CuEnd from fidOriginZ
-		rohacellVol.setPosition( 0.0, -rohacellThk/2*0.1, rohacellStart*0.1 + rohacellVol.getParameters()[2]/2 );
 	
 		return sectorVol;
 	}
@@ -301,11 +355,22 @@ public class SVTVolumeFactory
 			sensorVol.setMother( moduleVol );
 			sensorVol.setName( sensorVol.getName() + (sensor+1) ); // add switch for hybrid, intermediate and far labels?
 			Util.appendChildrenName( sensorVol, "_sp"+ (sensor+1) );
+			
 			// module length = || DZ |  AL  | DZ |MG| DZ |  AL  | DZ |MG| DZ |  AL  | DZ ||
-			sensorVol.setPosition( 0.0, 0.0, (SVTConstants.DEADZNLEN + sensor*( SVTConstants.ACTIVESENLEN + SVTConstants.DEADZNLEN + SVTConstants.MICROGAPLEN + SVTConstants.DEADZNLEN) - SVTConstants.MODULELEN/2.0 + SVTConstants.ACTIVESENLEN/2.0)*0.1 );
-			//sensorVol.setRotation("xyz", -Math.toRadians(60.0)/(SVTConstants.NSENSORS-1)*sensor, 0, 0 ); // for test Util.moveChildrenToMother
+			//                  ^<-mid->^<-----stepLen----->^<-----stepLen----->^
+			
+			double deadZnLen   = SVTConstants.DEADZNLEN;
+			double activeZnLen = SVTConstants.ACTIVESENLEN;
+			double microGapLen = SVTConstants.MICROGAPLEN;
+			double moduleLen   = SVTConstants.MODULELEN;
+			double sensorZ = 0.0;
+			double sensorPhysicalMidPos = deadZnLen + activeZnLen/2; // mid
+			double stepLen = activeZnLen + deadZnLen + microGapLen + deadZnLen; // stepLen
+			sensorZ = sensorPhysicalMidPos + sensor*stepLen - moduleLen/2;
+			sensorVol.setPosition( 0.0, 0.0, sensorZ*0.1 );
+			//sensorVol.setPosition( 0.0, 0.0, (SVTConstants.DEADZNLEN + sensor*( SVTConstants.ACTIVESENLEN + SVTConstants.DEADZNLEN + SVTConstants.MICROGAPLEN + SVTConstants.DEADZNLEN) - SVTConstants.MODULELEN/2.0 + SVTConstants.ACTIVESENLEN/2.0)*0.1 );
+			
 			Util.moveChildrenToMother( sensorVol );
-			//sensorVol.getMother().getChildren().remove( sensorVol );
 		}
 		
 		return moduleVol;
@@ -405,28 +470,60 @@ public class SVTVolumeFactory
 	}
 	
 	
-	/**
-	 * Returns one rohacell copmonent.
-	 * 
-	 * @return Geant4Basic a volume positioned at the origin
-	 */
-	public Geant4Basic createRohacell()
-	{	
-		double wid =  41.000;
-		double thk =   2.500;
-		double len = 352.930;
+	
+	public Geant4Basic createHeatSink()
+	{
+		Geant4Basic mainVol = createNamedVolume("heatSink");
 		
-		return new Geant4Basic( "rohacell", "Box", wid*0.1, thk*0.1, len*0.1 );
+		Geant4Basic cuVol = createNamedVolume("heatSinkCu");
+		cuVol.setMother( mainVol );
+		
+		Geant4Basic ridgeVol = createNamedVolume("heatSinkRidge"); // small protruding ridge
+		ridgeVol.setMother( mainVol );
+		
+		ridgeVol.setPosition( 0.0, -(cuVol.getParameters()[1] + ridgeVol.getParameters()[1])/2, ( 0.0 - cuVol.getParameters()[2]/2 + ridgeVol.getParameters()[2]/2 ) );
+		
+		return mainVol;
 	}
 	
 	
-	public Geant4Basic createHeatsink()
+	
+	public Geant4Basic createCarbonFiber()
 	{
-		double wid = 40.700;
-		double thk =  2.500;
-		double len = 65.330;
+		Geant4Basic mainVol = new Geant4Basic("carbonFiber", "Box", 0, 0, 0 );
 		
-		return new Geant4Basic("heatsink", "Box", wid*0.1, thk*0.1, len*0.1 );
+		Geant4Basic cuVol = createNamedVolume("carbonFiberCu");
+		cuVol.setMother( mainVol );
+		
+		Geant4Basic pkVol = createNamedVolume("carbonFiberPk");
+		pkVol.setMother( mainVol );
+		
+		double zStart = 46.58;
+		
+		cuVol.setPosition( 0.0, 0.0, cuVol.getParameters()[2]/2 ); // move origin to far Cu end 
+		pkVol.setPosition( 0.0, 0.0, zStart*0.1 + pkVol.getParameters()[2]/2 );
+		
+		return mainVol;
+	}
+
+	
+	
+	public Geant4Basic createBusCable()
+	{
+		Geant4Basic mainVol = new Geant4Basic("busCable", "Box", 0, 0, 0 );
+		
+		Geant4Basic cuVol = createNamedVolume("busCableCu");
+		cuVol.setMother( mainVol );
+		
+		Geant4Basic pkVol = createNamedVolume("busCablePk");
+		pkVol.setMother( mainVol );
+		
+		double zStart = 46.58;
+		
+		cuVol.setPosition( 0.0, 0.0, cuVol.getParameters()[2]/2 ); // move origin to far Cu end 
+		pkVol.setPosition( 0.0, 0.0, zStart*0.1 + pkVol.getParameters()[2]/2 );
+		
+		return mainVol;
 	}
 	
 	

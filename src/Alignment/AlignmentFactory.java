@@ -17,7 +17,7 @@ import Misc.Util;
  * Universal class for processing and applying alignment shifts to points and volumes.
  * 
  * @author pdavies
- * @version 0.2.1
+ * @version 0.2.2
  */
 public class AlignmentFactory
 {

@@ -7,7 +7,7 @@ void drawMerge() {
     TList *matList = geom->GetListOfMaterials();
     TIter matNext( matList );
     cout << "setting material transparencies\n";
-    int transparencyAir = 80;
+    int transparencyAir = 50;
     int transparencyShifted = 0;
     while( mat = (TGeoMaterial*) matNext() )
     {
@@ -63,6 +63,31 @@ void drawMerge() {
                 vol->SetLineColor( kOrange );
             else
                 vol->SetLineColor( kRed );
+        }
+        else if( volName->Contains("rohacell") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kWhite );
+        }
+        else if( volName->Contains("heatSink") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kOrange );
+        }
+        else if( volName->Contains("heatSinkCu") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kOrange+1 );
+        }
+        else if( volName->Contains("carbonFiber") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kGray+3 ); // kBlack
+        }
+        else if( volName->Contains("busCable") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kGray+2 ); // kBlack
         }
         else
         {

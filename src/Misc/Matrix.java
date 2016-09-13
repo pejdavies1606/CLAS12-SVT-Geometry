@@ -6,7 +6,7 @@ package Misc;
  * Universal class for simple matrix algebra and rotation conversions.
  * 
  * @author pdavies
- * @version 0.2.0
+ * @version 0.2.2
  */
 public class Matrix
 {

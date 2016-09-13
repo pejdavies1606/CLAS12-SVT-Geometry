@@ -1,4 +1,6 @@
 
+#include <TColor>
+
 void drawIdeal() {
     gSystem->Load("libGeom");
     gSystem->Load("libGdml");
@@ -28,6 +30,9 @@ void drawIdeal() {
     TGeoVolume *top = geom->GetTopVolume();
     //top->SetLineColor( kWhite );
     geom->SetTopVisible();
+
+    //Int_t myBlackIndex = TColor::GetFreeColorIndex();
+    //TColor *myBlack = new TColor(myBlackIndex, 0.0, 0.0, 0.0);
     
     TObjArray *volList = geom->GetListOfVolumes();
     TIter volNext( volList );
@@ -43,20 +48,40 @@ void drawIdeal() {
             //cout << "module";
             vol->SetLineColor( kRed );
         }
-        elseif( volName->Contains("sensorActive") )
+        else if( volName->Contains("sensorActive") )
         {
             //cout << "sensorActive";
             vol->SetLineColor( kBlue );
         }
-        elseif( volName->Contains("fiducial") )
+        else if( volName->Contains("fiducial") )
         {
             //cout << "sensorActive";
             vol->SetLineColor( kCyan );
         }
-        elseif( volName->Contains("rohacell") )
+        else if( volName->Contains("rohacell") )
         {
             //cout << "sensorActive";
             vol->SetLineColor( kWhite );
+        }
+        else if( volName->Contains("heatSink") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kOrange );
+        }
+        else if( volName->Contains("heatSinkCu") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kOrange+1 );
+        }
+        else if( volName->Contains("carbonFiber") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kGray+3 ); // kBlack
+        }
+        else if( volName->Contains("busCable") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kGray+2 ); // kBlack
         }
         else
         {

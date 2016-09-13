@@ -28,7 +28,7 @@ import org.jlab.geom.prim.Vector3D;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.1
+ * @version 0.2.2
  */
 public class Util
 {
@@ -289,25 +289,25 @@ public class Util
 	 * 
 	 * @param aName subvolumes will have _arrow# appended to aName
 	 * @param aVec direction to point
-	 * @param aRefBallRadius radius of spherical caps
+	 * @param aCapRadius radius of spherical caps
 	 * @param aPointerRadius radius of cylindrical shaft
-	 * @param aDisplayBallStart switch to show start cap
+	 * @param aDisplayCapStart switch to show start cap
 	 * @param aDisplayPointer switch to show shaft
-	 * @param aDisplayBallEnd switch to show end cap
+	 * @param aDisplayCapEnd switch to show end cap
 	 * @return Geant4Basic pseudo volume containing arrow components
 	 */
 	public static Geant4Basic createArrow( String aName, Vector3D aVec,
-			double aRefBallRadius, double aPointerRadius, boolean aDisplayBallStart, boolean aDisplayPointer, boolean aDisplayBallEnd )
+			double aCapRadius, double aPointerRadius, boolean aDisplayCapStart, boolean aDisplayPointer, boolean aDisplayCapEnd )
 	{
 		Geant4Basic arrowVol = new Geant4Basic(aName+"_arrow0", "Box", 0 ); // container
-		// put reference ball at base of vector, with arrow pointing in direction of vector, and an optional second reference ball at the end of the arrow
+		// put cap at base of vector, with arrow pointing in direction of vector, and optional second cap at end of arrow
 		
 		//System.out.printf("arrow vector x=% 8.3f y=% 8.3f z=% 8.3f mag=% 8.3f\n", aVec.x(), aVec.y(), aVec.z(), aVec.mag() );
 		
-		if( aDisplayBallStart )
+		if( aDisplayCapStart )
 		{
-			Geant4Basic refBallStartVol = new Geant4Basic( aName+"_arrow1", "orb", aRefBallRadius*0.1 );
-			refBallStartVol.setMother( arrowVol ); // origin of a Line3D
+			Geant4Basic capStartVol = new Geant4Basic( aName+"_arrow1", "orb", aCapRadius*0.1 );
+			capStartVol.setMother( arrowVol ); // origin of a Line3D
 		}
 		if( aDisplayPointer )
 		{
@@ -320,11 +320,11 @@ public class Util
 			// shift centre of geometry of arrow to put first end at start ball
 			pointerVol.setPosition( aVec.divide(2).x()*0.1, aVec.divide(2).y()*0.1, aVec.divide(2).z()*0.1 );
 		}
-		if( aDisplayBallEnd )
+		if( aDisplayCapEnd )
 		{
-			Geant4Basic refBallEndVol = new Geant4Basic( aName+"_arrow3", "orb", aRefBallRadius*0.1 );
-			refBallEndVol.setPosition( aVec.x()*0.1, aVec.y()*0.1, aVec.z()*0.1 );
-			refBallEndVol.setMother( arrowVol );
+			Geant4Basic capEndVol = new Geant4Basic( aName+"_arrow3", "orb", aCapRadius*0.1 );
+			capEndVol.setPosition( aVec.x()*0.1, aVec.y()*0.1, aVec.z()*0.1 );
+			capEndVol.setMother( arrowVol );
 		}
 		
 		return arrowVol;

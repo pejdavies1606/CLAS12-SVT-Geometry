@@ -25,7 +25,7 @@ import Alignment.AlignmentFactory;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.1
+ * @version 0.2.2
  */
 public class SVTStripFactory
 {
@@ -37,7 +37,11 @@ public class SVTStripFactory
 	 * Please run {@code SVTConstants.connect() } first.
 	 * 
 	 * @param cp a DatabaseConstantProvider that has loaded the necessary tables
-	 * @param applyAlignmentShiftsFromCcdb a switch to set whether the alignment shifts from CCDB will be applied
+	 * @param applyAlignmentShiftsFromCcdb a switch to set whether the alignment shifts will be applied
+	 * 
+	 * @see SVTConstants#connect
+	 * @see SVTStripFactory#getStrip
+	 * @see SVTStripFactory#getLayerCorners
 	 */
 	public SVTStripFactory( ConstantProvider cp, boolean applyAlignmentShiftsFromCcdb )
 	{
@@ -46,11 +50,13 @@ public class SVTStripFactory
 	}
 	
 	/**
-	 * Constructs a new geometry factory for sensor strips.
+	 * Constructs a new geometry factory for sensor strips, with alignment shifts applied from the given file.
 	 * Please run {@code SVTConstants.connect() } first.
 	 * 
 	 * @param cp a DatabaseConstantProvider that has loaded the necessary tables
 	 * @param filenameAlignmentShifts a file containing the alignment shifts to be applied
+	 * 
+	 * @see SVTConstants#connect
 	 */
 	public SVTStripFactory( ConstantProvider cp, String filenameAlignmentShifts )
 	{
@@ -61,8 +67,48 @@ public class SVTStripFactory
 	
 	
 	/**
-	 * Returns a sensor strip.
-	 * Used by the Reconstruction.
+	 * Returns either an ideal or shifted strip, depending on this factory's setup.
+	 * 
+	 * @param aLayer an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @param aStrip an index starting from 0
+	 * @return Line3D a strip in the lab frame
+	 * 
+	 * @see SVTStripFactory#setApplyAlignmentShifts
+	 * @see SVTStripFactory#isSetApplyAlignmentShifts
+	 */
+	public Line3D getStrip( int aLayer, int aSector, int aStrip )
+	{
+		if( bShift )
+			return getShiftedStrip( aLayer, aSector, aStrip ); 
+		else
+			return getIdealStrip( aLayer, aSector, aStrip );
+	}
+	
+	
+	/**
+	 * Returns either an ideal or shifted strip, depending on this factory's setup.
+	 * 
+	 * @param aRegion an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @param aModule an index starting from 0
+	 * @param aStrip an index starting from 0
+	 * @return Line3D a strip in the lab frame
+	 * 
+	 * @see SVTStripFactory#setApplyAlignmentShifts
+	 * @see SVTStripFactory#isSetApplyAlignmentShifts
+	 */
+	public Line3D getStrip( int aRegion, int aSector, int aModule, int aStrip )
+	{
+		if( bShift )
+			return getShiftedStrip( aRegion, aSector, aModule, aStrip ); 
+		else
+			return getIdealStrip( aRegion, aSector, aModule, aStrip );
+	}
+	
+	
+	/**
+	 * Returns a sensor strip before any alignment shifts been applied.
 	 * 
 	 * @param aLayer an index starting from 0
 	 * @param aSector an index starting from 0
@@ -81,7 +127,7 @@ public class SVTStripFactory
 
 
 	/**
-	 * Returns a sensor strip.
+	 * Returns a sensor strip before any alignment shifts been applied.
 	 * 
 	 * @param aRegion an index starting from 0
 	 * @param aSector an index starting from 0
@@ -213,6 +259,26 @@ public class SVTStripFactory
 		return stripLine; // strip end points are returned relative to the front edge along z, and the centre along x
 	}
 	
+	
+	/**
+	 * Returns a sensor strip after the alignment shifts have been applied.
+	 * 
+	 * @param aLayer an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @param aStrip an index starting from 0
+	 * @return Line3D a strip in the lab frame
+	 * @throws IllegalArgumentException indices out of bounds
+	 */
+	public Line3D getShiftedStrip( int aLayer, int aSector, int aStrip ) throws IllegalArgumentException
+	{
+		if( aLayer < 0 || aLayer > SVTConstants.NLAYERS-1 ){ throw new IllegalArgumentException("layer out of bounds"); }
+		int[] rm = SVTConstants.convertLayer2RegionModule( aLayer );
+		if( aSector < 0 || aSector > SVTConstants.NSECTORS[rm[0]]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
+		if( aStrip < 0 || aStrip > SVTConstants.NSTRIPS-1 ){ throw new IllegalArgumentException("strip out of bounds"); }
+		return getShiftedStrip( rm[0], aSector, rm[1], aStrip );
+	}
+	
+	
 	/**
 	 * Returns a sensor strip after the alignment shifts have been applied.
 	 * 
@@ -225,10 +291,11 @@ public class SVTStripFactory
 	public Line3D getShiftedStrip( int aRegion, int aSector, int aStrip, int aModule )
 	{
 		Line3D stripLine = getIdealStrip( aRegion, aSector, aStrip, aModule );
-		AlignmentFactory.applyShift( stripLine.origin(), SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
-		AlignmentFactory.applyShift( stripLine.end(),    SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		AlignmentFactory.applyShift( stripLine.origin(), SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		AlignmentFactory.applyShift( stripLine.end(),    SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
 		return stripLine;
 	}
+	
 	
 	/**
 	 * Returns a sensor strip after the alignment shifts have been applied.
@@ -249,6 +316,63 @@ public class SVTStripFactory
 		
 		return stripLine;
 	}
+	
+	
+	/**
+	 * Returns the corners of a sensor layer in the lab frame, depending on this factory's setup.
+	 * 
+	 * @param aLayer an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
+	 * 
+	 * @see SVTStripFactory#setApplyAlignmentShifts
+	 * @see SVTStripFactory#isSetApplyAlignmentShifts
+	 */
+	public Point3D[] getLayerCorners( int aLayer, int aSector )
+	{
+		if( bShift )
+			return getShiftedLayerCorners( aLayer, aSector );
+		else
+			return getIdealLayerCorners( aLayer, aSector );
+	}
+	
+	
+	/**
+	 * Returns the corners of a sensor layer in the lab frame, depending on this factory's setup.
+	 * 
+	 * @param aRegion an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @param aModule an index starting from 0
+	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
+	 * 
+	 * @see SVTStripFactory#setApplyAlignmentShifts
+	 * @see SVTStripFactory#isSetApplyAlignmentShifts
+	 */
+	public Point3D[] getLayerCorners( int aRegion, int aSector, int aModule )
+	{
+		if( bShift )
+			return getShiftedLayerCorners( aRegion, aSector, aModule );
+		else
+			return getIdealLayerCorners( aRegion, aSector, aModule );
+	}
+	
+	
+	/**
+	 * Returns the corners of a sensor layer in the lab frame.
+	 * 
+	 * @param aLayer an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
+	 * @throws IllegalArgumentException indices out of bounds
+	 */
+	public Point3D[] getIdealLayerCorners( int aLayer, int aSector ) throws IllegalArgumentException
+	{
+		if( aLayer < 0 || aLayer > SVTConstants.NLAYERS-1 ){ throw new IllegalArgumentException("layer out of bounds"); }
+		int[] rm = SVTConstants.convertLayer2RegionModule( aLayer );
+		if( aSector < 0 || aSector > SVTConstants.NSECTORS[rm[0]]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
+		return getIdealLayerCorners( rm[0], aSector, rm[1] );
+	}
+	
 	
 	/**
 	 * Returns the corners of a sensor layer in the lab frame.
@@ -298,6 +422,23 @@ public class SVTStripFactory
 	/**
 	 * Returns the corners of a sensor layer in the lab frame after the alignment shifts have been applied.
 	 * 
+	 * @param aLayer an index starting from 0
+	 * @param aSector an index starting from 0
+	 * @return Point3D[] array of corners in order ( origin, max width, max width and max length, max length )
+	 * @throws IllegalArgumentException indices out of bounds
+	 */
+	public Point3D[] getShiftedLayerCorners( int aLayer, int aSector ) throws IllegalArgumentException
+	{
+		if( aLayer < 0 || aLayer > SVTConstants.NLAYERS-1 ){ throw new IllegalArgumentException("layer out of bounds"); }
+		int[] rm = SVTConstants.convertLayer2RegionModule( aLayer );
+		if( aSector < 0 || aSector > SVTConstants.NSECTORS[rm[0]]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
+		return getShiftedLayerCorners( rm[0], aSector, rm[1] );
+	}
+	
+	
+	/**
+	 * Returns the corners of a sensor layer in the lab frame after the alignment shifts have been applied.
+	 * 
 	 * @param aRegion an index starting from 0
 	 * @param aSector an index starting from 0
 	 * @param aModule an index starting from 0
@@ -307,7 +448,7 @@ public class SVTStripFactory
 	{
 		Point3D[] cornerPos3Ds = getIdealLayerCorners( aRegion, aSector, aModule );
 		for( int i = 0; i < cornerPos3Ds.length; i++ )
-			AlignmentFactory.applyShift( cornerPos3Ds[i], SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2SvtIndex( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+			AlignmentFactory.applyShift( cornerPos3Ds[i], SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
 		return cornerPos3Ds;
 	}
 	
@@ -333,7 +474,8 @@ public class SVTStripFactory
 	
 	
 	/**
-	 * Sets whether alignment shifts from CCDB should be applied to the geometry during generation.
+	 * Manually sets whether alignment shifts should be applied.
+	 * Use this to override the setting made at time of construction.
 	 * 
 	 * @param b true/false
 	 */
@@ -348,7 +490,7 @@ public class SVTStripFactory
 	 * 
 	 * @return boolean true/false
 	 */
-	public boolean isSetAlignmentShifts()
+	public boolean isSetApplyAlignmentShifts()
 	{
 		return bShift;
 	}

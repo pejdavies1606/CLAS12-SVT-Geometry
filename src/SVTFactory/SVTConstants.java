@@ -30,7 +30,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.1
+ * @version 0.2.2
  */
 public class SVTConstants
 {
@@ -42,6 +42,7 @@ public class SVTConstants
 	private static String filenameShiftSurvey = null;
 	
 	public static boolean VERBOSE = false;
+	public static String[] VARIATION = new String[]{ "ideal", "shifted" };
 	
 	// SVT GEOMETRY PARAMETERS
 	// fundamentals
@@ -85,8 +86,7 @@ public class SVTConstants
 	//
 	// dimensions of passive materials
 	public static int NMATERIALS;
-	public static double[][] MATERIALS;
-	public static HashMap< String, double[] > MATERIALSBYNAME = new LinkedHashMap<>();
+	public static HashMap< String, double[] > MATERIALDIMENSIONS = new LinkedHashMap<>();
 	//
 	// calculated on load()
 	public static int NLAYERS; // total number of layers in a sector
@@ -102,20 +102,25 @@ public class SVTConstants
 	 * Connects a DatabaseConstantProvider to CCDB with run 10 and default variation.
 	 * Will be moved to DatabaseLoader at a later date.
 	 * 
+	 * @param loadAlignmentTable a switch to load the table containing alignment shifts
+	 * 
 	 * @return ConstantProvider a ConstantProvider that has loaded the necessary tables
 	 */
-	public static DatabaseConstantProvider connect( boolean loadAlignment )
+	public static DatabaseConstantProvider connect( boolean loadAlignmentTable )
 	{
-		System.out.println("DATABASE : " + System.getenv("CLAS12DIR") + System.getenv("CCDB_DATABASE") );
+		System.out.println("ENVIRONMENT:");
+		System.out.println(" CLAS12DIR="+System.getenv("CLAS12DIR") );
+		System.out.println(" CCDB_DATABASE="+System.getenv("CCDB_DATABASE") );
 		
 		DatabaseConstantProvider cp = new DatabaseConstantProvider( 10, "default");
 		cp.loadTable( ccdbPath +"svt");
 		cp.loadTable( ccdbPath +"region");
 		cp.loadTable( ccdbPath +"support");
 		cp.loadTable( ccdbPath +"fiducial");
-		//cp.loadTable( ccdbPath +"material");
-		if( loadAlignment ) cp.loadTable( ccdbPath +"alignment");
+		cp.loadTable( ccdbPath +"material");
+		if( loadAlignmentTable ) cp.loadTable( ccdbPath +"alignment");
 		cp.disconnect();
+		
 		return cp;
 	}
 	
@@ -186,17 +191,24 @@ public class SVTConstants
 			FIDPKZ1 = cp.getDouble( ccdbPath+"fiducial/PkZ1", 0 );
 			
 			// read constants from materials table
-			NMATERIALS = 20;
-			MATERIALS = new double[NMATERIALS][3];
+			NMATERIALS = 14; // number of unique materials, not length of materialNames
+			
+			// cannot read String variables from CCDB, so put the names here 
 			String[] materialNames = new String[]
-					{"heatsink",
-					 "heatsinkCu",
+					{"heatSink",
+					 "heatSinkCu",
+					 "heatSinkRidge",
 					 "rohacell",
+					 "rohacellCu",
 					 "plastic",
 					 "plasticPk",
 					 "carbonFiber",
+					 "carbonFiberCu",
+					 "carbonFiberPk",
 					 "busCable",
 					 "busCableCu",
+					 "busCablePk",
+					 "epoxy",
 					 "epoxyMajor",
 					 "epoxyMinor",
 					 "wirebond",
@@ -210,12 +222,12 @@ public class SVTConstants
 					 "kaptonWrapGlueSide",
 					 "kaptonWrapGlueCap" };
 			
-			for( int m = 0; m < NMATERIALS; m++ )
+			for( int m = 0; m < materialNames.length; m++ )
 			{
-				MATERIALS[m] = new double[]{ cp.getDouble( ccdbPath+"material/wid", m ),
-											 cp.getDouble( ccdbPath+"material/thk", m ),
-											 cp.getDouble( ccdbPath+"material/len", m ) };
-				MATERIALSBYNAME.put( materialNames[m], MATERIALS[m] );
+				double[] dimensions = new double[]{ cp.getDouble( ccdbPath+"material/wid", m ),
+											 		cp.getDouble( ccdbPath+"material/thk", m ),
+											 		cp.getDouble( ccdbPath+"material/len", m ) };
+				MATERIALDIMENSIONS.put( materialNames[m], dimensions );
 			}
 			
 			
@@ -231,6 +243,17 @@ public class SVTConstants
 			
 			//System.out.println("LAYERGAPTHK="+LAYERGAPTHK);
 			//System.out.println("layerGapThk="+layerGapThk);
+			
+			if( VERBOSE )
+			{
+				System.out.printf("NREGIONS        %4d\n", NREGIONS );
+				System.out.printf("NMODULES        %4d\n", NMODULES );
+				System.out.printf("NLAYERS         %4d\n", NLAYERS );
+				System.out.printf("NSENSORS        %4d\n", NSENSORS );
+				System.out.printf("NSTRIPS         %4d\n", NSTRIPS );
+				System.out.printf("NFIDUCIALS      %4d\n", NFIDUCIALS );
+				System.out.println();
+			}
 			
 			// read constants from region and support table
 			NSECTORS = new int[NREGIONS];
@@ -272,8 +295,8 @@ public class SVTConstants
 				NSECTORS[region] = cp.getInteger(ccdbPath+"region/nSectors", region );
 				STATUS[region] = cp.getInteger(ccdbPath+"region/status", region );
 				Z0ACTIVE[region] = cp.getDouble(ccdbPath+"region/zStart", region ); // Cu edge of hybrid sensor's active volume
-				REFRADIUS[region] = cp.getDouble(ccdbPath+"region/radius", region); // radius to outer side of U (inner) module
-				SUPPORTRADIUS[region] = cp.getDouble(ccdbPath+"support/radius", region); // radius to inner side of copper piece
+				REFRADIUS[region] = cp.getDouble(ccdbPath+"region/UlayerOuterRadius", region); // radius to outer side of U (inner) module
+				SUPPORTRADIUS[region] = cp.getDouble(ccdbPath+"region/CuSupportInnerRadius", region); // radius to inner side of copper support piece
 				
 				for( int m = 0; m < NMODULES; m++ )
 				{
@@ -290,26 +313,8 @@ public class SVTConstants
 				}
 			}
 			
-			NTOTALSECTORS = convertRegionSector2SvtIndex( NREGIONS-1, NSECTORS[NREGIONS-1]-1 )+1;
-			NTOTALFIDUCIALS = convertRegionSectorFiducial2Index(NREGIONS-1, NSECTORS[NREGIONS-1]-1, NFIDUCIALS-1  )+1;
-			
-			// check one constant from each table
-			//if( NREGIONS == 0 || NSECTORS[0] == 0 || FIDCUX == 0 || MATERIALS[0][0] == 0 || SUPPORTRADIUS[0] == 0 )
-				//throw new NullPointerException("please load the following tables from CCDB in "+ccdbPath+"\n svt\n region\n support\n fiducial\n material\n");
-			
-			bLoadedConstants = true;
-			
 			if( VERBOSE )
 			{
-				System.out.printf("NREGIONS        %4d\n", NREGIONS );
-				System.out.printf("NMODULES        %4d\n", NMODULES );
-				System.out.printf("NLAYERS         %4d\n", NLAYERS );
-				System.out.printf("NSENSORS        %4d\n", NSENSORS );
-				System.out.printf("NSTRIPS         %4d\n", NSTRIPS );
-				System.out.printf("NFIDUCIALS      %4d\n", NFIDUCIALS );
-				System.out.printf("NTOTALSECTORS   %4d\n", NTOTALSECTORS );
-				System.out.printf("NTOTALFIDUCIALS %4d\n", NTOTALFIDUCIALS );
-				System.out.println();
 				System.out.println("NSECTORS STATUS Z0ACTIVE REFRADIUS SUPPORTRADIUS LAYERRADIUS (U,V)");
 				for(int r = 0; r < NREGIONS; r++ )
 				{
@@ -321,7 +326,22 @@ public class SVTConstants
 					System.out.printf("%1s%8.3f %8.3f","", LAYERRADIUS[r][0], LAYERRADIUS[r][1] );
 					System.out.println();
 				}
+			}
+			
+			NTOTALSECTORS = convertRegionSector2Index( NREGIONS-1, NSECTORS[NREGIONS-1]-1 )+1;
+			NTOTALFIDUCIALS = convertRegionSectorFiducial2Index(NREGIONS-1, NSECTORS[NREGIONS-1]-1, NFIDUCIALS-1  )+1;
+			
+			// check one constant from each table
+			//if( NREGIONS == 0 || NSECTORS[0] == 0 || FIDCUX == 0 || MATERIALS[0][0] == 0 || SUPPORTRADIUS[0] == 0 )
+				//throw new NullPointerException("please load the following tables from CCDB in "+ccdbPath+"\n svt\n region\n support\n fiducial\n material\n");
+			
+			bLoadedConstants = true;
+			
+			if( VERBOSE )
+			{
 				System.out.println();
+				System.out.printf("NTOTALSECTORS   %4d\n", NTOTALSECTORS );
+				System.out.printf("NTOTALFIDUCIALS %4d\n", NTOTALFIDUCIALS );
 				System.out.printf("PHI0            %8.3f\n", Math.toDegrees(PHI0) );
 				System.out.printf("SECTOR0         %8.3f\n", Math.toDegrees(SECTOR0) );
 				System.out.printf("STEREOANGLE     %8.3f\n", Math.toDegrees(STEREOANGLE) );
@@ -358,7 +378,7 @@ public class SVTConstants
 				System.out.printf("fidZDist1 %8.3f\n", fidZDist1 );
 				
 				int maxStrLen = 19;
-				for( Map.Entry< String, double[] > entry : MATERIALSBYNAME.entrySet() )
+				for( Map.Entry< String, double[] > entry : MATERIALDIMENSIONS.entrySet() )
 				{
 					String key = entry.getKey();
 					double[] value = entry.getValue();
@@ -368,6 +388,7 @@ public class SVTConstants
 						System.out.printf("%8.3f ", value[i] );
 					System.out.println();
 				}
+				System.out.printf("total length of MATERIALDIMENSIONS: %d\n", materialNames.length );
 			}
 		}
 	}
@@ -446,7 +467,7 @@ public class SVTConstants
 		if( aRegion < 0 || aRegion > NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		if( aSector < 0 || aSector > NSECTORS[aRegion]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
 		if( aFiducial < 0 || aFiducial > NREGIONS-1 ){ throw new IllegalArgumentException("fiducial out of bounds"); }
-		return convertRegionSector2SvtIndex( aRegion, aSector )*NFIDUCIALS + aFiducial;
+		return convertRegionSector2Index( aRegion, aSector )*NFIDUCIALS + aFiducial;
 	}
 	
 	
@@ -483,7 +504,7 @@ public class SVTConstants
 	 * @return int an index used for sector modules
 	 * @throws IllegalArgumentException indices out of bounds
 	 */
-	public static int convertRegionSector2SvtIndex( int aRegion, int aSector ) throws IllegalArgumentException
+	public static int convertRegionSector2Index( int aRegion, int aSector ) throws IllegalArgumentException
 	{
 		if( aRegion < 0 || aRegion > NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		if( aSector < 0 || aSector > NSECTORS[aRegion]-1 ){ throw new IllegalArgumentException("sector out of bounds"); }
