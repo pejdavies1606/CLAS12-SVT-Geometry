@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-//import org.jlab.clasrec.utils.DatabaseConstantProvider; // 2.4
-import org.jlab.detector.calib.utils.DatabaseConstantProvider; // 3.0
+import org.jlab.clasrec.utils.DatabaseConstantProvider; // coatjava-2.4
+//import org.jlab.detector.calib.utils.DatabaseConstantProvider; // coatjava-3.0
 import org.jlab.geom.base.ConstantProvider;
 import org.jlab.geom.prim.Transformation3D;
 
@@ -30,7 +30,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.2
+ * @version 0.2.3
  */
 public class SVTConstants
 {

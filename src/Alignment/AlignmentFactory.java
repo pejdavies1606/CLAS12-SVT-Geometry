@@ -17,7 +17,7 @@ import Misc.Util;
  * Universal class for processing and applying alignment shifts to points and volumes.
  * 
  * @author pdavies
- * @version 0.2.2
+ * @version 0.2.3
  */
 public class AlignmentFactory
 {
@@ -143,6 +143,14 @@ public class AlignmentFactory
 			Vector3D fidIdealVec3D = fidIdealTri3D.normal().asUnit();
 			Vector3D fidMeasuredVec3D = fidMeasuredTri3D.normal().asUnit();
 			double[] axisAngle = Util.convertVectorDiffToAxisAngle( fidIdealVec3D, fidMeasuredVec3D );
+			
+			// if the normals are parallel, use vectors in the plane instead?
+			/*if( axisAngle[3] < 1E-3 )
+			{
+				fidIdealVec3D = fidIdealTri3D.point(0).midpoint( fidIdealTri3D.point(1) ).vectorTo( fidIdealTri3D.point(2) );
+				fidMeasuredVec3D = fidMeasuredTri3D.point(0).midpoint( fidMeasuredTri3D.point(1) ).vectorTo( fidMeasuredTri3D.point(2) );
+				axisAngle = Util.convertVectorDiffToAxisAngle( fidIdealVec3D, fidMeasuredVec3D );
+			}*/
 			
 			//Triangle3D fidDeltaTri3D = new Triangle3D( fidDeltas[0], fidDeltas[1], fidDeltas[2] );
 			//Point3D fidDeltaCen = fidDeltaTri3D.center();

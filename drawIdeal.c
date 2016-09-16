@@ -10,7 +10,7 @@ void drawIdeal() {
     TIter matNext( matList );
     cout << "setting material transparencies\n";
     int transparencyAir = 0;
-    int transparencySensor = 0;
+    int transparencySensor = 80;
     while( mat = (TGeoMaterial*) matNext() )
     {
         TString *matName = new TString( mat->GetName() );
@@ -52,6 +52,11 @@ void drawIdeal() {
         {
             //cout << "sensorActive";
             vol->SetLineColor( kBlue );
+        }
+        else if( volName->Contains("sensorPhysical") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kBlue-1 );
         }
         else if( volName->Contains("fiducial") )
         {

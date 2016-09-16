@@ -18,7 +18,7 @@ import Misc.Util;
  * Processes fiducial survey data into alignment shifts, and applies those shifts to a given point or volume.
  * 
  * @author pdavies
- * @version 0.2.2
+ * @version 0.2.3
  */
 public class SVTAlignmentFactory
 {

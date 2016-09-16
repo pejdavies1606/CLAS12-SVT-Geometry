@@ -28,7 +28,7 @@ import org.jlab.geom.prim.Vector3D;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.2
+ * @version 0.2.3
  */
 public class Util
 {
@@ -67,46 +67,49 @@ public class Util
 	 * @param aVol volume whose children are to be moved
 	 */
 	public static void moveChildrenToMother( Geant4Basic aVol )
-	{		
+	{	
 		// Mother - aVol - Children
 		// Mother - Children
 		
-		Geant4Basic mother = aVol.getMother();
-		double[] posV = aVol.getPosition();
-		Vector3D vecVolInMother = Util.toVector3D( posV );
-		double[] rotV = aVol.getRotation();
-		Matrix rotVolInMother = Matrix.convertRotationFromEulerInXYZ_ExZYX( -rotV[0], -rotV[1], -rotV[2] );
-		
-		boolean verbose = false;
-		
-		if( verbose ) System.out.println("replaceChildrenMother");
-		if( verbose ) System.out.println("mother: "+ mother.gemcString() );
-		if( verbose ) System.out.println("volume: "+ aVol.gemcString() );
-		
-		for( int i = 0; i < aVol.getChildren().size(); i++ )
-		{
-			Geant4Basic child = aVol.getChildren().get(i);
+		if( aVol.getChildren().size() > 0 )
+		{		
+			Geant4Basic mother = aVol.getMother();
+			double[] posV = aVol.getPosition();
+			Vector3D vecVolInMother = Util.toVector3D( posV );
+			double[] rotV = aVol.getRotation();
+			Matrix rotVolInMother = Matrix.convertRotationFromEulerInXYZ_ExZYX( -rotV[0], -rotV[1], -rotV[2] );
 			
-			double[] rotC = child.getRotation(); 
-			Matrix rotChildInVol = Matrix.convertRotationFromEulerInXYZ_ExZYX( -rotC[0], -rotC[1], -rotC[2] );
-			Matrix rotChildInMother = Matrix.matMul( rotVolInMother, rotChildInVol ); // transpose by passing args backwards = rotate like normal in volume's frame, then append rotation in mother's frame  
-			double[] rotNew = Matrix.convertRotationToEulerInXYZ_ExZYX( rotChildInMother );
+			boolean verbose = false;
 			
-			Vector3D vecChildInVol = Util.toVector3D( child.getPosition() ); // volume's frame
-			vecChildInVol = Util.toVector3D(Matrix.matMul( rotVolInMother, Util.toMatrix(vecChildInVol) )); // convert to mother's frame
-			Vector3D vecChildInMother = vecChildInVol.add( vecVolInMother ); // mother's frame
-			double[] posNew = Util.toDoubleArray( vecChildInMother );
+			if( verbose ) System.out.println("replaceChildrenMother");
+			if( verbose ) System.out.println("mother: "+ mother.gemcString() );
+			if( verbose ) System.out.println("volume: "+ aVol.gemcString() );
 			
-			if( verbose ) System.out.printf("child %d: %s\n", i, child.gemcString() );
-
-			child.setPosition( posNew[0], posNew[1], posNew[2] );
-			child.setRotation("xyz", -rotNew[0], -rotNew[1], -rotNew[2] );
-			child.setMother( mother );
-			//child.setName( child.getName()+"-" );
-			
-			if( verbose ) System.out.printf("child %d: %s\n", i, child.gemcString() );
+			for( int i = 0; i < aVol.getChildren().size(); i++ )
+			{
+				Geant4Basic child = aVol.getChildren().get(i);
+				
+				double[] rotC = child.getRotation(); 
+				Matrix rotChildInVol = Matrix.convertRotationFromEulerInXYZ_ExZYX( -rotC[0], -rotC[1], -rotC[2] );
+				Matrix rotChildInMother = Matrix.matMul( rotVolInMother, rotChildInVol ); // transpose by passing args backwards = rotate like normal in volume's frame, then append rotation in mother's frame  
+				double[] rotNew = Matrix.convertRotationToEulerInXYZ_ExZYX( rotChildInMother );
+				
+				Vector3D vecChildInVol = Util.toVector3D( child.getPosition() ); // volume's frame
+				vecChildInVol = Util.toVector3D(Matrix.matMul( rotVolInMother, Util.toMatrix(vecChildInVol) )); // convert to mother's frame
+				Vector3D vecChildInMother = vecChildInVol.add( vecVolInMother ); // mother's frame
+				double[] posNew = Util.toDoubleArray( vecChildInMother );
+				
+				if( verbose ) System.out.printf("child %d: %s\n", i, child.gemcString() );
+	
+				child.setPosition( posNew[0], posNew[1], posNew[2] );
+				child.setRotation("xyz", -rotNew[0], -rotNew[1], -rotNew[2] );
+				child.setMother( mother );
+				//child.setName( child.getName()+"-" );
+				
+				if( verbose ) System.out.printf("child %d: %s\n", i, child.gemcString() );
+			}
+			mother.getChildren().remove( aVol );
 		}
-		mother.getChildren().remove( aVol );
 	}
 	
 	

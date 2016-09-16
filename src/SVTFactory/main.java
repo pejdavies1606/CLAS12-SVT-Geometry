@@ -2,8 +2,8 @@ package SVTFactory;
 
 import java.io.Writer;
 
-//import org.jlab.clasrec.utils.DatabaseConstantProvider; // 2.4
-import org.jlab.detector.calib.utils.DatabaseConstantProvider; // 3.0
+import org.jlab.clasrec.utils.DatabaseConstantProvider; // 2.4
+//import org.jlab.detector.calib.utils.DatabaseConstantProvider; // 3.0
 import org.jlab.geom.geant.Geant4Basic;
 import org.jlab.geom.prim.Line3D;
 import org.jlab.geom.prim.Point3D;
@@ -313,7 +313,14 @@ public class main
 		//sectorVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
 		
 		//svtIdealVolumeFactory.setRange( regionSelector, sectorSelector, sectorSelector );
-		svtIdealVolumeFactory.setRange( regionSelector, 0, 0 );
+		//svtIdealVolumeFactory.setRange( regionSelector, 0, 0 );
+		svtIdealVolumeFactory.setRange( 1, 1, new int[]{1,1,1,1}, new int[]{1,1,1,1}, 1, 1 ); // test one module
+		
+		svtIdealVolumeFactory.VERBOSE = true;
+		svtIdealVolumeFactory.SENSORZONES = true;
+		svtIdealVolumeFactory.BUILDPASSIVES = false;
+		//svtIdealVolumeFactory.VOLSPACER = 1.0;
+		
 		svtIdealVolumeFactory.makeVolumes();
 		
 		SVTStripFactory svtIdealStripFactory = new SVTStripFactory( cp, false );
@@ -325,7 +332,7 @@ public class main
 		//Geant4Basic region = svtNominal.createRegion( 0 );
 		//region.setMother( svtNominal.getMotherVolume() );
 		
-		String fileNameIdealFiducials = "factory_fiducials_ideal.dat";
+		/*String fileNameIdealFiducials = "factory_fiducials_ideal.dat";
 		Writer fileIdealFiducials = Util.openOutputDataFile( fileNameIdealFiducials );
 		
 		for( int region = svtIdealVolumeFactory.getRegionMin()-1; region < svtIdealVolumeFactory.getRegionMax(); region++ )
@@ -373,9 +380,9 @@ public class main
 				fidCen.setMother( svtIdealVolumeFactory.getMotherVolume() );
 			}
 		
-		Util.closeOutputDataFile( fileNameIdealFiducials, fileIdealFiducials );
+		Util.closeOutputDataFile( fileNameIdealFiducials, fileIdealFiducials );*/
 		
-		//System.out.println( svtIdeal.toString() );
+		System.out.println( svtIdealVolumeFactory.toString() );
 		
 		IGdmlExporter gdmlFile = VolumeExporterFactory.createGdmlFactory();
 		//gdmlFile.setVerbose( true ); // not useful for large numbers of volumes

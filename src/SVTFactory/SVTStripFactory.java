@@ -25,7 +25,7 @@ import Alignment.AlignmentFactory;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.2
+ * @version 0.2.3
  */
 public class SVTStripFactory
 {
