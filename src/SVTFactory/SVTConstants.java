@@ -30,7 +30,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.3
+ * @version 0.2.4
  */
 public class SVTConstants
 {
@@ -38,11 +38,14 @@ public class SVTConstants
 	private static boolean bLoadedConstants = false; // only load constants once
 	
 	// data for alignment shifts
-	private static double[][] SHIFTDATA = null;
-	private static String filenameShiftSurvey = null;
+	private static double[][] SECTORSHIFTDATA = null;
+	private static String filenameSectorShiftData = null;
+	
+	//private static double[][] LAYERSHIFTDATA = null;
+	//private static String filenameLayerShiftData = null;
 	
 	public static boolean VERBOSE = false;
-	public static String[] VARIATION = new String[]{ "ideal", "shifted" };
+	//public static String[] VARIATION = new String[]{ "ideal", "shifted" };
 	
 	// SVT GEOMETRY PARAMETERS
 	// fundamentals
@@ -102,7 +105,7 @@ public class SVTConstants
 	 * Connects a DatabaseConstantProvider to CCDB with run 10 and default variation.
 	 * Will be moved to DatabaseLoader at a later date.
 	 * 
-	 * @param loadAlignmentTable a switch to load the table containing alignment shifts
+	 * @param loadAlignmentTable a switch to load the tables containing alignment shifts for sectors and layers
 	 * 
 	 * @return ConstantProvider a ConstantProvider that has loaded the necessary tables
 	 */
@@ -119,6 +122,8 @@ public class SVTConstants
 		cp.loadTable( ccdbPath +"fiducial");
 		cp.loadTable( ccdbPath +"material");
 		if( loadAlignmentTable ) cp.loadTable( ccdbPath +"alignment");
+		//if( loadAlignmentTables ) cp.loadTable( ccdbPath +"alignment/sector");
+		//if( loadAlignmentTables ) cp.loadTable( ccdbPath +"alignment/layer");
 		cp.disconnect();
 		
 		return cp;
@@ -403,7 +408,8 @@ public class SVTConstants
 	{
 		System.out.println("reading alignment shifts from database");
 		
-		SHIFTDATA = new double[NTOTALSECTORS][];
+		SECTORSHIFTDATA = new double[NTOTALSECTORS][];
+		//LAYERSHIFTDATA = new double[NTOTALSECTORS*NMODULES][];
 		
 		for( int i = 0; i < NTOTALSECTORS; i++ )
 		{
@@ -414,30 +420,110 @@ public class SVTConstants
 			double ry = cp.getDouble(ccdbPath+"alignment/ry", i );
 			double rz = cp.getDouble(ccdbPath+"alignment/rz", i );
 			double ra = cp.getDouble(ccdbPath+"alignment/ra", i );
-			SHIFTDATA[i] = new double[]{ tx, ty, tz, rx, ry, rz, Math.toRadians(ra) };
+			
+			SECTORSHIFTDATA[i] = new double[]{ tx, ty, tz, rx, ry, rz, Math.toRadians(ra) };
+			
+			/*double stx = cp.getDouble(ccdbPath+"alignment/sector/tx", i );
+			double sty = cp.getDouble(ccdbPath+"alignment/sector/ty", i );
+			double stz = cp.getDouble(ccdbPath+"alignment/sector/tz", i );
+			double srx = cp.getDouble(ccdbPath+"alignment/sector/rx", i );
+			double sry = cp.getDouble(ccdbPath+"alignment/sector/ry", i );
+			double srz = cp.getDouble(ccdbPath+"alignment/sector/rz", i );
+			double sra = cp.getDouble(ccdbPath+"alignment/sector/ra", i );
+			
+			SECTORSHIFTDATA[i] = new double[]{ tx, ty, tz, rx, ry, rz, Math.toRadians(ra) };
+			
+			for( int j = 0; j < NMODULES; j++ )
+			{
+				double ltx = cp.getDouble(ccdbPath+"alignment/layer/tx", i );
+				double lty = cp.getDouble(ccdbPath+"alignment/layer/ty", i );
+				double ltz = cp.getDouble(ccdbPath+"alignment/layer/tz", i );
+				double lrx = cp.getDouble(ccdbPath+"alignment/layer/rx", i );
+				double lry = cp.getDouble(ccdbPath+"alignment/layer/ry", i );
+				double lrz = cp.getDouble(ccdbPath+"alignment/layer/rz", i );
+				double lra = cp.getDouble(ccdbPath+"alignment/layer/ra", i );
+				
+				SECTORSHIFTDATA[i] = new double[]{ ltx, lty, ltz, lrx, lry, lrz, Math.toRadians(lra) };
+			}*/
 		}
-		if( VERBOSE ) showShiftData();
+		if( VERBOSE ) showSectorShiftData();
 	}
 	
 	
 	/**
-	 * Reads alignment data from the given file.
+	 * Reads alignment data for sectors from the given file.
 	 * The translation and axis-angle rotation data should be of the form { tx, ty, tz, rx, ry, rz, ra }.
 	 * 
 	 * @param aFilename a filename
 	 */
-	public static void loadAlignmentShifts( String aFilename )
+	public static void loadSectorAlignmentShifts( String aFilename )
 	{
-		filenameShiftSurvey = aFilename;			
-		try{ SHIFTDATA = Util.inputTaggedData( filenameShiftSurvey, AlignmentFactory.NSHIFTDATARECLEN ); } // 3 translation(x,y,z), 4 rotation(x,y,z,a)
-		catch( Exception e ){ e.printStackTrace(); System.exit(-1); } // trigger fatal error
-		if( SHIFTDATA == null ){ System.err.println("stop: SHIFTDATA is null after reading file \""+filenameShiftSurvey+"\""); System.exit(-1); }
-		for( int k = 0; k < NTOTALSECTORS; k++ ){ SHIFTDATA[k][6] = Math.toRadians(SHIFTDATA[k][6]); } // convert shift angle to radians
-		if( VERBOSE ) showShiftData();
+		filenameSectorShiftData = aFilename;
+		
+		try
+		{
+			SECTORSHIFTDATA = Util.inputTaggedData( filenameSectorShiftData, AlignmentFactory.NSHIFTDATARECLEN ); // 3 translation(x,y,z), 4 rotation(x,y,z,a)
+		}
+		catch( Exception e )
+		{ 
+			e.printStackTrace();
+			System.exit(-1); // trigger fatal error
+		}
+		
+		if( SECTORSHIFTDATA == null )
+		{
+			System.err.println("stop: SHIFTDATA is null after reading file \""+filenameSectorShiftData+"\"");
+			System.exit(-1); 
+		}
+		
+		for( int k = 0; k < NTOTALSECTORS; k++ )
+		{
+			SECTORSHIFTDATA[k][6] = Math.toRadians(SECTORSHIFTDATA[k][6]); // convert shift angle to radians 
+		}
+		
+		if( VERBOSE ) showSectorShiftData();
 	}
 	
 	
-	public static void showShiftData()
+	/*
+	 * Reads alignment data for layers from the given file.
+	 * The translation and axis-angle rotation data should be of the form { tx, ty, tz, rx, ry, rz, ra }.
+	 * 
+	 * @param aFilename a filename
+	 */
+	/*public static void loadLayerAlignmentShifts( String aFilename )
+	{
+		filenameLayerShiftData = aFilename;
+		
+		try
+		{
+			LAYERSHIFTDATA = Util.inputTaggedData( filenameLayerShiftData, AlignmentFactory.NSHIFTDATARECLEN ); // 3 translation(x,y,z), 4 rotation(x,y,z,a)
+		}
+		catch( Exception e )
+		{ 
+			e.printStackTrace();
+			System.exit(-1); // trigger fatal error
+		}
+		
+		if( LAYERSHIFTDATA == null )
+		{
+			System.err.println("stop: SHIFTDATA is null after reading file \""+filenameLayerShiftData+"\"");
+			System.exit(-1); 
+		}
+		
+		for( int k = 0; k < NTOTALSECTORS; k++ )
+		{
+			LAYERSHIFTDATA[k][6] = Math.toRadians(LAYERSHIFTDATA[k][6]); // convert shift angle to radians 
+		}
+		
+		if( VERBOSE ) showLayerShiftData();
+	}*/
+	
+	
+	/**
+	 * Prints alignment shift data for sectors to screen.
+	 */
+	public static void showSectorShiftData()
 	{
 		//System.out.printf("i%8stx%7sty%7stz%7srx%7sry%7srz%7sra\n","","","","","","","");
 		System.out.printf(" i%9stranslation(x,y,z)%19srotation(x,y,z,a)\n","","");
@@ -445,11 +531,32 @@ public class SVTConstants
 		{
 			System.out.printf("%2d", i+1 );
 			for( int d = 0; d < AlignmentFactory.NSHIFTDATARECLEN-1; d++ )
-				System.out.printf(" %8.3f", SHIFTDATA[i][d] );
-			System.out.printf(" %8.3f", Math.toDegrees(SHIFTDATA[i][AlignmentFactory.NSHIFTDATARECLEN-1]) );
+				System.out.printf(" %8.3f", SECTORSHIFTDATA[i][d] );
+			System.out.printf(" %8.3f", Math.toDegrees(SECTORSHIFTDATA[i][AlignmentFactory.NSHIFTDATARECLEN-1]) );
 			System.out.println();
 		}
 	}
+	
+	
+	/*
+	 * Prints alignment shift data for layers to screen.
+	 */
+	/*public static void showLayersShiftData()
+	{
+		//System.out.printf("i%8stx%7sty%7stz%7srx%7sry%7srz%7sra\n","","","","","","","");
+		System.out.printf(" i%9stranslation(x,y,z)%19srotation(x,y,z,a)\n","","");
+		for( int i = 0; i < NTOTALSECTORS; i++ )
+		{
+			for( int j = 0; j < NMODULES; j++ )
+			{
+				System.out.printf("%2d", i+1 );
+				for( int d = 0; d < AlignmentFactory.NSHIFTDATARECLEN-1; d++ )
+					System.out.printf(" %8.3f", LAYERSHIFTDATA[i][d] );
+				System.out.printf(" %8.3f", Math.toDegrees(LAYERSHIFTDATA[i][AlignmentFactory.NSHIFTDATARECLEN-1]) );
+				System.out.println();
+			}
+		}
+	}*/
 	
 	
 	/**
@@ -637,9 +744,9 @@ public class SVTConstants
 	 * 
 	 * @return double[][] an array of translations and axis-angle rotations of the form { tx, ty, tz, rx, ry, rz, ra }
 	 */
-	public static double[][] getAlignmentShiftData()
+	public static double[][] getDataAlignmentSectorShift()
 	{
-		if( SHIFTDATA == null ){ System.err.println("stop: SHIFTDATA requested is null"); System.exit(-1); }
-		return SHIFTDATA;
+		if( SECTORSHIFTDATA == null ){ System.err.println("stop: SECTORSHIFTDATA requested is null"); System.exit(-1); }
+		return SECTORSHIFTDATA;
 	}
 }

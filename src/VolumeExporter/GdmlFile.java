@@ -378,11 +378,11 @@ public class GdmlFile implements IGdmlExporter
 			
 			if( solParams.length == 5 )
 			{
-				solid.setAttribute("rmax", 	   Double.toString( solParams[0] ) );
-				solid.setAttribute("rmin", 	   Double.toString( solParams[1] ) );
+				solid.setAttribute("rmin", 	   Double.toString( solParams[0] ) );
+				solid.setAttribute("rmax", 	   Double.toString( solParams[1] ) );
 				solid.setAttribute("z",        Double.toString( solParams[2] ) );
-				solid.setAttribute("deltaphi", Double.toString( solParams[3] ) );
-				solid.setAttribute("startphi", Double.toString( solParams[4] ) );
+				solid.setAttribute("startphi", Double.toString( solParams[3] ) );
+				solid.setAttribute("deltaphi", Double.toString( solParams[4] ) );
 				solid.setAttribute("aunit", mDesiredAngleUnit );
 			}
 			else

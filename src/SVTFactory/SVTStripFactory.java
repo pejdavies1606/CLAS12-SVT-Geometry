@@ -25,7 +25,7 @@ import Alignment.AlignmentFactory;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.3
+ * @version 0.2.4
  */
 public class SVTStripFactory
 {
@@ -62,7 +62,7 @@ public class SVTStripFactory
 	{
 		SVTConstants.load( cp );
 		bShift = true;
-		SVTConstants.loadAlignmentShifts( filenameAlignmentShifts );
+		SVTConstants.loadSectorAlignmentShifts( filenameAlignmentShifts );
 	}
 	
 	
@@ -291,8 +291,8 @@ public class SVTStripFactory
 	public Line3D getShiftedStrip( int aRegion, int aSector, int aStrip, int aModule )
 	{
 		Line3D stripLine = getIdealStrip( aRegion, aSector, aStrip, aModule );
-		AlignmentFactory.applyShift( stripLine.origin(), SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
-		AlignmentFactory.applyShift( stripLine.end(),    SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		AlignmentFactory.applyShift( stripLine.origin(), SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+		AlignmentFactory.applyShift( stripLine.end(),    SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
 		return stripLine;
 	}
 	
@@ -448,7 +448,7 @@ public class SVTStripFactory
 	{
 		Point3D[] cornerPos3Ds = getIdealLayerCorners( aRegion, aSector, aModule );
 		for( int i = 0; i < cornerPos3Ds.length; i++ )
-			AlignmentFactory.applyShift( cornerPos3Ds[i], SVTConstants.getAlignmentShiftData()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
+			AlignmentFactory.applyShift( cornerPos3Ds[i], SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( aRegion, aSector )], SVTAlignmentFactory.getIdealFiducialCenter( aRegion, aSector ), scaleT, scaleR );
 		return cornerPos3Ds;
 	}
 	

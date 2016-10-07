@@ -17,7 +17,7 @@ import Misc.Util;
  * Universal class for processing and applying alignment shifts to points and volumes.
  * 
  * @author pdavies
- * @version 0.2.3
+ * @version 0.2.4
  */
 public class AlignmentFactory
 {
@@ -143,21 +143,12 @@ public class AlignmentFactory
 			Vector3D fidIdealVec3D = fidIdealTri3D.normal().asUnit();
 			Vector3D fidMeasuredVec3D = fidMeasuredTri3D.normal().asUnit();
 			double[] axisAngle = Util.convertVectorDiffToAxisAngle( fidIdealVec3D, fidMeasuredVec3D );
-			
-			// if the normals are parallel, use vectors in the plane instead?
-			/*if( axisAngle[3] < 1E-3 )
-			{
-				fidIdealVec3D = fidIdealTri3D.point(0).midpoint( fidIdealTri3D.point(1) ).vectorTo( fidIdealTri3D.point(2) );
-				fidMeasuredVec3D = fidMeasuredTri3D.point(0).midpoint( fidMeasuredTri3D.point(1) ).vectorTo( fidMeasuredTri3D.point(2) );
-				axisAngle = Util.convertVectorDiffToAxisAngle( fidIdealVec3D, fidMeasuredVec3D );
-			}*/
-			
-			//Triangle3D fidDeltaTri3D = new Triangle3D( fidDeltas[0], fidDeltas[1], fidDeltas[2] );
-			//Point3D fidDeltaCen = fidDeltaTri3D.center();
+			boolean bUsedNormal = true;
 			
 			if( VERBOSE )
 			{
-				System.out.printf("\ncalculating shift for set %d\n", k );
+				System.out.printf("\ncalculating shift for set %d", k );
+				System.out.println();
 				for( int f = 0; f < 3; f++ )
 				{
 					System.out.printf("IP%d % 8.3f % 8.3f % 8.3f", f, fidIdealPos3Ds[f].x(), fidIdealPos3Ds[f].y(), fidIdealPos3Ds[f].z() );
@@ -171,6 +162,29 @@ public class AlignmentFactory
 				System.out.println();
 				System.out.printf("IV  % 8.3f % 8.3f % 8.3f", fidIdealVec3D.x(), fidIdealVec3D.y(), fidIdealVec3D.z() );
 				System.out.printf("    MV  % 8.3f % 8.3f % 8.3f", fidMeasuredVec3D.x(), fidMeasuredVec3D.y(), fidMeasuredVec3D.z() );
+				System.out.println();
+				System.out.printf("ST  % 8.3f % 8.3f % 8.3f", fidDiffVec3D.x(), fidDiffVec3D.y(), fidDiffVec3D.z() );
+				System.out.printf("    SR  % 8.3f % 8.3f % 8.3f % 8.3f", axisAngle[0], axisAngle[1], axisAngle[2], Math.toDegrees(axisAngle[3]) );
+				System.out.println();
+			}
+			
+			// if the normals are parallel, use vectors in the plane instead?
+			if( axisAngle[3] < 1E-3 )
+			{
+				fidIdealVec3D =       fidIdealTri3D.point(0).midpoint(    fidIdealTri3D.point(1)  ).vectorTo(   fidIdealTri3D.point(2) ).asUnit();
+				fidMeasuredVec3D = fidMeasuredTri3D.point(0).midpoint( fidMeasuredTri3D.point(1) ).vectorTo( fidMeasuredTri3D.point(2) ).asUnit();
+				axisAngle = Util.convertVectorDiffToAxisAngle( fidIdealVec3D, fidMeasuredVec3D );
+				bUsedNormal = false;
+			}
+			
+			//Triangle3D fidDeltaTri3D = new Triangle3D( fidDeltas[0], fidDeltas[1], fidDeltas[2] );
+			//Point3D fidDeltaCen = fidDeltaTri3D.center();
+			
+			if( VERBOSE && !bUsedNormal )
+			{
+				System.out.printf("IV  % 8.3f % 8.3f % 8.3f", fidIdealVec3D.x(), fidIdealVec3D.y(), fidIdealVec3D.z() );
+				System.out.printf("    MV  % 8.3f % 8.3f % 8.3f", fidMeasuredVec3D.x(), fidMeasuredVec3D.y(), fidMeasuredVec3D.z() );
+				System.out.printf("    not using normal");
 				System.out.println();
 				System.out.printf("ST  % 8.3f % 8.3f % 8.3f", fidDiffVec3D.x(), fidDiffVec3D.y(), fidDiffVec3D.z() );
 				System.out.printf("    SR  % 8.3f % 8.3f % 8.3f % 8.3f", axisAngle[0], axisAngle[1], axisAngle[2], Math.toDegrees(axisAngle[3]) );

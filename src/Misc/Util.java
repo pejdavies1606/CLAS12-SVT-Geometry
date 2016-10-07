@@ -28,7 +28,7 @@ import org.jlab.geom.prim.Vector3D;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.3
+ * @version 0.2.4
  */
 public class Util
 {
@@ -448,15 +448,12 @@ public class Util
 		case "box": // cube or cuboid
 		case "eltube": // cylinder along Z axis
 		case "orb": // sphere
-			
 			for( int i = 0; i < d.length; i++ )
 				d[i] *= aFactor;
 			break;
 			
-		case "tube": // hollow tube segment
-			
-			for( int i = 0; i < 3; i++ ) // rmax, rmin, z, deltaphi, startphi
-				d[i] *= aFactor;
+		case "tube": // hollow tube segment, only z needs to be halved
+			d[2] *= aFactor; // rmin, rmax, z, startphi, deltaphi
 			break;
 			
 		default:

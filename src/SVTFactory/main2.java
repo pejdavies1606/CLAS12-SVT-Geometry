@@ -7,7 +7,7 @@ public class main2 {
 
 	public static void main(String[] args)
 	{		
-		ConstantProvider cp = SVTConstants.connect();
+		ConstantProvider cp = SVTConstants.connect( false );
 		
 		SVTStripFactory factoryNominal = new SVTStripFactory( cp, false );
 		
