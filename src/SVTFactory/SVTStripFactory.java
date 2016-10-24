@@ -196,7 +196,8 @@ public class SVTStripFactory
 		// STRIPOFFSETWID = offset of first *intermediate* sensor strip from edge of active zone
 		// 0.5*SVTConstants.READOUTPITCH = distance bewteen adjacent intermediate and readout strips
 		w = SVTConstants.STRIPOFFSETWID + 0.5*SVTConstants.READOUTPITCH + aStrip*SVTConstants.READOUTPITCH;
-		a = SVTConstants.STEREOANGLE/SVTConstants.NSTRIPS*aStrip;
+		//a = SVTConstants.STEREOANGLE/SVTConstants.NSTRIPS*aStrip;
+		a = SVTConstants.STEREOANGLE/(double)(SVTConstants.NSTRIPS - 1)*aStrip; // fixed bug 24-OCT-2016
 		q = SVTConstants.STRIPLENMAX*Math.tan(a);
 		
 		x0 = SVTConstants.ACTIVESENWID - w;
