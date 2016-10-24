@@ -17,7 +17,7 @@ import Alignment.AlignmentFactory;
  * <ul>
  * <li> svt = four concentric regions / superlayers </li>
  * <li> region / superlayer = ring of a variable number of sectors </li>
- * <li> sector = pair of sensor  modules and backing structure, connected and stabilised by copper and peek supports </li>
+ * <li> sector = pair of sensor modules and backing structure, connected and stabilised by copper and peek supports </li>
  * <li> module = triplet of sensors </li>
  * <li> sensor = silicon with etched strips in active region </li>
  * <li> layer = plane of sensitive strips, spanning active regions of module </li>

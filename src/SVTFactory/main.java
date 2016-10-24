@@ -283,7 +283,7 @@ public class main
 		DatabaseConstantProvider cp = SVTConstants.connect( true );
 		
 		
-		SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
+		/*SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
 		double[][] dataFactoryIdeal = SVTAlignmentFactory.getFactoryIdealFiducialData();
 		
 		//AlignmentFactory.VERBOSE = true;
@@ -296,7 +296,7 @@ public class main
 		
 		double[][][] dataSideIdeals = SVTAlignmentFactory.calcTriangleSides( dataFactoryIdeal, 0, "sides_factory_ideal.dat");
 		double[][][] dataSideMeasureds = SVTAlignmentFactory.calcTriangleSides( SVTAlignmentFactory.getDataSurveyMeasured(), 0.020, "sides_survey_measured.dat");
-		SVTAlignmentFactory.calcDistanceDeltas( dataSideIdeals, dataSideMeasureds, "sides_survey_measured_from_factory_ideal.dat");
+		SVTAlignmentFactory.calcDistanceDeltas( dataSideIdeals, dataSideMeasureds, "sides_survey_measured_from_factory_ideal.dat");*/
 		
 		//System.exit(0);
 		
@@ -312,31 +312,26 @@ public class main
 		
 		SVTVolumeFactory svtIdealVolumeFactory = new SVTVolumeFactory( cp, false );
 		
-		//Geant4Basic sectorVol = svtIdealVolumeFactory.createSector();
-		//sectorVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
-		
 		//svtIdealVolumeFactory.setRange( regionSelector, sectorSelector, sectorSelector );
 		//svtIdealVolumeFactory.setRange( regionSelector, 0, 0 );
 		//svtIdealVolumeFactory.setRange( 1, 1, new int[]{1,1,1,1}, new int[]{1,1,1,1}, 1, 1 ); // test one module
+		//svtIdealVolumeFactory.setRange( 1, 1, new int[]{1,1,1,1}, new int[]{1,1,1,1}, 0, 0 );
 		
 		//svtIdealVolumeFactory.VERBOSE = true;
-		svtIdealVolumeFactory.SENSORZONES = false;
+		svtIdealVolumeFactory.BUILDSENSORZONES = false;
+		svtIdealVolumeFactory.BUILDSENSORS = false;
 		svtIdealVolumeFactory.BUILDPASSIVES = false;
 		//svtIdealVolumeFactory.VOLSPACER = 1.0;
 		
 		svtIdealVolumeFactory.makeVolumes();
 		
-		//SVTStripFactory svtIdealStripFactory = new SVTStripFactory( cp, false );
+		//Geant4Basic sectorVol = svtIdealVolumeFactory.createSector();
+		//sectorVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
 		
-		//Geant4Basic module = svtNominal.createModule();
-		//module.setMother( svtNominal.getMotherVolume() );
-		//Utils.shiftPosition( module, SVTGeant4Factory.MODULEWID/2, 0, SVTGeant4Factory.MODULELEN/2);
+		SVTStripFactory svtIdealStripFactory = new SVTStripFactory( cp, false );
 		
-		//Geant4Basic region = svtNominal.createRegion( 0 );
-		//region.setMother( svtNominal.getMotherVolume() );
-		
-		/*String fileNameIdealFiducials = "factory_fiducials_ideal.dat";
-		Writer fileIdealFiducials = Util.openOutputDataFile( fileNameIdealFiducials );
+		//String fileNameIdealFiducials = "factory_fiducials_ideal.dat";
+		//Writer fileIdealFiducials = Util.openOutputDataFile( fileNameIdealFiducials );
 		
 		for( int region = svtIdealVolumeFactory.getRegionMin()-1; region < svtIdealVolumeFactory.getRegionMax(); region++ )
 			for( int sector = svtIdealVolumeFactory.getSectorMin()[region]-1; sector < svtIdealVolumeFactory.getSectorMax()[region]; sector++ )
@@ -349,22 +344,22 @@ public class main
 						//stripLine.show();
 						Geant4Basic stripVol = Util.createArrow("strip"+strip+"_m"+module+"_s"+sector+"_r"+region, stripLine.toVector(), stripArrowCapRadius, stripArrowPointerRadius, false, true, false ); // mm
 						stripVol.setPosition( stripLine.origin().x()*0.1, stripLine.origin().y()*0.1, stripLine.origin().z()*0.1 ); // mm->cm
-						stripVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
+						//stripVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
 						//System.out.println( stripVol.gemcString() );
 						//for( int c = 0; c < stripVol.getChildren().size(); c++ )
 							//System.out.println( stripVol.getChildren().get(c).gemcString() );
 					}
 					
-					Point3D[] layerCorners = svtIdealStripFactory.getLayerCorners( region, sector, module );
+					/*Point3D[] layerCorners = svtIdealStripFactory.getLayerCorners( region, sector, module );
 					for( int i = 0; i < layerCorners.length; i++ )
 					{
 						Geant4Basic cornerBall = new Geant4Basic("cornerBall"+i+"_m"+module+"_s"+sector+"_r"+region, "Orb", cornerBallRadius ); // cm
 						cornerBall.setPosition( layerCorners[i].x()*0.1, layerCorners[i].y()*0.1, layerCorners[i].z()*0.1 ); // mm -> cm
 						cornerBall.setMother( svtIdealVolumeFactory.getMotherVolume() );
-					}
+					}*/
 				}
 				
-				Point3D fidPos3Ds[] = SVTAlignmentFactory.getIdealFiducials( region, sector );
+				/*Point3D fidPos3Ds[] = SVTAlignmentFactory.getIdealFiducials( region, sector );
 				
 				for( int fid = 0; fid < SVTConstants.NFIDUCIALS; fid++ )
 				{
@@ -380,22 +375,32 @@ public class main
 				fidVec3D.scale( 10 ); // length of arrow in mm
 				Geant4Basic fidCen = Util.createArrow( "fiducialCenter_s"+sector+"_r"+region, fidVec3D, fidArrowCapRadius, fidArrowPointerRadius, true, true, false ); // mm
 				fidCen.setPosition( fidTri3D.center().x()*0.1, fidTri3D.center().y()*0.1, fidTri3D.center().z()*0.1 ); // mm->cm
-				fidCen.setMother( svtIdealVolumeFactory.getMotherVolume() );
+				fidCen.setMother( svtIdealVolumeFactory.getMotherVolume() );*/
 			}
 		
-		Util.closeOutputDataFile( fileNameIdealFiducials, fileIdealFiducials );*/
+		//Util.closeOutputDataFile( fileNameIdealFiducials, fileIdealFiducials );
 		
-		//System.out.println( svtIdealVolumeFactory.toString() );
+		System.out.println( svtIdealVolumeFactory.toString() );
 		
 		IGdmlExporter gdmlFile = VolumeExporterFactory.createGdmlFactory();
 		//gdmlFile.setVerbose( true ); // not useful for large numbers of volumes
 		gdmlFile.setPositionLoc("local");
 		gdmlFile.setRotationLoc("local");
 		gdmlFile.addTopVolume( svtIdealVolumeFactory.getMotherVolume() );
-		gdmlFile.addMaterialPreset("mat_sensorActive", "mat_vacuum");
-		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_sensorActive", "materialref", "ref", "mat_sensorActive");
-		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_deadZone", "materialref", "ref", "mat_sensorActive");
-		//gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_rohacell", "materialref", "ref", "mat_rohacell");
+		gdmlFile.addMaterialPreset("mat_hide", "mat_vacuum");
+		gdmlFile.addMaterialPreset("mat_half", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_heatSink", "materialref", "ref", "mat_hide");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_heatSinkCu", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_heatSinkRidge", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_carbonFiber", "materialref", "ref", "mat_hide");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_carbonFiberCu", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_carbonFiberPk", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_busCable", "materialref", "ref", "mat_hide");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_busCableCu", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_busCablePk", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_sector", "materialref", "ref", "mat_half");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_region", "materialref", "ref", "mat_half");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_svt", "materialref", "ref", "mat_half");
 		gdmlFile.writeFile("SVTFactory_ideal");
 		
 		System.exit( 0 );
@@ -515,7 +520,7 @@ public class main
 		
 		Util.closeOutputDataFile( fileNameShiftedFiducials, fileShiftedFiducials );*/
 		
-		//System.out.println( svtShifted.toString() );
+		//System.out.println( svtShiftedVolumeFactory.toString() );
 		
 		IGdmlExporter gdmlFile2 = VolumeExporterFactory.createGdmlFactory();
 		gdmlFile2.setPositionLoc("local");

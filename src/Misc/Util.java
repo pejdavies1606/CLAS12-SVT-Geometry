@@ -28,7 +28,7 @@ import org.jlab.geom.prim.Vector3D;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.4
+ * @version 0.2.5
  */
 public class Util
 {
@@ -302,7 +302,7 @@ public class Util
 	public static Geant4Basic createArrow( String aName, Vector3D aVec,
 			double aCapRadius, double aPointerRadius, boolean aDisplayCapStart, boolean aDisplayPointer, boolean aDisplayCapEnd )
 	{
-		Geant4Basic arrowVol = new Geant4Basic(aName+"_arrow0", "Box", 0 ); // container
+		Geant4Basic arrowVol = new Geant4Basic(aName+"_arrow0", "Box", 1, 1, 1 ); // container
 		// put cap at base of vector, with arrow pointing in direction of vector, and optional second cap at end of arrow
 		
 		//System.out.printf("arrow vector x=% 8.3f y=% 8.3f z=% 8.3f mag=% 8.3f\n", aVec.x(), aVec.y(), aVec.z(), aVec.mag() );

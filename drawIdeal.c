@@ -9,20 +9,27 @@ void drawIdeal() {
     TList *matList = geom->GetListOfMaterials();
     TIter matNext( matList );
     cout << "setting material transparencies\n";
-    int transparencyAir = 0;
-    int transparencySensor = 80;
+    int transparencyHide = 100;
+    int transparencyHalf = 50;
+    int transparencyShow = 0;
+    
     while( mat = (TGeoMaterial*) matNext() )
     {
         TString *matName = new TString( mat->GetName() );
-        if( matName->Contains("sensorActive") )
+        if( matName->Contains("hide") )
         {
-            cout << "sensor " << transparencySensor;
-            mat->SetTransparency( transparencySensor );
+            cout << "hide " << transparencyHide;
+            mat->SetTransparency( transparencyHide );
+        }
+        else if( matName->Contains("half") )
+        {
+            cout << "half " << transparencyHalf;
+            mat->SetTransparency( transparencyHalf );
         }
         else
         {
-            cout << "default " << transparencyAir;
-            mat->SetTransparency( transparencyAir );
+            cout << "show " << transparencyShow;
+            mat->SetTransparency( transparencyShow );
         }
         cout << " " << matName->Data() << "\n";
     }
@@ -51,12 +58,12 @@ void drawIdeal() {
         else if( volName->Contains("sensorActive") )
         {
             //cout << "sensorActive";
-            vol->SetLineColor( kBlue );
+            vol->SetLineColor( kBlue-1 );
         }
         else if( volName->Contains("sensorPhysical") )
         {
             //cout << "sensorActive";
-            vol->SetLineColor( kBlue-1 );
+            vol->SetLineColor( kBlue );
         }
         else if( volName->Contains("fiducial") )
         {
@@ -78,7 +85,12 @@ void drawIdeal() {
             //cout << "sensorActive";
             vol->SetLineColor( kOrange+1 );
         }
-        else if( volName->Contains("carbonFiber") )
+        else if( volName->Contains("carbonFiberCu") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kGray+3 ); // kBlack
+        }
+        else if( volName->Contains("carbonFiberPk") )
         {
             //cout << "sensorActive";
             vol->SetLineColor( kGray+3 ); // kBlack
