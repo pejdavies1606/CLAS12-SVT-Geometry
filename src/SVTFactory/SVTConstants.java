@@ -30,7 +30,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.5
+ * @version 0.2.6
  */
 public class SVTConstants
 {
@@ -101,7 +101,7 @@ public class SVTConstants
 	public static double MODULELEN;    // || DZ |  AZ  | DZ |MG| DZ |  AZ  | DZ |MG| DZ |  AZ  || DZ ||
 	public static double STRIPLENMAX;  //      ||  AZ  | DZ |MG| DZ |  AZ  | DZ |MG| DZ |  AZ  ||
 	public static double MODULEWID; // || DZ | AZ | DZ ||
-	public static double REGIONLEN;
+	public static double SECTORLEN;
 	
 	/**
 	 * Connects a DatabaseConstantProvider to CCDB with run 10 and default variation.
@@ -246,7 +246,7 @@ public class SVTConstants
 			STRIPOFFSETWID = cp.getDouble(ccdbPath+"svt/stripStart", 0 );
 			LAYERGAPTHK = cp.getDouble(ccdbPath+"svt/layerGapThk", 0 ); // generated from fiducial analysis
 			PASSIVETHK = MATERIALDIMENSIONS.get("carbonFiber")[1] + MATERIALDIMENSIONS.get("busCable")[1] + MATERIALDIMENSIONS.get("epoxy")[1];
-			REGIONLEN = MATERIALDIMENSIONS.get("heatSink")[2] + MATERIALDIMENSIONS.get("rohacell")[2];
+			SECTORLEN = MATERIALDIMENSIONS.get("heatSink")[2] + MATERIALDIMENSIONS.get("rohacell")[2];
 			double layerGapThk = MATERIALDIMENSIONS.get("rohacell")[1] + 2*PASSIVETHK; // construct from material thicknesses instead
 			
 			

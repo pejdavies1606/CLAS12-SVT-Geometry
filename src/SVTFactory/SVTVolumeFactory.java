@@ -33,7 +33,7 @@ import Misc.Util;
  * </ul>
  * 
  * @author pdavies
- * @version 0.2.5
+ * @version 0.2.6
  */
 public class SVTVolumeFactory
 {
@@ -184,23 +184,69 @@ public class SVTVolumeFactory
 		for( int region = regionMin-1; region < regionMax; region++ ) // NREGIONS
 		{
 			if( VERBOSE ) System.out.println("r "+region);
-			// regionVol is just a temporary pseudo volume
-			// the sector volumes bypass the region volume and set their positions directly in the lab frame
+			
 			Geant4Basic regionVol = createRegion( region );
 			regionVol.setMother( motherVol );
 			regionVol.setName( regionVol.getName() + (region+1) );
+			Util.appendChildrenName( regionVol, "_r"+ (region+1) );
+			
 			double zStartPhysical = SVTConstants.Z0ACTIVE[region] - SVTConstants.DEADZNLEN; // Cu edge of hybrid sensor's physical volume
 			regionVol.setPosition( 0, 0, (zStartPhysical - SVTConstants.FIDORIGINZ)*0.1 + regionVol.getParameters()[2]/2 ); // central dowel hole
+			
 			//regionVol.setRotation("xyz", 0.0, 0.0, -Math.toRadians(90.0) ); // add a shift to test Util.replaceChildrenMother
-			Util.appendChildrenName( regionVol, "_r"+ (region+1) );
 			//Util.moveChildrenToMother( regionVol );
 			
 			//sumZ0Active += SVTConstants.Z0ACTIVE[region];
+			
+			if( bShift )
+			{
+				for( int sector = sectorMin[region]-1; sector < sectorMax[region]; sector++ )
+				{
+					Geant4Basic sectorVol = regionVol.getChildren().get( sector );
+					
+					//System.out.println("N "+sectorVol.gemcString() );
+					Point3D[] fidPos3Ds = SVTAlignmentFactory.getIdealFiducials( region, sector );
+					Triangle3D fidTri3D = new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] );
+					
+					//System.out.println("rs "+ convertRegionSector2SvtIndex( aRegion, sector ));
+					double[] shift = SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( region, sector )].clone();
+					
+					if( VERBOSE )
+					{
+						Vector3D vec = new Vector3D( shift[3], shift[4], shift[5] ).asUnit();
+						vec.scale( (shift[6] == 0) ? 0 : 10 ); // length in mm, but only if non-zero angle
+						//vec.show();
+						
+						Geant4Basic vecVol = Util.createArrow("rotAxis"+sector, vec, 2.0, 1.0, true, true, false );
+						vecVol.setPosition( fidTri3D.center().x()*0.1, fidTri3D.center().y()*0.1, fidTri3D.center().z()*0.1 );
+						vecVol.setMother( regionVol );
+						//System.out.println( vecVol.gemcString() );
+					}
+					
+					int n = 1; // number of steps to show (n=1 for final step only)
+					double d = shift[6]/n;
+					for( int i = 1; i < n; i++ )
+					{
+						//System.out.println( "vol "+ i );
+						Geant4Basic stepVol = Util.clone( sectorVol );
+						stepVol.setMother(regionVol);
+						Util.appendName( stepVol, "_"+i );
+						shift[6] = i*d;
+						AlignmentFactory.applyShift( stepVol, shift, fidTri3D.center(), scaleT, scaleR );
+						//System.out.println("  "+stepVol.gemcString() );
+						//for( int j = 0; j < stepVol.getChildren().size(); j++ )
+							//System.out.println( stepVol.getChildren().get(j).gemcString() );
+					}
+					
+					AlignmentFactory.applyShift( sectorVol, SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( region, sector )], fidTri3D.center(), scaleT, scaleR );
+					//System.out.println("S "+sectorVol.gemcString() );
+				}
+			}
 		}
 		
 		//double meanZ0Active = sumZ0Active/(regionMax - regionMin + 1);
 		
-		motherVol.setParameters( 0, SVTConstants.LAYERRADIUS[regionMax-1][1]*0.1, (SVTConstants.REGIONLEN*1.5)*0.1, 0, 360 );
+		motherVol.setParameters( 0, SVTConstants.LAYERRADIUS[regionMax-1][1]*0.1, (SVTConstants.SECTORLEN*1.5)*0.1, 0, 360 );
 	}
 	
 	
@@ -215,14 +261,11 @@ public class SVTVolumeFactory
 	{
 		if( aRegion < 0 || aRegion > SVTConstants.NREGIONS-1 ){ throw new IllegalArgumentException("region out of bounds"); }
 		
-		double heatSinkLen = SVTConstants.MATERIALDIMENSIONS.get("heatSink")[2];
-		double rohacellLen = SVTConstants.MATERIALDIMENSIONS.get("rohacell")[2];
-		
 		double rcen = 0.5*(SVTConstants.LAYERRADIUS[aRegion][1] + SVTConstants.LAYERRADIUS[aRegion][0]);
 		double rthk = 0.5*(SVTConstants.LAYERRADIUS[aRegion][1] - SVTConstants.LAYERRADIUS[aRegion][0])*3; // scale factor to encompass the entire volume of the sectors
 		double rmin = rcen - rthk;
 		double rmax = rcen + rthk;
-		double zlen = heatSinkLen + rohacellLen;
+		double zlen = SVTConstants.SECTORLEN; // same length as dummy sector volume
 		
 		if( VERBOSE )
 		{
@@ -248,7 +291,7 @@ public class SVTVolumeFactory
 			Util.appendChildrenName( sectorVol, "_s"+ (sector+1) ); // append tag to end of name (GdmlFile's material replacement search fails if it's prepended)
 			
 			double phi = -2.0*Math.PI/SVTConstants.NSECTORS[aRegion]*sector + SVTConstants.PHI0; // module rotation about target / origin
-			double psi = phi - SVTConstants.SECTOR0; // module rotation about centre of geometry
+			double psi = phi - SVTConstants.SECTOR0 - Math.PI; // module rotation about centre of geometry, -180 deg to set zero volume rotation for sector 1
 			
 			Transformation3D rotatePhi = new Transformation3D();
 			rotatePhi.rotateZ( phi );
@@ -257,50 +300,10 @@ public class SVTVolumeFactory
 			//double fiducialRadius = SVTConstants.SUPPORTRADIUS[aRegion] + heatSinkThk;
 			
 			//Point3D pos = new Point3D( fiducialRadius - heatSinkThk + sectorVol.getParameters()[1]/2, 0, zStartPhysical - SVTConstants.FIDORIGINZ + sectorVol.getParameters()[2]/2 );
-			Point3D pos = new Point3D( rcen, 0, 0 );
+			Point3D pos = new Point3D( rcen, 0.0, 0.0 );
 			rotatePhi.apply( pos );
 			sectorVol.setPosition( pos.x()*0.1, pos.y()*0.1, pos.z()*0.1 );
-			sectorVol.setRotation("xyz", 0, 0, -psi ); // change of sign for active/alibi -> passive/alias rotation
-			
-			if( bShift )
-			{
-				//System.out.println("N "+sectorVol.gemcString() );
-				Point3D[] fidPos3Ds = SVTAlignmentFactory.getIdealFiducials( aRegion, sector );
-				Triangle3D fidTri3D = new Triangle3D( fidPos3Ds[0], fidPos3Ds[1], fidPos3Ds[2] );
-				
-				//System.out.println("rs "+ convertRegionSector2SvtIndex( aRegion, sector ));
-				double[] shift = SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( aRegion, sector )].clone();
-				
-				if( VERBOSE )
-				{
-					Vector3D vec = new Vector3D( shift[3], shift[4], shift[5] ).asUnit();
-					vec.scale( (shift[6] == 0) ? 0 : 10 ); // length in mm, but only if non-zero angle
-					//vec.show();
-					
-					Geant4Basic vecVol = Util.createArrow("rotAxis"+sector, vec, 2.0, 1.0, true, true, false );
-					vecVol.setPosition( fidTri3D.center().x()*0.1, fidTri3D.center().y()*0.1, fidTri3D.center().z()*0.1 );
-					vecVol.setMother( regionVol );
-					//System.out.println( vecVol.gemcString() );
-				}
-				
-				int n = 1; // number of steps to show (n=1 for final step only)
-				double d = shift[6]/n;
-				for( int i = 1; i < n; i++ )
-				{
-					//System.out.println( "vol "+ i );
-					Geant4Basic stepVol = Util.clone( sectorVol );
-					stepVol.setMother(regionVol);
-					Util.appendName( stepVol, "_"+i );
-					shift[6] = i*d;
-					AlignmentFactory.applyShift( stepVol, shift, fidTri3D.center(), scaleT, scaleR );
-					//System.out.println("  "+stepVol.gemcString() );
-					//for( int j = 0; j < stepVol.getChildren().size(); j++ )
-						//System.out.println( stepVol.getChildren().get(j).gemcString() );
-				}
-				
-				AlignmentFactory.applyShift( sectorVol, SVTConstants.getDataAlignmentSectorShift()[SVTConstants.convertRegionSector2Index( aRegion, sector )], fidTri3D.center(), scaleT, scaleR );
-				//System.out.println("S "+sectorVol.gemcString() );
-			}
+			sectorVol.setRotation("xyz", 0.0, 0.0, -psi ); // change of sign for active/alibi -> passive/alias rotation
 			//Util.moveChildrenToMother( sectorVol );
 		}
 		
@@ -333,7 +336,7 @@ public class SVTVolumeFactory
 		
 		double wid = SVTConstants.MODULEWID;
 		double thk = SVTConstants.LAYERGAPTHK + 2*SVTConstants.SILICONTHK;
-		double len = heatSinkLen + rohacellLen;
+		double len = SVTConstants.SECTORLEN;
 		
 		Geant4Basic sectorVol = new Geant4Basic("sector", "Box", wid*0.1, thk*0.1, len*0.1 );
 		
@@ -343,15 +346,15 @@ public class SVTVolumeFactory
 		// 		create sensor module
 		// 		create passive materials (carbon fibre, bus cable, epoxy)
 		
-		Geant4Basic heatSinkVol = createHeatSink();
-		heatSinkVol.setMother( sectorVol );
-		heatSinkVol.setPosition( 0.0, -heatSinkThk/2*0.1, -heatSinkCuZStart*0.1 + heatSinkLen/2*0.1 );
-		//Util.moveChildrenToMother( heatSinkVol );
-		
 		if( BUILDPASSIVES )
 		{
 			//Geant4Basic sectorBall = new Geant4Basic("sectorBall", "Orb", 0.075 ); // cm
 			//sectorBall.setMother( sectorVol );
+			
+			Geant4Basic heatSinkVol = createHeatSink();
+			heatSinkVol.setMother( sectorVol );
+			heatSinkVol.setPosition( 0.0, -heatSinkThk/2*0.1, -heatSinkCuZStart*0.1 + heatSinkLen/2*0.1 );
+			//Util.moveChildrenToMother( heatSinkVol );
 			
 			Geant4Basic rohacellVol = createNamedBox("rohacell");
 			rohacellVol.setMother( sectorVol );
@@ -371,11 +374,11 @@ public class SVTVolumeFactory
 			switch( module ) 
 			{
 			case 0: // U = inner
-				moduleY = 0.0 - rohacellThk - SVTConstants.PASSIVETHK - SVTConstants.SILICONTHK/2;
+				moduleY = 0.0 + SVTConstants.PASSIVETHK + SVTConstants.SILICONTHK/2;
 				break;
 				
 			case 1: // V = outer
-				moduleY = 0.0 + SVTConstants.PASSIVETHK + SVTConstants.SILICONTHK/2;
+				moduleY = 0.0 - rohacellThk - SVTConstants.PASSIVETHK - SVTConstants.SILICONTHK/2;
 				break;
 			}
 			
@@ -406,15 +409,15 @@ public class SVTVolumeFactory
 				switch( module ) 
 				{
 				case 0: // U = inner
-					carbonFiberY  = 0.0 - rohacellThk - carbonFiberThk/2;
-					busCableY     = 0.0 - rohacellThk - carbonFiberThk - busCableThk/2;
-					pitchAdaptorY = 0.0 - rohacellThk - SVTConstants.PASSIVETHK - pitchAdaptorThk/2;
-					break;
-					
-				case 1: // V = outer
 					carbonFiberY  = 0.0 + carbonFiberThk/2;
 					busCableY     = 0.0 + carbonFiberThk + busCableThk/2;
 					pitchAdaptorY = 0.0 + SVTConstants.PASSIVETHK + pitchAdaptorThk/2;
+					break;
+					
+				case 1: // V = outer
+					carbonFiberY  = 0.0 - rohacellThk - carbonFiberThk/2;
+					busCableY     = 0.0 - rohacellThk - carbonFiberThk - busCableThk/2;
+					pitchAdaptorY = 0.0 - rohacellThk - SVTConstants.PASSIVETHK - pitchAdaptorThk/2;
 					break;
 				}
 			
@@ -434,7 +437,7 @@ public class SVTVolumeFactory
 		}
 		
 		for( Geant4Basic child : sectorVol.getChildren() )
-			Util.shiftPosition( child, 0.0, rohacellThk/2*0.1, heatSinkCuZStart*0.1 - sectorVol.getParameters()[2]/2 );
+			Util.shiftPosition( child, 0.0, rohacellThk/2*0.1, -sectorVol.getParameters()[2]/2 );
 	
 		return sectorVol;
 	}
@@ -589,8 +592,8 @@ public class SVTVolumeFactory
 		Geant4Basic ridgeVol = createNamedBox("heatSinkRidge"); // small protruding ridge
 		ridgeVol.setMother( mainVol );
 		
-		cuVol.setPosition( 0.0, ridgeVol.getParameters()[1]/2, 0.0 );
-		ridgeVol.setPosition( 0.0, -cuVol.getParameters()[1]/2, ridgeVol.getParameters()[2]/2 - cuVol.getParameters()[2]/2 );
+		cuVol.setPosition(    0.0, ridgeVol.getParameters()[1]/2, 0.0 );
+		ridgeVol.setPosition( 0.0, ridgeVol.getParameters()[1] + cuVol.getParameters()[1]/2, ridgeVol.getParameters()[2]/2 - cuVol.getParameters()[2]/2 );
 		
 		return mainVol;
 	}

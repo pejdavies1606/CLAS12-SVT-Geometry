@@ -159,7 +159,7 @@ public class SVTStripFactory
 	 * 
 	 * @param aStrip an index starting from 0
 	 * @param aModule an index starting from 0
-	 * @return Line3D a strip in the local frame
+	 * @return Line3D a strip in the local frame, relative to the upstream edge along z, and the centre along x.
 	 * @throws IllegalArgumentException index out of bounds
 	 */
 	public Line3D createIdealStrip( int aStrip, int aModule ) throws IllegalArgumentException // local frame
@@ -257,7 +257,7 @@ public class SVTStripFactory
 		Line3D stripLine = new Line3D( new Point3D( x0, 0.0, z0 ), new Point3D( x1, 0.0, z1 ) );
 		SVTConstants.getStripFrame( aModule == 0 ).apply( stripLine ); // strip frame -> local frame
 		
-		return stripLine; // strip end points are returned relative to the front edge along z, and the centre along x
+		return stripLine;
 	}
 	
 	

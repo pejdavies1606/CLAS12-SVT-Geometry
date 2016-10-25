@@ -10,7 +10,7 @@ void drawIdeal() {
     TIter matNext( matList );
     cout << "setting material transparencies\n";
     int transparencyHide = 100;
-    int transparencyHalf = 50;
+    int transparencyHalf = 100;
     int transparencyShow = 0;
     
     while( mat = (TGeoMaterial*) matNext() )
