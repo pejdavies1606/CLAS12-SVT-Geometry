@@ -1,0 +1,15 @@
+
+void test(){
+    gSystem->Load("libGeom");
+    gSystem->Load("libGdml");
+    TGeoManager *geom = TGeoManager::Import("test_matrix.gdml");
+    TList *matList = geom->GetListOfMaterials();
+    TIter matNext( matList );
+    while( mat = (TGeoMaterial*) matNext() )
+    {
+        mat->SetTransparency( 0 );
+    }
+    TGeoVolume *top = geom->GetTopVolume();
+    top->Draw("ogl");
+}
+

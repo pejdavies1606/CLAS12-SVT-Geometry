@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNameSpaceSchemaLocation="http://cern.ch/service-spi/app/releases/GDML/Schema/gdml.xsd">
+  <define/>
+  <materials>
+    <material Z="1" name="mat_vacuum">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+    <material Z="1" name="mat_hide">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+    <material Z="1" name="mat_half">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+  </materials>
+  <solids>
+    <box lunit="cm" name="sol_heatSinkCu" x="4.07" y="0.255" z="6.533"/>
+    <box lunit="cm" name="sol_heatSinkRidge" x="4.07" y="0.038000000000000006" z="1.56"/>
+    <box lunit="cm" name="sol_heatSink" x="4.07" y="0.288" z="6.533"/>
+    <box lunit="cm" name="sol_rohacell" x="4.1000000000000005" y="0.25" z="35.292500000000004"/>
+    <box lunit="cm" name="sol_module1" x="4.2" y="0.032" z="33.5099"/>
+    <box lunit="cm" name="sol_carbonFiberCu_m1" x="3.6750000000000003" y="0.019000000000000003" z="4.658"/>
+    <box lunit="cm" name="sol_carbonFiberPk_m1" x="4.1000000000000005" y="0.019000000000000003" z="35.506"/>
+    <box lunit="cm" name="sol_carbonFiber1" x="4.2" y="0.019000000000000003" z="40.164"/>
+    <box lunit="cm" name="sol_busCableCu_m1" x="3.6750000000000003" y="0.0078000000000000005" z="4.658"/>
+    <box lunit="cm" name="sol_busCablePk_m1" x="4.1000000000000005" y="0.0078000000000000005" z="35.506"/>
+    <box lunit="cm" name="sol_busCable1" x="4.2" y="0.0078000000000000005" z="40.164"/>
+    <box lunit="cm" name="sol_pitchAdaptor1" x="4.15" y="0.032" z="0.4"/>
+    <box lunit="cm" name="sol_pcBoard_m1" x="3.673" y="0.05" z="4.144"/>
+    <box lunit="cm" name="sol_chipL_m1" x="0.75" y="0.05" z="0.5"/>
+    <box lunit="cm" name="sol_chipR_m1" x="0.75" y="0.05" z="0.5"/>
+    <box lunit="cm" name="sol_pcBoardAndChips1" x="3.673" y="0.1" z="4.144"/>
+    <box lunit="cm" name="sol_module2" x="4.2" y="0.032" z="33.5099"/>
+    <box lunit="cm" name="sol_carbonFiberCu_m2" x="3.6750000000000003" y="0.019000000000000003" z="4.658"/>
+    <box lunit="cm" name="sol_carbonFiberPk_m2" x="4.1000000000000005" y="0.019000000000000003" z="35.506"/>
+    <box lunit="cm" name="sol_carbonFiber2" x="4.2" y="0.019000000000000003" z="40.164"/>
+    <box lunit="cm" name="sol_busCableCu_m2" x="3.6750000000000003" y="0.0078000000000000005" z="4.658"/>
+    <box lunit="cm" name="sol_busCablePk_m2" x="4.1000000000000005" y="0.0078000000000000005" z="35.506"/>
+    <box lunit="cm" name="sol_busCable2" x="4.2" y="0.0078000000000000005" z="40.164"/>
+    <box lunit="cm" name="sol_pitchAdaptor2" x="4.15" y="0.032" z="0.4"/>
+    <box lunit="cm" name="sol_pcBoard_m2" x="3.673" y="0.05" z="4.144"/>
+    <box lunit="cm" name="sol_chipL_m2" x="0.75" y="0.05" z="0.5"/>
+    <box lunit="cm" name="sol_chipR_m2" x="0.75" y="0.05" z="0.5"/>
+    <box lunit="cm" name="sol_pcBoardAndChips2" x="3.673" y="0.1" z="4.144"/>
+    <box lunit="cm" name="sol_sector" x="4.2" y="0.38020000000000004" z="41.825500000000005"/>
+    <tube aunit="deg" deltaphi="360.0" lunit="cm" name="sol_svt" rmax="1.0" rmin="0.0" startphi="0.0" z="2.0"/>
+  </solids>
+  <structure>
+    <volume name="vol_heatSinkCu">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_heatSinkCu"/>
+    </volume>
+    <volume name="vol_heatSinkRidge">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_heatSinkRidge"/>
+    </volume>
+    <volume name="vol_heatSink">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_heatSink"/>
+      <physvol>
+        <volumeref ref="vol_heatSinkCu"/>
+        <position name="pos_heatSinkCu" unit="cm" x="0.0" y="0.019000000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_heatSinkRidge"/>
+        <position name="pos_heatSinkRidge" unit="cm" x="0.0" y="0.1655" z="-2.4865000000000004"/>
+      </physvol>
+    </volume>
+    <volume name="vol_rohacell">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_rohacell"/>
+    </volume>
+    <volume name="vol_module1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1"/>
+    </volume>
+    <volume name="vol_carbonFiberCu_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_carbonFiberCu_m1"/>
+    </volume>
+    <volume name="vol_carbonFiberPk_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_carbonFiberPk_m1"/>
+    </volume>
+    <volume name="vol_carbonFiber1">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_carbonFiber1"/>
+      <physvol>
+        <volumeref ref="vol_carbonFiberCu_m1"/>
+        <position name="pos_carbonFiberCu_m1" unit="cm" x="0.0" y="0.0" z="-17.753"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_carbonFiberPk_m1"/>
+        <position name="pos_carbonFiberPk_m1" unit="cm" x="0.0" y="0.0" z="2.3289999999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_busCableCu_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_busCableCu_m1"/>
+    </volume>
+    <volume name="vol_busCablePk_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_busCablePk_m1"/>
+    </volume>
+    <volume name="vol_busCable1">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_busCable1"/>
+      <physvol>
+        <volumeref ref="vol_busCableCu_m1"/>
+        <position name="pos_busCableCu_m1" unit="cm" x="0.0" y="0.0" z="-17.753"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_busCablePk_m1"/>
+        <position name="pos_busCablePk_m1" unit="cm" x="0.0" y="0.0" z="2.3289999999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_pitchAdaptor1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_pitchAdaptor1"/>
+    </volume>
+    <volume name="vol_pcBoard_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_pcBoard_m1"/>
+    </volume>
+    <volume name="vol_chipL_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_chipL_m1"/>
+    </volume>
+    <volume name="vol_chipR_m1">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_chipR_m1"/>
+    </volume>
+    <volume name="vol_pcBoardAndChips1">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_pcBoardAndChips1"/>
+      <physvol>
+        <volumeref ref="vol_pcBoard_m1"/>
+        <position name="pos_pcBoard_m1" unit="cm" x="0.0" y="-0.025" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_chipL_m1"/>
+        <position name="pos_chipL_m1" unit="cm" x="0.9990000000000001" y="0.025" z="1.768"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_chipR_m1"/>
+        <position name="pos_chipR_m1" unit="cm" x="-0.9990000000000001" y="0.025" z="1.768"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module2"/>
+    </volume>
+    <volume name="vol_carbonFiberCu_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_carbonFiberCu_m2"/>
+    </volume>
+    <volume name="vol_carbonFiberPk_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_carbonFiberPk_m2"/>
+    </volume>
+    <volume name="vol_carbonFiber2">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_carbonFiber2"/>
+      <physvol>
+        <volumeref ref="vol_carbonFiberCu_m2"/>
+        <position name="pos_carbonFiberCu_m2" unit="cm" x="0.0" y="0.0" z="-17.753"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_carbonFiberPk_m2"/>
+        <position name="pos_carbonFiberPk_m2" unit="cm" x="0.0" y="0.0" z="2.3289999999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_busCableCu_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_busCableCu_m2"/>
+    </volume>
+    <volume name="vol_busCablePk_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_busCablePk_m2"/>
+    </volume>
+    <volume name="vol_busCable2">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_busCable2"/>
+      <physvol>
+        <volumeref ref="vol_busCableCu_m2"/>
+        <position name="pos_busCableCu_m2" unit="cm" x="0.0" y="0.0" z="-17.753"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_busCablePk_m2"/>
+        <position name="pos_busCablePk_m2" unit="cm" x="0.0" y="0.0" z="2.3289999999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_pitchAdaptor2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_pitchAdaptor2"/>
+    </volume>
+    <volume name="vol_pcBoard_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_pcBoard_m2"/>
+    </volume>
+    <volume name="vol_chipL_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_chipL_m2"/>
+    </volume>
+    <volume name="vol_chipR_m2">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_chipR_m2"/>
+    </volume>
+    <volume name="vol_pcBoardAndChips2">
+      <materialref ref="mat_hide"/>
+      <solidref ref="sol_pcBoardAndChips2"/>
+      <physvol>
+        <volumeref ref="vol_pcBoard_m2"/>
+        <position name="pos_pcBoard_m2" unit="cm" x="0.0" y="-0.025" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_chipL_m2"/>
+        <position name="pos_chipL_m2" unit="cm" x="0.9990000000000001" y="0.025" z="1.768"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_chipR_m2"/>
+        <position name="pos_chipR_m2" unit="cm" x="-0.9990000000000001" y="0.025" z="1.768"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector">
+      <materialref ref="mat_half"/>
+      <solidref ref="sol_sector"/>
+      <physvol>
+        <volumeref ref="vol_heatSink"/>
+        <position name="pos_heatSink" unit="cm" x="0.0" y="-0.01899999999999999" z="-18.206250000000004"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_rohacell"/>
+        <position name="pos_rohacell" unit="cm" x="0.0" y="0.0" z="2.7064999999999984"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1"/>
+        <position name="pos_module1" unit="cm" x="0.0" y="0.1741" z="2.0551999999999992"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_carbonFiber1"/>
+        <position name="pos_carbonFiber1" unit="cm" x="0.0" y="0.1345" z="0.26924999999999955"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_busCable1"/>
+        <position name="pos_busCable1" unit="cm" x="0.0" y="0.1479" z="0.26924999999999955"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_pitchAdaptor1"/>
+        <position name="pos_pitchAdaptor1" unit="cm" x="0.0" y="0.1741" z="-14.969750000000001"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_pcBoardAndChips1"/>
+        <position name="pos_pcBoardAndChips1" unit="cm" x="0.0" y="0.2081" z="-17.27175"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module2"/>
+        <position name="pos_module2" unit="cm" x="0.0" y="-0.17410000000000003" z="2.0551999999999992"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_carbonFiber2"/>
+        <position name="pos_carbonFiber2" unit="cm" x="0.0" y="-0.1345" z="0.26924999999999955"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_busCable2"/>
+        <position name="pos_busCable2" unit="cm" x="0.0" y="-0.14790000000000003" z="0.26924999999999955"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_pitchAdaptor2"/>
+        <position name="pos_pitchAdaptor2" unit="cm" x="0.0" y="-0.17410000000000003" z="-14.969750000000001"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_pcBoardAndChips2"/>
+        <position name="pos_pcBoardAndChips2" unit="cm" x="0.0" y="-0.2081" z="-17.27175"/>
+        <rotation name="rot_pcBoardAndChips2_in_sector" unit="deg" x="0.0" y="0.0" z="-180.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_svt">
+      <materialref ref="mat_half"/>
+      <solidref ref="sol_svt"/>
+      <physvol>
+        <volumeref ref="vol_sector"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="default" version="1.0">
+    <world ref="vol_svt"/>
+  </setup>
+</gdml>

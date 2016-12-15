@@ -1,0 +1,3014 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNameSpaceSchemaLocation="http://cern.ch/service-spi/app/releases/GDML/Schema/gdml.xsd">
+  <define/>
+  <materials>
+    <material Z="1" name="mat_vacuum">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+    <material Z="1" name="mat_sensorActive">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+  </materials>
+  <solids>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s0_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s0_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s0_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s0_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s0_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s0_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s0_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s0_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s0_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s0_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector0_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s1_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s1_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s1_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s1_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s1_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s1_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s1_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s1_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s1_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s1_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector1_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s2_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s2_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s2_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s2_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s2_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s2_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s2_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s2_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s2_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s2_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector2_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s3_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s3_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s3_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s3_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s3_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s3_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s3_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s3_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s3_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s3_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector3_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s4_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s4_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s4_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s4_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s4_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s4_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s4_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s4_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s4_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s4_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector4_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s5_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s5_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s5_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s5_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s5_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s5_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s5_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s5_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s5_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s5_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector5_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s6_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s6_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s6_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s6_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s6_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s6_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s6_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s6_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s6_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s6_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector6_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s7_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s7_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s7_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s7_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s7_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s7_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s7_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s7_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s7_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s7_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector7_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s8_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s8_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s8_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s8_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s8_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s8_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s8_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s8_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s8_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s8_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector8_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m0_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m0_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m0_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m0_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m0_s9_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m0_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m0_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m0_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m0_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m0_s9_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m0_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m0_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m0_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m0_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m0_s9_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module0_s9_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_deadZone0_sp0_m1_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp0_m1_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp0_m1_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp0_m1_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical0_m1_s9_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp1_m1_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp1_m1_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp1_m1_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp1_m1_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical1_m1_s9_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone0_sp2_m1_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone1_sp2_m1_s9_r0" x="0.984" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_deadZone2_sp2_m1_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_deadZone3_sp2_m1_s9_r0" x="40.032" y="0.32" z="0.835"/>
+    <box lunit="cm" name="sol_sensorPhysical2_m1_s9_r0" x="41.702" y="0.32" z="111.625"/>
+    <box lunit="cm" name="sol_module1_s9_r0" x="41.702" y="0.321" z="335.099"/>
+    <box lunit="cm" name="sol_sector9_r0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_region0" x="0.0" y="0.0" z="0.0"/>
+    <box lunit="cm" name="sol_svt" x="0.0" y="0.0" z="0.0"/>
+  </solids>
+  <structure>
+    <volume name="vol_deadZone0_sp0_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s0_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s0_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s0_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s0_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s0_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s0_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s0_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s0_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s0_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s0_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s0_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s0_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s0_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s0_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s0_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s0_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s0_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s0_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s0_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s0_r0"/>
+        <position name="pos_sensorPhysical0_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s0_r0"/>
+        <position name="pos_sensorPhysical1_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s0_r0"/>
+        <position name="pos_sensorPhysical2_m0_s0_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s0_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s0_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s0_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s0_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s0_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s0_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s0_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s0_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s0_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s0_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s0_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s0_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s0_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s0_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s0_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s0_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s0_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s0_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s0_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s0_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s0_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s0_r0"/>
+        <position name="pos_sensorPhysical0_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s0_r0"/>
+        <position name="pos_sensorPhysical1_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s0_r0"/>
+        <position name="pos_sensorPhysical2_m1_s0_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector0_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector0_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s0_r0"/>
+        <position name="pos_module0_s0_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s0_r0"/>
+        <position name="pos_module1_s0_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s1_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s1_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s1_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s1_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s1_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s1_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s1_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s1_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s1_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s1_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s1_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s1_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s1_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s1_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s1_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s1_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s1_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s1_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s1_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s1_r0"/>
+        <position name="pos_sensorPhysical0_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s1_r0"/>
+        <position name="pos_sensorPhysical1_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s1_r0"/>
+        <position name="pos_sensorPhysical2_m0_s1_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s1_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s1_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s1_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s1_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s1_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s1_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s1_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s1_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s1_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s1_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s1_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s1_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s1_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s1_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s1_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s1_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s1_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s1_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s1_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s1_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s1_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s1_r0"/>
+        <position name="pos_sensorPhysical0_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s1_r0"/>
+        <position name="pos_sensorPhysical1_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s1_r0"/>
+        <position name="pos_sensorPhysical2_m1_s1_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector1_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector1_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s1_r0"/>
+        <position name="pos_module0_s1_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s1_r0"/>
+        <position name="pos_module1_s1_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s2_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s2_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s2_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s2_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s2_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s2_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s2_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s2_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s2_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s2_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s2_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s2_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s2_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s2_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s2_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s2_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s2_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s2_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s2_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s2_r0"/>
+        <position name="pos_sensorPhysical0_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s2_r0"/>
+        <position name="pos_sensorPhysical1_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s2_r0"/>
+        <position name="pos_sensorPhysical2_m0_s2_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s2_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s2_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s2_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s2_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s2_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s2_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s2_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s2_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s2_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s2_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s2_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s2_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s2_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s2_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s2_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s2_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s2_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s2_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s2_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s2_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s2_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s2_r0"/>
+        <position name="pos_sensorPhysical0_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s2_r0"/>
+        <position name="pos_sensorPhysical1_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s2_r0"/>
+        <position name="pos_sensorPhysical2_m1_s2_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector2_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector2_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s2_r0"/>
+        <position name="pos_module0_s2_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s2_r0"/>
+        <position name="pos_module1_s2_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s3_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s3_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s3_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s3_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s3_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s3_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s3_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s3_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s3_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s3_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s3_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s3_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s3_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s3_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s3_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s3_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s3_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s3_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s3_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s3_r0"/>
+        <position name="pos_sensorPhysical0_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s3_r0"/>
+        <position name="pos_sensorPhysical1_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s3_r0"/>
+        <position name="pos_sensorPhysical2_m0_s3_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s3_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s3_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s3_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s3_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s3_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s3_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s3_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s3_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s3_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s3_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s3_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s3_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s3_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s3_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s3_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s3_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s3_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s3_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s3_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s3_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s3_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s3_r0"/>
+        <position name="pos_sensorPhysical0_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s3_r0"/>
+        <position name="pos_sensorPhysical1_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s3_r0"/>
+        <position name="pos_sensorPhysical2_m1_s3_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector3_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector3_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s3_r0"/>
+        <position name="pos_module0_s3_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s3_r0"/>
+        <position name="pos_module1_s3_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s4_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s4_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s4_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s4_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s4_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s4_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s4_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s4_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s4_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s4_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s4_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s4_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s4_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s4_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s4_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s4_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s4_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s4_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s4_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s4_r0"/>
+        <position name="pos_sensorPhysical0_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s4_r0"/>
+        <position name="pos_sensorPhysical1_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s4_r0"/>
+        <position name="pos_sensorPhysical2_m0_s4_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s4_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s4_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s4_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s4_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s4_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s4_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s4_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s4_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s4_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s4_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s4_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s4_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s4_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s4_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s4_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s4_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s4_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s4_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s4_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s4_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s4_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s4_r0"/>
+        <position name="pos_sensorPhysical0_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s4_r0"/>
+        <position name="pos_sensorPhysical1_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s4_r0"/>
+        <position name="pos_sensorPhysical2_m1_s4_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector4_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector4_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s4_r0"/>
+        <position name="pos_module0_s4_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s4_r0"/>
+        <position name="pos_module1_s4_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s5_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s5_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s5_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s5_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s5_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s5_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s5_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s5_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s5_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s5_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s5_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s5_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s5_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s5_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s5_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s5_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s5_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s5_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s5_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s5_r0"/>
+        <position name="pos_sensorPhysical0_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s5_r0"/>
+        <position name="pos_sensorPhysical1_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s5_r0"/>
+        <position name="pos_sensorPhysical2_m0_s5_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s5_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s5_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s5_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s5_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s5_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s5_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s5_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s5_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s5_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s5_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s5_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s5_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s5_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s5_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s5_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s5_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s5_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s5_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s5_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s5_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s5_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s5_r0"/>
+        <position name="pos_sensorPhysical0_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s5_r0"/>
+        <position name="pos_sensorPhysical1_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s5_r0"/>
+        <position name="pos_sensorPhysical2_m1_s5_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector5_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector5_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s5_r0"/>
+        <position name="pos_module0_s5_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s5_r0"/>
+        <position name="pos_module1_s5_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s6_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s6_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s6_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s6_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s6_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s6_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s6_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s6_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s6_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s6_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s6_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s6_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s6_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s6_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s6_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s6_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s6_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s6_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s6_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s6_r0"/>
+        <position name="pos_sensorPhysical0_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s6_r0"/>
+        <position name="pos_sensorPhysical1_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s6_r0"/>
+        <position name="pos_sensorPhysical2_m0_s6_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s6_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s6_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s6_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s6_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s6_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s6_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s6_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s6_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s6_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s6_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s6_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s6_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s6_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s6_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s6_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s6_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s6_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s6_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s6_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s6_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s6_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s6_r0"/>
+        <position name="pos_sensorPhysical0_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s6_r0"/>
+        <position name="pos_sensorPhysical1_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s6_r0"/>
+        <position name="pos_sensorPhysical2_m1_s6_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector6_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector6_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s6_r0"/>
+        <position name="pos_module0_s6_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s6_r0"/>
+        <position name="pos_module1_s6_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s7_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s7_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s7_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s7_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s7_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s7_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s7_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s7_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s7_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s7_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s7_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s7_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s7_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s7_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s7_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s7_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s7_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s7_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s7_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s7_r0"/>
+        <position name="pos_sensorPhysical0_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s7_r0"/>
+        <position name="pos_sensorPhysical1_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s7_r0"/>
+        <position name="pos_sensorPhysical2_m0_s7_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s7_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s7_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s7_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s7_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s7_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s7_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s7_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s7_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s7_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s7_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s7_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s7_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s7_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s7_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s7_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s7_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s7_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s7_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s7_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s7_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s7_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s7_r0"/>
+        <position name="pos_sensorPhysical0_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s7_r0"/>
+        <position name="pos_sensorPhysical1_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s7_r0"/>
+        <position name="pos_sensorPhysical2_m1_s7_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector7_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector7_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s7_r0"/>
+        <position name="pos_module0_s7_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s7_r0"/>
+        <position name="pos_module1_s7_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s8_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s8_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s8_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s8_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s8_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s8_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s8_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s8_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s8_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s8_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s8_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s8_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s8_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s8_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s8_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s8_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s8_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s8_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s8_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s8_r0"/>
+        <position name="pos_sensorPhysical0_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s8_r0"/>
+        <position name="pos_sensorPhysical1_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s8_r0"/>
+        <position name="pos_sensorPhysical2_m0_s8_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s8_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s8_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s8_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s8_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s8_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s8_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s8_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s8_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s8_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s8_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s8_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s8_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s8_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s8_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s8_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s8_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s8_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s8_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s8_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s8_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s8_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s8_r0"/>
+        <position name="pos_sensorPhysical0_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s8_r0"/>
+        <position name="pos_sensorPhysical1_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s8_r0"/>
+        <position name="pos_sensorPhysical2_m1_s8_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector8_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector8_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s8_r0"/>
+        <position name="pos_module0_s8_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s8_r0"/>
+        <position name="pos_module1_s8_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m0_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m0_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m0_s9_r0"/>
+        <position name="pos_deadZone0_sp0_m0_s9_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m0_s9_r0"/>
+        <position name="pos_deadZone1_sp0_m0_s9_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m0_s9_r0"/>
+        <position name="pos_deadZone2_sp0_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m0_s9_r0"/>
+        <position name="pos_deadZone3_sp0_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m0_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m0_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m0_s9_r0"/>
+        <position name="pos_deadZone0_sp1_m0_s9_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m0_s9_r0"/>
+        <position name="pos_deadZone1_sp1_m0_s9_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m0_s9_r0"/>
+        <position name="pos_deadZone2_sp1_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m0_s9_r0"/>
+        <position name="pos_deadZone3_sp1_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m0_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m0_s9_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m0_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m0_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m0_s9_r0"/>
+        <position name="pos_deadZone0_sp2_m0_s9_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m0_s9_r0"/>
+        <position name="pos_deadZone1_sp2_m0_s9_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m0_s9_r0"/>
+        <position name="pos_deadZone2_sp2_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m0_s9_r0"/>
+        <position name="pos_deadZone3_sp2_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module0_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module0_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m0_s9_r0"/>
+        <position name="pos_sensorPhysical0_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m0_s9_r0"/>
+        <position name="pos_sensorPhysical1_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m0_s9_r0"/>
+        <position name="pos_sensorPhysical2_m0_s9_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp0_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp0_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp0_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp0_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp0_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp0_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp0_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp0_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical0_m1_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical0_m1_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp0_m1_s9_r0"/>
+        <position name="pos_deadZone0_sp0_m1_s9_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp0_m1_s9_r0"/>
+        <position name="pos_deadZone1_sp0_m1_s9_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp0_m1_s9_r0"/>
+        <position name="pos_deadZone2_sp0_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp0_m1_s9_r0"/>
+        <position name="pos_deadZone3_sp0_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp1_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp1_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp1_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp1_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp1_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp1_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp1_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp1_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical1_m1_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical1_m1_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp1_m1_s9_r0"/>
+        <position name="pos_deadZone0_sp1_m1_s9_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp1_m1_s9_r0"/>
+        <position name="pos_deadZone1_sp1_m1_s9_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp1_m1_s9_r0"/>
+        <position name="pos_deadZone2_sp1_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp1_m1_s9_r0"/>
+        <position name="pos_deadZone3_sp1_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_deadZone0_sp2_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone0_sp2_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone1_sp2_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone1_sp2_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone2_sp2_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone2_sp2_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_deadZone3_sp2_m1_s9_r0">
+      <materialref ref="mat_sensorActive"/>
+      <solidref ref="sol_deadZone3_sp2_m1_s9_r0"/>
+    </volume>
+    <volume name="vol_sensorPhysical2_m1_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sensorPhysical2_m1_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_deadZone0_sp2_m1_s9_r0"/>
+        <position name="pos_deadZone0_sp2_m1_s9_r0" unit="cm" x="-20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone1_sp2_m1_s9_r0"/>
+        <position name="pos_deadZone1_sp2_m1_s9_r0" unit="cm" x="20.508" y="0.0" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone2_sp2_m1_s9_r0"/>
+        <position name="pos_deadZone2_sp2_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="-55.394999999999996"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_deadZone3_sp2_m1_s9_r0"/>
+        <position name="pos_deadZone3_sp2_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="55.394999999999996"/>
+      </physvol>
+    </volume>
+    <volume name="vol_module1_s9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_module1_s9_r0"/>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical0_m1_s9_r0"/>
+        <position name="pos_sensorPhysical0_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="-111.737"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical1_m1_s9_r0"/>
+        <position name="pos_sensorPhysical1_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="-2.1316282072803006E-14"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sensorPhysical2_m1_s9_r0"/>
+        <position name="pos_sensorPhysical2_m1_s9_r0" unit="cm" x="0.0" y="0.0" z="111.73699999999997"/>
+      </physvol>
+    </volume>
+    <volume name="vol_sector9_r0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_sector9_r0"/>
+      <physvol>
+        <volumeref ref="vol_module0_s9_r0"/>
+        <position name="pos_module0_s9_r0" unit="cm" x="0.0" y="-2.9930000000000003" z="0.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_module1_s9_r0"/>
+        <position name="pos_module1_s9_r0" unit="cm" x="0.0" y="0.493" z="0.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_region0">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_region0"/>
+      <physvol>
+        <volumeref ref="vol_sector0_r0"/>
+        <position name="pos_sector0_r0" unit="cm" x="67.21359958918744" y="-12.020417225054315" z="62.129999999999995"/>
+        <rotation name="rot_sector0_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10313.240312354817"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector1_r0"/>
+        <position name="pos_sector1_r0" unit="cm" x="47.311520349477505" y="-49.231884406560916" z="62.129999999999995"/>
+        <rotation name="rot_sector1_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10277.24031235482"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector2_r0"/>
+        <position name="pos_sector2_r0" unit="cm" x="9.338048395697012" y="-67.63844507496917" z="62.129999999999995"/>
+        <rotation name="rot_sector2_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10241.240312354817"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector3_r0"/>
+        <position name="pos_sector3_r0" unit="cm" x="-32.202240656645245" y="-60.20941867093141" z="62.129999999999995"/>
+        <rotation name="rot_sector3_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10205.24031235482"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector4_r0"/>
+        <position name="pos_sector4_r0" unit="cm" x="-61.442368292055384" y="-29.782440777468654" z="62.129999999999995"/>
+        <rotation name="rot_sector4_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10169.240312354817"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector5_r0"/>
+        <position name="pos_sector5_r0" unit="cm" x="-67.21359958918757" y="12.02041722505359" z="62.129999999999995"/>
+        <rotation name="rot_sector5_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10133.24031235482"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector6_r0"/>
+        <position name="pos_sector6_r0" unit="cm" x="-47.31152034947524" y="49.2318844065631" z="62.129999999999995"/>
+        <rotation name="rot_sector6_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10097.240312354817"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector7_r0"/>
+        <position name="pos_sector7_r0" unit="cm" x="-9.33804839569774" y="67.63844507496907" z="62.129999999999995"/>
+        <rotation name="rot_sector7_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10061.240312354817"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector8_r0"/>
+        <position name="pos_sector8_r0" unit="cm" x="32.202240656648016" y="60.20941867092993" z="62.129999999999995"/>
+        <rotation name="rot_sector8_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-10025.240312354817"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_sector9_r0"/>
+        <position name="pos_sector9_r0" unit="cm" x="61.442368292055065" y="29.78244077746931" z="62.129999999999995"/>
+        <rotation name="rot_sector9_r0_in_region0" unit="deg" x="0.0" y="0.0" z="-9989.240312354817"/>
+      </physvol>
+    </volume>
+    <volume name="vol_svt">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_svt"/>
+      <physvol>
+        <volumeref ref="vol_region0"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="default" version="1.0">
+    <world ref="vol_svt"/>
+  </setup>
+</gdml>

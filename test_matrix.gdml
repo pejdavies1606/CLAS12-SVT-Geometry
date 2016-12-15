@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNameSpaceSchemaLocation="http://cern.ch/service-spi/app/releases/GDML/Schema/gdml.xsd">
+  <define/>
+  <materials>
+    <material Z="1" name="mat_vacuum">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+  </materials>
+  <solids>
+    <box lunit="cm" name="sol_theirVol" x="2.0" y="2.0" z="4.0"/>
+    <box lunit="cm" name="sol_yourVol" x="2.0" y="2.0" z="4.0"/>
+    <box lunit="cm" name="sol_myOtherVol" x="2.0" y="2.0" z="4.0"/>
+    <box lunit="cm" name="sol_top" x="1.0" y="1.0" z="2.0"/>
+  </solids>
+  <structure>
+    <volume name="vol_theirVol">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_theirVol"/>
+    </volume>
+    <volume name="vol_yourVol">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_yourVol"/>
+      <physvol>
+        <volumeref ref="vol_theirVol"/>
+        <position name="pos_theirVol" unit="cm" x="5.0" y="0.0" z="0.0"/>
+        <rotation name="rot_theirVol_in_yourVol" unit="deg" x="0.0" y="0.0" z="-45.0"/>
+      </physvol>
+    </volume>
+    <volume name="vol_myOtherVol">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_myOtherVol"/>
+    </volume>
+    <volume name="vol_top">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_top"/>
+      <physvol>
+        <volumeref ref="vol_yourVol"/>
+        <position name="pos_yourVol" unit="cm" x="-3.5355339059327373" y="-8.535533905932738" z="0.0"/>
+        <rotation name="rot_yourVol_in_top" unit="deg" x="-90.0" y="-45.00000000000001" z="-270.0"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_myOtherVol"/>
+        <position name="pos_myOtherVol" unit="cm" x="0.0" y="-5.0" z="0.0"/>
+        <rotation name="rot_myOtherVol_in_top" unit="deg" x="0.0" y="0.0" z="45.0"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="default" version="1.0">
+    <world ref="vol_top"/>
+  </setup>
+</gdml>

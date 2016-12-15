@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<jardesc>
+    <jar path="SVTGeometry-coatjava-2.4.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/CLAS12_SVT_GEOMETRY/SVTGeometry.jardesc" exportErrors="false" exportWarnings="false" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/CLAS12_SVT_GEOMETRY/doc/allclasses-frame.html"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/overview-summary.html"/>
+        <javaElement handleIdentifier="=CLAS12_SVT_GEOMETRY/src&lt;SVTFactory{SVTStripFactory.java"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/script.js"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/allclasses-noframe.html"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/deprecated-list.html"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/overview-tree.html"/>
+        <javaElement handleIdentifier="=CLAS12_SVT_GEOMETRY/src&lt;Misc"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/stylesheet.css"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/index.html"/>
+        <javaElement handleIdentifier="=CLAS12_SVT_GEOMETRY/src&lt;SVTFactory{SVTAlignmentFactory.java"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/overview-frame.html"/>
+        <javaElement handleIdentifier="=CLAS12_SVT_GEOMETRY/src&lt;Alignment"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/constant-values.html"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/package-list"/>
+        <folder path="/CLAS12_SVT_GEOMETRY/doc/SVTFactory"/>
+        <javaElement handleIdentifier="=CLAS12_SVT_GEOMETRY/src&lt;SVTFactory{SVTConstants.java"/>
+        <folder path="/CLAS12_SVT_GEOMETRY/doc/Misc"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/help-doc.html"/>
+        <javaElement handleIdentifier="=CLAS12_SVT_GEOMETRY/src&lt;SVTFactory{SVTVolumeFactory.java"/>
+        <folder path="/CLAS12_SVT_GEOMETRY/doc/Alignment"/>
+        <file path="/CLAS12_SVT_GEOMETRY/doc/index-all.html"/>
+    </selectedElements>
+</jardesc>

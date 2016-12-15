@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNameSpaceSchemaLocation="http://cern.ch/service-spi/app/releases/GDML/Schema/gdml.xsd">
+  <define>
+    <position name="pos_refX_in_top" unit="cm" x="0.5" y="0.0" z="0.0"/>
+    <position name="pos_refY_in_top" unit="cm" x="0.0" y="0.5" z="0.0"/>
+    <position name="pos_refZ_in_top" unit="cm" x="0.0" y="0.0" z="0.5"/>
+    <position name="pos_refRotX_in_top" unit="cm" x="-2.0" y="0.0" z="0.0"/>
+    <rotation name="rot_refRotX_in_top" unit="deg" x="29.999999999999996" y="0.0" z="0.0"/>
+    <position name="pos_refRotY_in_top" unit="cm" x="0.0" y="-2.0" z="0.0"/>
+    <rotation name="rot_refRotY_in_top" unit="deg" x="0.0" y="29.999999999999996" z="0.0"/>
+    <position name="pos_refRotZ_in_top" unit="cm" x="0.0" y="0.0" z="-2.0"/>
+    <rotation name="rot_refRotZ_in_top" unit="deg" x="0.0" y="0.0" z="29.999999999999996"/>
+  </define>
+  <materials>
+    <material Z="1" name="mat_vacuum">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+    <material Z="1" name="mat_fid">
+      <D unit="g/cm3" value="0.0"/>
+      <atom unit="g/mole" value="0.0"/>
+    </material>
+  </materials>
+  <solids>
+    <box lunit="cm" name="sol_refx" x="1.0" y="0.25" z="0.25"/>
+    <box lunit="cm" name="sol_refy" x="0.25" y="1.0" z="0.25"/>
+    <box lunit="cm" name="sol_refz" x="0.25" y="0.25" z="1.0"/>
+    <box lunit="cm" name="sol_refrotx" x="0.25" y="2.0" z="0.25"/>
+    <box lunit="cm" name="sol_refroty" x="0.25" y="0.25" z="2.0"/>
+    <box lunit="cm" name="sol_refrotz" x="2.0" y="0.25" z="0.25"/>
+    <box lunit="cm" name="sol_top" x="100.0" y="100.0" z="100.0"/>
+  </solids>
+  <structure>
+    <volume name="vol_refx">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_refx"/>
+    </volume>
+    <volume name="vol_refy">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_refy"/>
+    </volume>
+    <volume name="vol_refz">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_refz"/>
+    </volume>
+    <volume name="vol_refrotx">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_refrotx"/>
+    </volume>
+    <volume name="vol_refroty">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_refroty"/>
+    </volume>
+    <volume name="vol_refrotz">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_refrotz"/>
+    </volume>
+    <volume name="vol_top">
+      <materialref ref="mat_vacuum"/>
+      <solidref ref="sol_top"/>
+      <physvol>
+        <volumeref ref="vol_refx"/>
+        <positionref ref="pos_refX_in_top"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_refy"/>
+        <positionref ref="pos_refY_in_top"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_refz"/>
+        <positionref ref="pos_refZ_in_top"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_refrotx"/>
+        <positionref ref="pos_refRotX_in_top"/>
+        <rotationref ref="rot_refRotX_in_top"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_refroty"/>
+        <positionref ref="pos_refRotY_in_top"/>
+        <rotationref ref="rot_refRotY_in_top"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="vol_refrotz"/>
+        <positionref ref="pos_refRotZ_in_top"/>
+        <rotationref ref="rot_refRotZ_in_top"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="default" version="1.0">
+    <world ref="vol_top"/>
+  </setup>
+</gdml>
