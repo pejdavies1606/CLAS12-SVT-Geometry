@@ -88,17 +88,27 @@ void drawIdeal() {
         else if( volName->Contains("carbonFiberCu") )
         {
             //cout << "sensorActive";
-            vol->SetLineColor( kGray+3 ); // kBlack
+            vol->SetLineColor( kGray+3 );
         }
         else if( volName->Contains("carbonFiberPk") )
         {
             //cout << "sensorActive";
-            vol->SetLineColor( kGray+3 ); // kBlack
+            vol->SetLineColor( kGray+3 );
         }
         else if( volName->Contains("busCable") )
         {
             //cout << "sensorActive";
-            vol->SetLineColor( kGray+2 ); // kBlack
+            vol->SetLineColor( kGray+2 );
+        }
+        else if( volName->Contains("pcBoard") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kOrange-4 );
+        }
+        else if( volName->Contains("chip") )
+        {
+            //cout << "sensorActive";
+            vol->SetLineColor( kCyan+1 );
         }
         else
         {

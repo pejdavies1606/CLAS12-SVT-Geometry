@@ -283,22 +283,22 @@ public class main
 		DatabaseConstantProvider cp = SVTConstants.connect( true );
 		
 		
-		/*SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
+		SVTAlignmentFactory.setup( cp, "survey_ideals_reformat.dat", "survey_measured_reformat.dat" );
 		double[][] dataFactoryIdeal = SVTAlignmentFactory.getFactoryIdealFiducialData();
 		
-		//AlignmentFactory.VERBOSE = true;
+		AlignmentFactory.VERBOSE = true;
 		SVTAlignmentFactory.calcShifts( dataFactoryIdeal, SVTAlignmentFactory.getDataSurveyMeasured(), "shifts_survey_measured_from_factory_ideal.dat" );
 		//SVTAlignmentFactory.calcDeltas( dataFactoryIdeal, SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_factory_ideal.dat" );
-		//AlignmentFactory.VERBOSE = false;
+		AlignmentFactory.VERBOSE = false;
 		
 		SVTAlignmentFactory.calcDeltas( dataFactoryIdeal, SVTAlignmentFactory.getDataSurveyIdeal(), "deltas_survey_ideal_from_factory_ideal.dat");
 		//SVTAlignmentFactory.calcDeltas( SVTAlignmentFactory.getDataSurveyIdeal(), SVTAlignmentFactory.getDataSurveyMeasured(), "deltas_survey_measured_from_survey_ideals.dat");
 		
 		double[][][] dataSideIdeals = SVTAlignmentFactory.calcTriangleSides( dataFactoryIdeal, 0, "sides_factory_ideal.dat");
 		double[][][] dataSideMeasureds = SVTAlignmentFactory.calcTriangleSides( SVTAlignmentFactory.getDataSurveyMeasured(), 0.020, "sides_survey_measured.dat");
-		SVTAlignmentFactory.calcDistanceDeltas( dataSideIdeals, dataSideMeasureds, "sides_survey_measured_from_factory_ideal.dat");*/
+		SVTAlignmentFactory.calcDistanceDeltas( dataSideIdeals, dataSideMeasureds, "sides_survey_measured_from_factory_ideal.dat");
 		
-		//System.exit(0);
+		System.exit(0);
 		
 		
 		
@@ -313,7 +313,7 @@ public class main
 		SVTVolumeFactory svtIdealVolumeFactory = new SVTVolumeFactory( cp, false );
 		
 		//svtIdealVolumeFactory.setRange( regionSelector, sectorSelector, sectorSelector );
-		//svtIdealVolumeFactory.setRange( regionSelector, 0, 0 );
+		svtIdealVolumeFactory.setRange( regionSelector, 0, 0 );
 		//svtIdealVolumeFactory.setRange( 1, 1, new int[]{1,1,1,1}, new int[]{1,1,1,1}, 1, 1 ); // test one module
 		//svtIdealVolumeFactory.setRange( 1, 1, new int[]{1,1,1,1}, new int[]{1,1,1,1}, 0, 0 );
 		
@@ -324,8 +324,8 @@ public class main
 		//svtIdealVolumeFactory.VOLSPACER = 1.0;
 		
 		//svtIdealVolumeFactory.makeVolumes();
-		
 		Geant4Basic sectorVol = svtIdealVolumeFactory.createSector(); sectorVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
+		//Geant4Basic pcBoardVol = svtIdealVolumeFactory.createPcBoard(); pcBoardVol.setMother( svtIdealVolumeFactory.getMotherVolume() );
 		
 		SVTStripFactory svtIdealStripFactory = new SVTStripFactory( cp, false );
 		
@@ -398,6 +398,7 @@ public class main
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_busCable", "materialref", "ref", "mat_hide");
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_busCableCu", "materialref", "ref", "mat_vacuum");
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_busCablePk", "materialref", "ref", "mat_vacuum");
+		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_pcBoardAndChips", "materialref", "ref", "mat_hide");
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_sector", "materialref", "ref", "mat_half");
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_region", "materialref", "ref", "mat_half");
 		gdmlFile.replaceAttribute( "structure", "volume", "name", "vol_svt", "materialref", "ref", "mat_half");
